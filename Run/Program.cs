@@ -19,8 +19,8 @@ namespace SharpExpressions
 
                 try
                 {
-
                     Expression expr = new Expression(line);
+                    expr.addSymbol("var", 16);
                     Console.WriteLine(expr.eval());
                 }
                 catch (Exception e)

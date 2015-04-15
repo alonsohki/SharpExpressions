@@ -5,8 +5,9 @@ namespace SharpExpressions
 {
     public class Expression
     {
-        SharpExpressionsParser mParser;
+        private SharpExpressionsParser mParser;
         private Queue mCompiled;
+        private Registry mRegistry = new Registry();
 
         public Expression()
         {
@@ -15,6 +16,11 @@ namespace SharpExpressions
         public Expression(string expr)
         {
             create(expr);
+        }
+
+        public void addSymbol(string key, object value)
+        {
+            mRegistry.identifiers[key] = value;
         }
 
         public void create(string expr)
@@ -41,7 +47,7 @@ namespace SharpExpressions
             }
             if (mCompiled != null)
             {
-                return Executor.execute(mCompiled);
+                return Executor.execute(mCompiled, mRegistry);
             }
             return null;
         }
