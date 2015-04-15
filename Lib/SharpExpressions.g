@@ -39,9 +39,8 @@ factor
   | identifier_expression
   ;
 
-identifier_expression
-  : n=IDENTIFIER { push_identifier($n.text); }
-  | a=IDENTIFIER '.' b=IDENTIFIER { push_identifier($a.text); push_identifier($b.text); push_operator(Operator.MemberAccess); }
+identifier_expression 
+  : a=IDENTIFIER { push_identifier($a.text); } ('.' b=IDENTIFIER { push_identifier($b.text); push_operator(Operator.MemberAccess); })*
   ;
  
 /*
