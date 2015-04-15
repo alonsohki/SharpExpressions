@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-04-15 22:46:29
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-04-15 23:20:23
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -67,13 +67,16 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_eval();
 	partial void LeaveRule_eval();
 	// $ANTLR start "eval"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:14:8: public eval : addition_expression ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:14:8: public eval returns [Queue queue] : addition_expression ;
 	[GrammarRule("eval")]
-	public void eval()
+	public Queue eval()
 	{
 		EnterRule_eval();
 		EnterRule("eval", 1);
 		TraceIn("eval", 1);
+		Queue queue = default(Queue);
+
+
 		try { DebugEnterRule(GrammarFileName, "eval");
 		DebugLocation(14, 2);
 		try
@@ -83,10 +86,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:15:5: addition_expression
 			{
 			DebugLocation(15, 5);
-			PushFollow(Follow._addition_expression_in_eval49);
+			 clear_stack(); 
+			DebugLocation(15, 24);
+			PushFollow(Follow._addition_expression_in_eval54);
 			addition_expression();
 			PopFollow();
 
+			DebugLocation(15, 44);
+			 queue=mQueue; 
 
 			}
 
@@ -104,7 +111,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		}
 		DebugLocation(16, 2);
 		} finally { DebugExitRule(GrammarFileName, "eval"); }
-		return;
+		return queue;
 
 	}
 	// $ANTLR end "eval"
@@ -128,7 +135,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:19:5: multiply_expression ( '+' multiply_expression | '-' multiply_expression )*
 			{
 			DebugLocation(19, 5);
-			PushFollow(Follow._multiply_expression_in_addition_expression62);
+			PushFollow(Follow._multiply_expression_in_addition_expression69);
 			multiply_expression();
 			PopFollow();
 
@@ -159,14 +166,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:20:7: '+' multiply_expression
 					{
 					DebugLocation(20, 7);
-					Match(input,10,Follow._10_in_addition_expression70); 
+					Match(input,10,Follow._10_in_addition_expression77); 
 					DebugLocation(20, 11);
-					PushFollow(Follow._multiply_expression_in_addition_expression72);
+					PushFollow(Follow._multiply_expression_in_addition_expression79);
 					multiply_expression();
 					PopFollow();
 
 					DebugLocation(20, 31);
-					 push_operator("+"); 
+					 push_operator(Operator.Add); 
 
 					}
 					break;
@@ -175,14 +182,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:21:4: '-' multiply_expression
 					{
 					DebugLocation(21, 4);
-					Match(input,11,Follow._11_in_addition_expression79); 
+					Match(input,11,Follow._11_in_addition_expression86); 
 					DebugLocation(21, 8);
-					PushFollow(Follow._multiply_expression_in_addition_expression81);
+					PushFollow(Follow._multiply_expression_in_addition_expression88);
 					multiply_expression();
 					PopFollow();
 
 					DebugLocation(21, 28);
-					 push_operator("-"); 
+					 push_operator(Operator.Sub); 
 
 					}
 					break;
@@ -238,7 +245,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:5: atomic_expression ( '*' atomic_expression | '/' atomic_expression )*
 			{
 			DebugLocation(25, 5);
-			PushFollow(Follow._atomic_expression_in_multiply_expression98);
+			PushFollow(Follow._atomic_expression_in_multiply_expression105);
 			atomic_expression();
 			PopFollow();
 
@@ -269,14 +276,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:7: '*' atomic_expression
 					{
 					DebugLocation(26, 7);
-					Match(input,9,Follow._9_in_multiply_expression106); 
+					Match(input,9,Follow._9_in_multiply_expression113); 
 					DebugLocation(26, 11);
-					PushFollow(Follow._atomic_expression_in_multiply_expression108);
+					PushFollow(Follow._atomic_expression_in_multiply_expression115);
 					atomic_expression();
 					PopFollow();
 
 					DebugLocation(26, 29);
-					 push_operator("*"); 
+					 push_operator(Operator.Mul); 
 
 					}
 					break;
@@ -285,14 +292,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:27:4: '/' atomic_expression
 					{
 					DebugLocation(27, 4);
-					Match(input,13,Follow._13_in_multiply_expression115); 
+					Match(input,13,Follow._13_in_multiply_expression122); 
 					DebugLocation(27, 8);
-					PushFollow(Follow._atomic_expression_in_multiply_expression117);
+					PushFollow(Follow._atomic_expression_in_multiply_expression124);
 					atomic_expression();
 					PopFollow();
 
 					DebugLocation(27, 26);
-					 push_operator("/"); 
+					 push_operator(Operator.Div); 
 
 					}
 					break;
@@ -370,7 +377,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:5: factor
 				{
 				DebugLocation(31, 5);
-				PushFollow(Follow._factor_in_atomic_expression134);
+				PushFollow(Follow._factor_in_atomic_expression141);
 				factor();
 				PopFollow();
 
@@ -382,14 +389,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:32:5: '(' addition_expression ')'
 				{
 				DebugLocation(32, 5);
-				Match(input,7,Follow._7_in_atomic_expression140); 
+				Match(input,7,Follow._7_in_atomic_expression147); 
 				DebugLocation(32, 9);
-				PushFollow(Follow._addition_expression_in_atomic_expression142);
+				PushFollow(Follow._addition_expression_in_atomic_expression149);
 				addition_expression();
 				PopFollow();
 
 				DebugLocation(32, 29);
-				Match(input,8,Follow._8_in_atomic_expression144); 
+				Match(input,8,Follow._8_in_atomic_expression151); 
 
 				}
 				break;
@@ -481,9 +488,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:36:5: '-' n= REAL
 				{
 				DebugLocation(36, 5);
-				Match(input,11,Follow._11_in_factor157); 
+				Match(input,11,Follow._11_in_factor164); 
 				DebugLocation(36, 10);
-				n=(IToken)Match(input,REAL,Follow._REAL_in_factor161); 
+				n=(IToken)Match(input,REAL,Follow._REAL_in_factor168); 
 				DebugLocation(36, 16);
 				 push_literal("-" + (n!=null?n.Text:default(string))); 
 
@@ -494,7 +501,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:37:5: n= REAL
 				{
 				DebugLocation(37, 6);
-				n=(IToken)Match(input,REAL,Follow._REAL_in_factor171); 
+				n=(IToken)Match(input,REAL,Follow._REAL_in_factor178); 
 				DebugLocation(37, 12);
 				 push_literal((n!=null?n.Text:default(string))); 
 
@@ -505,14 +512,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:38:5: '-' identifier_expression
 				{
 				DebugLocation(38, 5);
-				Match(input,11,Follow._11_in_factor179); 
+				Match(input,11,Follow._11_in_factor186); 
 				DebugLocation(38, 9);
-				PushFollow(Follow._identifier_expression_in_factor181);
+				PushFollow(Follow._identifier_expression_in_factor188);
 				identifier_expression();
 				PopFollow();
 
 				DebugLocation(38, 31);
-				 push_operator("negate"); 
+				 push_operator(Operator.Negate); 
 
 				}
 				break;
@@ -521,7 +528,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:39:5: identifier_expression
 				{
 				DebugLocation(39, 5);
-				PushFollow(Follow._identifier_expression_in_factor189);
+				PushFollow(Follow._identifier_expression_in_factor196);
 				identifier_expression();
 				PopFollow();
 
@@ -605,7 +612,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:5: n= IDENTIFIER
 				{
 				DebugLocation(43, 6);
-				n=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression204); 
+				n=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression211); 
 				DebugLocation(43, 18);
 				 push_identifier((n!=null?n.Text:default(string))); 
 
@@ -616,13 +623,13 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:44:5: a= IDENTIFIER '.' b= IDENTIFIER
 				{
 				DebugLocation(44, 6);
-				a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression214); 
+				a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression221); 
 				DebugLocation(44, 18);
-				Match(input,12,Follow._12_in_identifier_expression216); 
+				Match(input,12,Follow._12_in_identifier_expression223); 
 				DebugLocation(44, 23);
-				b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression220); 
+				b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression227); 
 				DebugLocation(44, 35);
-				 push_identifier((a!=null?a.Text:default(string))); push_identifier((b!=null?b.Text:default(string))); push_operator("member_access"); 
+				 push_identifier((a!=null?a.Text:default(string))); push_identifier((b!=null?b.Text:default(string))); push_operator(Operator.MemberAccess); 
 
 				}
 				break;
@@ -652,31 +659,31 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	#region Follow sets
 	private static class Follow
 	{
-		public static readonly BitSet _addition_expression_in_eval49 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _multiply_expression_in_addition_expression62 = new BitSet(new ulong[]{0xC02UL});
-		public static readonly BitSet _10_in_addition_expression70 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _multiply_expression_in_addition_expression72 = new BitSet(new ulong[]{0xC02UL});
-		public static readonly BitSet _11_in_addition_expression79 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _multiply_expression_in_addition_expression81 = new BitSet(new ulong[]{0xC02UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression98 = new BitSet(new ulong[]{0x2202UL});
-		public static readonly BitSet _9_in_multiply_expression106 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression108 = new BitSet(new ulong[]{0x2202UL});
-		public static readonly BitSet _13_in_multiply_expression115 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression117 = new BitSet(new ulong[]{0x2202UL});
-		public static readonly BitSet _factor_in_atomic_expression134 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _7_in_atomic_expression140 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _addition_expression_in_atomic_expression142 = new BitSet(new ulong[]{0x100UL});
-		public static readonly BitSet _8_in_atomic_expression144 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _11_in_factor157 = new BitSet(new ulong[]{0x20UL});
-		public static readonly BitSet _REAL_in_factor161 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _REAL_in_factor171 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _11_in_factor179 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _identifier_expression_in_factor181 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _identifier_expression_in_factor189 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression204 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression214 = new BitSet(new ulong[]{0x1000UL});
-		public static readonly BitSet _12_in_identifier_expression216 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression220 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _addition_expression_in_eval54 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _multiply_expression_in_addition_expression69 = new BitSet(new ulong[]{0xC02UL});
+		public static readonly BitSet _10_in_addition_expression77 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _multiply_expression_in_addition_expression79 = new BitSet(new ulong[]{0xC02UL});
+		public static readonly BitSet _11_in_addition_expression86 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _multiply_expression_in_addition_expression88 = new BitSet(new ulong[]{0xC02UL});
+		public static readonly BitSet _atomic_expression_in_multiply_expression105 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _9_in_multiply_expression113 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _atomic_expression_in_multiply_expression115 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _13_in_multiply_expression122 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _atomic_expression_in_multiply_expression124 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _factor_in_atomic_expression141 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _7_in_atomic_expression147 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _addition_expression_in_atomic_expression149 = new BitSet(new ulong[]{0x100UL});
+		public static readonly BitSet _8_in_atomic_expression151 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _11_in_factor164 = new BitSet(new ulong[]{0x20UL});
+		public static readonly BitSet _REAL_in_factor168 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _REAL_in_factor178 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _11_in_factor186 = new BitSet(new ulong[]{0x10UL});
+		public static readonly BitSet _identifier_expression_in_factor188 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _identifier_expression_in_factor196 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression211 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression221 = new BitSet(new ulong[]{0x1000UL});
+		public static readonly BitSet _12_in_identifier_expression223 = new BitSet(new ulong[]{0x10UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression227 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

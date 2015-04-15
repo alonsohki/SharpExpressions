@@ -24,7 +24,11 @@ namespace SharpExpressions
                     SharpExpressionsLexer lexer = new SharpExpressionsLexer(stream);
                     CommonTokenStream tokens = new CommonTokenStream(lexer);
                     SharpExpressionsParser parser = new SharpExpressionsParser(tokens);
-                    parser.eval();
+                    SharpExpressions.Queue stack = parser.eval();
+                    foreach (var entry in stack)
+                    {
+                        Console.WriteLine(entry.value);
+                    }
                 }
                 catch (Exception e)
                 {

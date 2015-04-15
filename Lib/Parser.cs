@@ -2,29 +2,46 @@
 using System;
 using System.Globalization;
 
+using SharpExpressions;
+
 namespace SharpExpressions.parser
 {
     partial class SharpExpressionsParser
     {
+        private Queue mQueue;
+
         public override void ReportError(RecognitionException e)
         {
             base.ReportError(e);
         }
 
+        private void clear_stack()
+        {
+            mQueue = new Queue();
+        }
+
         private void push_literal(string value)
         {
             float f = float.Parse(value, CultureInfo.InvariantCulture);
-            Console.WriteLine("Pushing literal: " + f);
+            mQueue.Enqueue(new Entry { type = Entry.Type.Value, value = f });
         }
 
-        private void push_operator(string op)
+        private void push_operator(Operator op)
         {
-            Console.WriteLine("Pushing operator: " + op);
+            mQueue.Enqueue(new Entry { type = Entry.Type.Operator, value = op });
         }
 
         private void push_identifier(string identifier)
         {
-            Console.WriteLine("Pushing identifier: " + identifier);
+            mQueue.Enqueue(new Entry { type = Entry.Type.Identifier, value = identifier });
+        }
+
+        private void push_stack(Queue from)
+        {
+            foreach (var entry in from)
+            {
+                mQueue.Enqueue(entry);
+            }
         }
     }
 }

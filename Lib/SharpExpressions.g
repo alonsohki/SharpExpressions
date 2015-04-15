@@ -3,7 +3,7 @@
 options {
     language=CSharp3;
 }
- 
+
 @lexer::namespace{SharpExpressions.parser}
 @parser::namespace{SharpExpressions.parser}
 
@@ -11,20 +11,20 @@ options {
  * Parser Rules
  */
  
-public eval
-  : addition_expression
+public eval returns [Queue queue]
+  : { clear_stack(); } addition_expression { queue=mQueue; }
   ;
 
 addition_expression
   : multiply_expression
-    ( '+' multiply_expression { push_operator("+"); }
-	| '-' multiply_expression { push_operator("-"); })*
+    ( '+' multiply_expression { push_operator(Operator.Add); }
+	| '-' multiply_expression { push_operator(Operator.Sub); })*
   ;
 
 multiply_expression
   : atomic_expression
-    ( '*' atomic_expression { push_operator("*"); }
-	| '/' atomic_expression { push_operator("/"); })*
+    ( '*' atomic_expression { push_operator(Operator.Mul); }
+	| '/' atomic_expression { push_operator(Operator.Div); })*
   ;
 
 atomic_expression
@@ -35,13 +35,13 @@ atomic_expression
 factor
   : '-' n=REAL { push_literal("-" + $n.text); }
   | n=REAL { push_literal($n.text); }
-  | '-' identifier_expression { push_operator("negate"); }
+  | '-' identifier_expression { push_operator(Operator.Negate); }
   | identifier_expression
   ;
 
 identifier_expression
   : n=IDENTIFIER { push_identifier($n.text); }
-  | a=IDENTIFIER '.' b=IDENTIFIER { push_identifier($a.text); push_identifier($b.text); push_operator("member_access"); }
+  | a=IDENTIFIER '.' b=IDENTIFIER { push_identifier($a.text); push_identifier($b.text); push_operator(Operator.MemberAccess); }
   ;
  
 /*
