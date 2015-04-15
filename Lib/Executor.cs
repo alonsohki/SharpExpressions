@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace SharpExpressions
 {
@@ -7,8 +8,8 @@ namespace SharpExpressions
     {
         public static object execute(Queue queue, Registry registry)
         {
-            float a;
-            float b;
+            double a;
+            double b;
             Stack<object> args = new Stack<object>();
 
             foreach (var entry in queue)
@@ -48,6 +49,17 @@ namespace SharpExpressions
                                 args.Push(a / b);
                                 break;
 
+                            case Operator.Negate:
+                                a = solveValue(args.Pop(), registry);
+                                args.Push(-a);
+                                break;
+
+                            case Operator.MemberAccess:
+                                object field = args.Pop();
+                                object obj = args.Pop();
+                                object member = accessMember(obj, field, registry);
+                                args.Push(member);
+                                break;
                         }
                         break;
                     }
@@ -57,23 +69,57 @@ namespace SharpExpressions
             return solveValue(args.Pop(), registry);
         }
 
-        private static float solveValue(object obj, Registry registry)
+        private static object accessMember(object obj, object field, Registry registry)
         {
-            if (obj.GetType() == typeof(float))
+            // Solve the identifier
+            if (obj.GetType() != typeof(string) || field.GetType() != typeof(string))
             {
-                return (float)obj;
+                throw new System.Exception();
+            }
+            else
+            {
+                object value = null;
+                if (!registry.identifiers.TryGetValue((string)obj, out value))
+                {
+                    throw new System.Exception();
+                }
+
+                // Find the property with that name
+                string fieldName = (string)field;
+                PropertyInfo prop = value.GetType().GetProperty(fieldName);
+                if (prop == null)
+                {
+                    FieldInfo fieldInfo = value.GetType().GetField(fieldName);
+                    if (fieldInfo == null)
+                    {
+                        throw new System.Exception();
+                    }
+                    return fieldInfo.GetValue(value);
+                }
+                else
+                {
+                    return prop.GetGetMethod().Invoke(value, null);
+                }
+            }
+        }
+
+        private static double solveValue(object obj, Registry registry)
+        {
+            if (IsNumericType(obj))
+            {
+                return Convert.ToDouble(obj);
             }
             else if (obj.GetType() == typeof(string))
             {
                 object value = null;
 
                 // Check if it's an identifier
-                registry.identifiers.TryGetValue(obj.ToString(), out value);
+                registry.identifiers.TryGetValue((string)obj, out value);
                 if (value == null || !IsNumericType(value))
                 {
                     throw new System.Exception();
                 }
-                return (float)Convert.ToDouble(value);
+                return Convert.ToDouble(value);
             }
             else
             {

@@ -20,7 +20,7 @@ namespace SharpExpressions
                 try
                 {
                     Expression expr = new Expression(line);
-                    expr.addSymbol("var", 16);
+                    expr.addSymbol("vars", new { a = 10, b = 20 });
                     Console.WriteLine(expr.eval());
                 }
                 catch (Exception e)

@@ -22,8 +22,8 @@ namespace SharpExpressions.parser
 
         private void push_literal(string value)
         {
-            float f = float.Parse(value, CultureInfo.InvariantCulture);
-            mQueue.Enqueue(new Entry { type = Entry.Type.Value, value = f });
+            double d = double.Parse(value, CultureInfo.InvariantCulture);
+            mQueue.Enqueue(new Entry { type = Entry.Type.Value, value = d });
         }
 
         private void push_operator(Operator op)
