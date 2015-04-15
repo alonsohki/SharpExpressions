@@ -22,9 +22,13 @@ addition_expression
   ;
 
 multiply_expression
-  : atomic_expression
-    ( '*' atomic_expression { push_operator(Operator.Mul); }
-	| '/' atomic_expression { push_operator(Operator.Div); })*
+  : power_expression
+    ( '*' power_expression { push_operator(Operator.Mul); }
+	| '/' power_expression { push_operator(Operator.Div); })*
+  ;
+
+power_expression
+  : atomic_expression ( '^' atomic_expression { push_operator(Operator.Pow); } )*
   ;
 
 atomic_expression

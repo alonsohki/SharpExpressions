@@ -11,6 +11,7 @@ namespace SharpExpressions
         Sub,
         Mul,
         Div,
+        Pow,
         Negate,
         MemberAccess,
     }

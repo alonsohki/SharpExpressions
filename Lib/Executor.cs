@@ -49,6 +49,12 @@ namespace SharpExpressions
                                 args.Push(a / b);
                                 break;
 
+                            case Operator.Pow:
+                                b = solveValue(args.Pop(), registry);
+                                a = solveValue(args.Pop(), registry);
+                                args.Push(Math.Pow(a, b));
+                                break;
+
                             case Operator.Negate:
                                 a = solveValue(args.Pop(), registry);
                                 args.Push(-a);
@@ -66,6 +72,10 @@ namespace SharpExpressions
                 }
             }
 
+            if (args.Count != 1)
+            {
+                throw new System.Exception();
+            }
             return solveValue(args.Pop(), registry);
         }
 

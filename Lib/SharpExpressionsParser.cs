@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-04-16 00:27:13
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-04-16 00:31:59
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -31,7 +31,7 @@ namespace SharpExpressions.parser
 public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENTIFIER", "REAL", "WS", "'('", "')'", "'*'", "'+'", "'-'", "'.'", "'/'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENTIFIER", "REAL", "WS", "'('", "')'", "'*'", "'+'", "'-'", "'.'", "'/'", "'^'"
 	};
 	public const int EOF=-1;
 	public const int IDENTIFIER=4;
@@ -44,6 +44,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	public const int T__11=11;
 	public const int T__12=12;
 	public const int T__13=13;
+	public const int T__14=14;
 
 	public SharpExpressionsParser(ITokenStream input)
 		: this(input, new RecognizerSharedState())
@@ -229,7 +230,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_multiply_expression();
 	partial void LeaveRule_multiply_expression();
 	// $ANTLR start "multiply_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:24:1: multiply_expression : atomic_expression ( '*' atomic_expression | '/' atomic_expression )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:24:1: multiply_expression : power_expression ( '*' power_expression | '/' power_expression )* ;
 	[GrammarRule("multiply_expression")]
 	private void multiply_expression()
 	{
@@ -240,17 +241,17 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(24, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:3: ( atomic_expression ( '*' atomic_expression | '/' atomic_expression )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:3: ( power_expression ( '*' power_expression | '/' power_expression )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:5: atomic_expression ( '*' atomic_expression | '/' atomic_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:5: power_expression ( '*' power_expression | '/' power_expression )*
 			{
 			DebugLocation(25, 5);
-			PushFollow(Follow._atomic_expression_in_multiply_expression105);
-			atomic_expression();
+			PushFollow(Follow._power_expression_in_multiply_expression105);
+			power_expression();
 			PopFollow();
 
 			DebugLocation(26, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:5: ( '*' atomic_expression | '/' atomic_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:5: ( '*' power_expression | '/' power_expression )*
 			try { DebugEnterSubRule(2);
 			while (true)
 			{
@@ -273,32 +274,32 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:7: '*' atomic_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:7: '*' power_expression
 					{
 					DebugLocation(26, 7);
 					Match(input,9,Follow._9_in_multiply_expression113); 
 					DebugLocation(26, 11);
-					PushFollow(Follow._atomic_expression_in_multiply_expression115);
-					atomic_expression();
+					PushFollow(Follow._power_expression_in_multiply_expression115);
+					power_expression();
 					PopFollow();
 
-					DebugLocation(26, 29);
+					DebugLocation(26, 28);
 					 push_operator(Operator.Mul); 
 
 					}
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:27:4: '/' atomic_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:27:4: '/' power_expression
 					{
 					DebugLocation(27, 4);
 					Match(input,13,Follow._13_in_multiply_expression122); 
 					DebugLocation(27, 8);
-					PushFollow(Follow._atomic_expression_in_multiply_expression124);
-					atomic_expression();
+					PushFollow(Follow._power_expression_in_multiply_expression124);
+					power_expression();
 					PopFollow();
 
-					DebugLocation(27, 26);
+					DebugLocation(27, 25);
 					 push_operator(Operator.Div); 
 
 					}
@@ -336,48 +337,138 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	}
 	// $ANTLR end "multiply_expression"
 
+	partial void EnterRule_power_expression();
+	partial void LeaveRule_power_expression();
+	// $ANTLR start "power_expression"
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:30:1: power_expression : atomic_expression ( '^' atomic_expression )* ;
+	[GrammarRule("power_expression")]
+	private void power_expression()
+	{
+		EnterRule_power_expression();
+		EnterRule("power_expression", 4);
+		TraceIn("power_expression", 4);
+		try { DebugEnterRule(GrammarFileName, "power_expression");
+		DebugLocation(30, 2);
+		try
+		{
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:3: ( atomic_expression ( '^' atomic_expression )* )
+			DebugEnterAlt(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:5: atomic_expression ( '^' atomic_expression )*
+			{
+			DebugLocation(31, 5);
+			PushFollow(Follow._atomic_expression_in_power_expression141);
+			atomic_expression();
+			PopFollow();
+
+			DebugLocation(31, 23);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:23: ( '^' atomic_expression )*
+			try { DebugEnterSubRule(3);
+			while (true)
+			{
+				int alt3=2;
+				try { DebugEnterDecision(3, false);
+				int LA3_1 = input.LA(1);
+
+				if ((LA3_1==14))
+				{
+					alt3 = 1;
+				}
+
+
+				} finally { DebugExitDecision(3); }
+				switch ( alt3 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:25: '^' atomic_expression
+					{
+					DebugLocation(31, 25);
+					Match(input,14,Follow._14_in_power_expression145); 
+					DebugLocation(31, 29);
+					PushFollow(Follow._atomic_expression_in_power_expression147);
+					atomic_expression();
+					PopFollow();
+
+					DebugLocation(31, 47);
+					 push_operator(Operator.Pow); 
+
+					}
+					break;
+
+				default:
+					goto loop3;
+				}
+			}
+
+			loop3:
+				;
+
+			} finally { DebugExitSubRule(3); }
+
+
+			}
+
+		}
+		catch (RecognitionException re)
+		{
+			ReportError(re);
+			Recover(input,re);
+		}
+		finally
+		{
+			TraceOut("power_expression", 4);
+			LeaveRule("power_expression", 4);
+			LeaveRule_power_expression();
+		}
+		DebugLocation(32, 2);
+		} finally { DebugExitRule(GrammarFileName, "power_expression"); }
+		return;
+
+	}
+	// $ANTLR end "power_expression"
+
 	partial void EnterRule_atomic_expression();
 	partial void LeaveRule_atomic_expression();
 	// $ANTLR start "atomic_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:30:1: atomic_expression : ( factor | '(' addition_expression ')' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:34:1: atomic_expression : ( factor | '(' addition_expression ')' );
 	[GrammarRule("atomic_expression")]
 	private void atomic_expression()
 	{
 		EnterRule_atomic_expression();
-		EnterRule("atomic_expression", 4);
-		TraceIn("atomic_expression", 4);
+		EnterRule("atomic_expression", 5);
+		TraceIn("atomic_expression", 5);
 		try { DebugEnterRule(GrammarFileName, "atomic_expression");
-		DebugLocation(30, 2);
+		DebugLocation(34, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:3: ( factor | '(' addition_expression ')' )
-			int alt3=2;
-			try { DebugEnterDecision(3, false);
-			int LA3_1 = input.LA(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:35:3: ( factor | '(' addition_expression ')' )
+			int alt4=2;
+			try { DebugEnterDecision(4, false);
+			int LA4_1 = input.LA(1);
 
-			if (((LA3_1>=IDENTIFIER && LA3_1<=REAL)||LA3_1==11))
+			if (((LA4_1>=IDENTIFIER && LA4_1<=REAL)||LA4_1==11))
 			{
-				alt3 = 1;
+				alt4 = 1;
 			}
-			else if ((LA3_1==7))
+			else if ((LA4_1==7))
 			{
-				alt3 = 2;
+				alt4 = 2;
 			}
 			else
 			{
-				NoViableAltException nvae = new NoViableAltException("", 3, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 4, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(3); }
-			switch (alt3)
+			} finally { DebugExitDecision(4); }
+			switch (alt4)
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:5: factor
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:35:5: factor
 				{
-				DebugLocation(31, 5);
-				PushFollow(Follow._factor_in_atomic_expression141);
+				DebugLocation(35, 5);
+				PushFollow(Follow._factor_in_atomic_expression165);
 				factor();
 				PopFollow();
 
@@ -386,17 +477,17 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:32:5: '(' addition_expression ')'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:36:5: '(' addition_expression ')'
 				{
-				DebugLocation(32, 5);
-				Match(input,7,Follow._7_in_atomic_expression147); 
-				DebugLocation(32, 9);
-				PushFollow(Follow._addition_expression_in_atomic_expression149);
+				DebugLocation(36, 5);
+				Match(input,7,Follow._7_in_atomic_expression171); 
+				DebugLocation(36, 9);
+				PushFollow(Follow._addition_expression_in_atomic_expression173);
 				addition_expression();
 				PopFollow();
 
-				DebugLocation(32, 29);
-				Match(input,8,Follow._8_in_atomic_expression151); 
+				DebugLocation(36, 29);
+				Match(input,8,Follow._8_in_atomic_expression175); 
 
 				}
 				break;
@@ -410,11 +501,11 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("atomic_expression", 4);
-			LeaveRule("atomic_expression", 4);
+			TraceOut("atomic_expression", 5);
+			LeaveRule("atomic_expression", 5);
 			LeaveRule_atomic_expression();
 		}
-		DebugLocation(33, 2);
+		DebugLocation(37, 2);
 		} finally { DebugExitRule(GrammarFileName, "atomic_expression"); }
 		return;
 
@@ -424,39 +515,39 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_factor();
 	partial void LeaveRule_factor();
 	// $ANTLR start "factor"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:35:1: factor : ( '-' n= REAL |n= REAL | '-' identifier_expression | identifier_expression );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:39:1: factor : ( '-' n= REAL |n= REAL | '-' identifier_expression | identifier_expression );
 	[GrammarRule("factor")]
 	private void factor()
 	{
 		EnterRule_factor();
-		EnterRule("factor", 5);
-		TraceIn("factor", 5);
+		EnterRule("factor", 6);
+		TraceIn("factor", 6);
 		IToken n = default(IToken);
 
 		try { DebugEnterRule(GrammarFileName, "factor");
-		DebugLocation(35, 2);
+		DebugLocation(39, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:36:3: ( '-' n= REAL |n= REAL | '-' identifier_expression | identifier_expression )
-			int alt4=4;
-			try { DebugEnterDecision(4, false);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:40:3: ( '-' n= REAL |n= REAL | '-' identifier_expression | identifier_expression )
+			int alt5=4;
+			try { DebugEnterDecision(5, false);
 			switch (input.LA(1))
 			{
 			case 11:
 				{
-				int LA4_2 = input.LA(2);
+				int LA5_2 = input.LA(2);
 
-				if ((LA4_2==REAL))
+				if ((LA5_2==REAL))
 				{
-					alt4 = 1;
+					alt5 = 1;
 				}
-				else if ((LA4_2==IDENTIFIER))
+				else if ((LA5_2==IDENTIFIER))
 				{
-					alt4 = 3;
+					alt5 = 3;
 				}
 				else
 				{
-					NoViableAltException nvae = new NoViableAltException("", 4, 1, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 5, 1, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -464,71 +555,71 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case REAL:
 				{
-				alt4 = 2;
+				alt5 = 2;
 				}
 				break;
 			case IDENTIFIER:
 				{
-				alt4 = 4;
+				alt5 = 4;
 				}
 				break;
 			default:
 				{
-					NoViableAltException nvae = new NoViableAltException("", 4, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 5, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(4); }
-			switch (alt4)
+			} finally { DebugExitDecision(5); }
+			switch (alt5)
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:36:5: '-' n= REAL
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:40:5: '-' n= REAL
 				{
-				DebugLocation(36, 5);
-				Match(input,11,Follow._11_in_factor164); 
-				DebugLocation(36, 10);
-				n=(IToken)Match(input,REAL,Follow._REAL_in_factor168); 
-				DebugLocation(36, 16);
+				DebugLocation(40, 5);
+				Match(input,11,Follow._11_in_factor188); 
+				DebugLocation(40, 10);
+				n=(IToken)Match(input,REAL,Follow._REAL_in_factor192); 
+				DebugLocation(40, 16);
 				 push_literal("-" + (n!=null?n.Text:default(string))); 
 
 				}
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:37:5: n= REAL
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:41:5: n= REAL
 				{
-				DebugLocation(37, 6);
-				n=(IToken)Match(input,REAL,Follow._REAL_in_factor178); 
-				DebugLocation(37, 12);
+				DebugLocation(41, 6);
+				n=(IToken)Match(input,REAL,Follow._REAL_in_factor202); 
+				DebugLocation(41, 12);
 				 push_literal((n!=null?n.Text:default(string))); 
 
 				}
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:38:5: '-' identifier_expression
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:42:5: '-' identifier_expression
 				{
-				DebugLocation(38, 5);
-				Match(input,11,Follow._11_in_factor186); 
-				DebugLocation(38, 9);
-				PushFollow(Follow._identifier_expression_in_factor188);
+				DebugLocation(42, 5);
+				Match(input,11,Follow._11_in_factor210); 
+				DebugLocation(42, 9);
+				PushFollow(Follow._identifier_expression_in_factor212);
 				identifier_expression();
 				PopFollow();
 
-				DebugLocation(38, 31);
+				DebugLocation(42, 31);
 				 push_operator(Operator.Negate); 
 
 				}
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:39:5: identifier_expression
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:5: identifier_expression
 				{
-				DebugLocation(39, 5);
-				PushFollow(Follow._identifier_expression_in_factor196);
+				DebugLocation(43, 5);
+				PushFollow(Follow._identifier_expression_in_factor220);
 				identifier_expression();
 				PopFollow();
 
@@ -545,11 +636,11 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("factor", 5);
-			LeaveRule("factor", 5);
+			TraceOut("factor", 6);
+			LeaveRule("factor", 6);
 			LeaveRule_factor();
 		}
-		DebugLocation(40, 2);
+		DebugLocation(44, 2);
 		} finally { DebugExitRule(GrammarFileName, "factor"); }
 		return;
 
@@ -559,69 +650,69 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_identifier_expression();
 	partial void LeaveRule_identifier_expression();
 	// $ANTLR start "identifier_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:42:1: identifier_expression : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:46:1: identifier_expression : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
 	[GrammarRule("identifier_expression")]
 	private void identifier_expression()
 	{
 		EnterRule_identifier_expression();
-		EnterRule("identifier_expression", 6);
-		TraceIn("identifier_expression", 6);
+		EnterRule("identifier_expression", 7);
+		TraceIn("identifier_expression", 7);
 		IToken a = default(IToken);
 		IToken b = default(IToken);
 
 		try { DebugEnterRule(GrammarFileName, "identifier_expression");
-		DebugLocation(42, 2);
+		DebugLocation(46, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:47:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:47:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
 			{
-			DebugLocation(43, 6);
-			a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression212); 
-			DebugLocation(43, 18);
+			DebugLocation(47, 6);
+			a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression236); 
+			DebugLocation(47, 18);
 			 push_identifier((a!=null?a.Text:default(string))); 
-			DebugLocation(43, 48);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:48: ( '.' b= IDENTIFIER )*
-			try { DebugEnterSubRule(5);
+			DebugLocation(47, 48);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:47:48: ( '.' b= IDENTIFIER )*
+			try { DebugEnterSubRule(6);
 			while (true)
 			{
-				int alt5=2;
-				try { DebugEnterDecision(5, false);
-				int LA5_1 = input.LA(1);
+				int alt6=2;
+				try { DebugEnterDecision(6, false);
+				int LA6_1 = input.LA(1);
 
-				if ((LA5_1==12))
+				if ((LA6_1==12))
 				{
-					alt5 = 1;
+					alt6 = 1;
 				}
 
 
-				} finally { DebugExitDecision(5); }
-				switch ( alt5 )
+				} finally { DebugExitDecision(6); }
+				switch ( alt6 )
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:43:49: '.' b= IDENTIFIER
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:47:49: '.' b= IDENTIFIER
 					{
-					DebugLocation(43, 49);
-					Match(input,12,Follow._12_in_identifier_expression217); 
-					DebugLocation(43, 54);
-					b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression221); 
-					DebugLocation(43, 66);
+					DebugLocation(47, 49);
+					Match(input,12,Follow._12_in_identifier_expression241); 
+					DebugLocation(47, 54);
+					b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression245); 
+					DebugLocation(47, 66);
 					 push_identifier((b!=null?b.Text:default(string))); push_operator(Operator.MemberAccess); 
 
 					}
 					break;
 
 				default:
-					goto loop5;
+					goto loop6;
 				}
 			}
 
-			loop5:
+			loop6:
 				;
 
-			} finally { DebugExitSubRule(5); }
+			} finally { DebugExitSubRule(6); }
 
 
 			}
@@ -634,11 +725,11 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("identifier_expression", 6);
-			LeaveRule("identifier_expression", 6);
+			TraceOut("identifier_expression", 7);
+			LeaveRule("identifier_expression", 7);
 			LeaveRule_identifier_expression();
 		}
-		DebugLocation(44, 2);
+		DebugLocation(48, 2);
 		} finally { DebugExitRule(GrammarFileName, "identifier_expression"); }
 		return;
 
@@ -656,24 +747,27 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		public static readonly BitSet _multiply_expression_in_addition_expression79 = new BitSet(new ulong[]{0xC02UL});
 		public static readonly BitSet _11_in_addition_expression86 = new BitSet(new ulong[]{0x8B0UL});
 		public static readonly BitSet _multiply_expression_in_addition_expression88 = new BitSet(new ulong[]{0xC02UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression105 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _power_expression_in_multiply_expression105 = new BitSet(new ulong[]{0x2202UL});
 		public static readonly BitSet _9_in_multiply_expression113 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression115 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _power_expression_in_multiply_expression115 = new BitSet(new ulong[]{0x2202UL});
 		public static readonly BitSet _13_in_multiply_expression122 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _atomic_expression_in_multiply_expression124 = new BitSet(new ulong[]{0x2202UL});
-		public static readonly BitSet _factor_in_atomic_expression141 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _7_in_atomic_expression147 = new BitSet(new ulong[]{0x8B0UL});
-		public static readonly BitSet _addition_expression_in_atomic_expression149 = new BitSet(new ulong[]{0x100UL});
-		public static readonly BitSet _8_in_atomic_expression151 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _11_in_factor164 = new BitSet(new ulong[]{0x20UL});
-		public static readonly BitSet _REAL_in_factor168 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _REAL_in_factor178 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _11_in_factor186 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _identifier_expression_in_factor188 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _identifier_expression_in_factor196 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression212 = new BitSet(new ulong[]{0x1002UL});
-		public static readonly BitSet _12_in_identifier_expression217 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression221 = new BitSet(new ulong[]{0x1002UL});
+		public static readonly BitSet _power_expression_in_multiply_expression124 = new BitSet(new ulong[]{0x2202UL});
+		public static readonly BitSet _atomic_expression_in_power_expression141 = new BitSet(new ulong[]{0x4002UL});
+		public static readonly BitSet _14_in_power_expression145 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _atomic_expression_in_power_expression147 = new BitSet(new ulong[]{0x4002UL});
+		public static readonly BitSet _factor_in_atomic_expression165 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _7_in_atomic_expression171 = new BitSet(new ulong[]{0x8B0UL});
+		public static readonly BitSet _addition_expression_in_atomic_expression173 = new BitSet(new ulong[]{0x100UL});
+		public static readonly BitSet _8_in_atomic_expression175 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _11_in_factor188 = new BitSet(new ulong[]{0x20UL});
+		public static readonly BitSet _REAL_in_factor192 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _REAL_in_factor202 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _11_in_factor210 = new BitSet(new ulong[]{0x10UL});
+		public static readonly BitSet _identifier_expression_in_factor212 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _identifier_expression_in_factor220 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression236 = new BitSet(new ulong[]{0x1002UL});
+		public static readonly BitSet _12_in_identifier_expression241 = new BitSet(new ulong[]{0x10UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression245 = new BitSet(new ulong[]{0x1002UL});
 	}
 	#endregion Follow sets
 }
