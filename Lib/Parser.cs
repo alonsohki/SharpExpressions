@@ -39,9 +39,31 @@ namespace SharpExpressions.parser
             return queue;
         }
 
+        private Queue push_boolean(Queue queue, string value)
+        {
+            bool b = bool.Parse(value);
+            return push_boolean(queue, b);
+        }
+
+        private Queue push_boolean(Queue queue, bool b)
+        {
+            queue.Enqueue(new Entry { type = Entry.Type.Boolean, value = b });
+            return queue;
+        }
+
         private Queue push_operator(Queue queue, Operator op)
         {
-            queue.Enqueue(new Entry { type = Entry.Type.Operator, value = op });
+            if (op == Operator.Negate && queue.Peek().type == Entry.Type.Value)
+            {
+                // Optimize negating literal values
+                var lastElement = queue.Dequeue();
+                lastElement.value = -(double)lastElement.value;
+                queue.Enqueue(lastElement);
+            }
+            else
+            {
+                queue.Enqueue(new Entry { type = Entry.Type.Operator, value = op });
+            }
             return queue;
         }
 

@@ -14,5 +14,13 @@ namespace SharpExpressions
         Pow,
         Negate,
         MemberAccess,
+        LessThan,
+        LessOrEqual,
+        GreaterThan,
+        GreaterOrEqual,
+        Equals,
+        NotEquals,
+        And,
+        Or
     }
 }

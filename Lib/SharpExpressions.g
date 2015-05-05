@@ -12,7 +12,27 @@ options {
  */
  
 public eval returns [Queue queue]
-  : { allocate_queues(5); } Q=addition_expression { queue=$Q.ret; }
+  : { allocate_queues(5); } Q=expression { queue=$Q.ret; }
+  ;
+
+expression returns [Queue ret]
+  : Q=boolean_expression { ret = $Q.ret; }
+  ;
+
+boolean_expression returns [Queue ret]
+  : Q1=comparison { ret=$Q1.ret; }
+    ( '&&' Q2=comparison { ret=push_operation(ret, Operator.And, $Q2.ret); }
+	| '||' Q2=comparison { ret=push_operation(ret, Operator.Or,  $Q2.ret); })*
+  ;
+
+comparison returns [Queue ret]
+  : Q1=addition_expression { ret=$Q1.ret; }
+    ( '>=' Q2=addition_expression { ret=push_operation(ret, Operator.GreaterOrEqual, $Q2.ret); }
+	| '>'  Q2=addition_expression { ret=push_operation(ret, Operator.GreaterThan, $Q2.ret); }
+	| '<=' Q2=addition_expression { ret=push_operation(ret, Operator.LessOrEqual, $Q2.ret); }
+	| '<'  Q2=addition_expression { ret=push_operation(ret, Operator.LessThan, $Q2.ret); }
+	| '==' Q2=addition_expression { ret=push_operation(ret, Operator.Equals, $Q2.ret); }
+	| '!=' Q2=addition_expression { ret=push_operation(ret, Operator.NotEquals, $Q2.ret); })*
   ;
 
 addition_expression returns [Queue ret]
@@ -28,12 +48,20 @@ multiply_expression returns [Queue ret]
   ;
 
 power_expression returns [Queue ret]
-  : Q1=atomic_expression { ret=$Q1.ret; }
-    ( '^' Q2=atomic_expression { ret=push_operation(ret, Operator.Pow, $Q2.ret); } )*
+  : Q1=negation { ret=$Q1.ret; }
+    ( '^' Q2=negation { ret=push_operation(ret, Operator.Pow, $Q2.ret); } )*
+  ;
+
+negation returns [Queue ret]
+  : '-' Q=atomic_expression { ret=push_operator($Q.ret, Operator.Negate); }
+  | '!' Q=atomic_expression { ret=push_operator($Q.ret, Operator.Negate); }
+  | Q=atomic_expression { ret=$Q.ret; }
   ;
 
 atomic_expression returns [Queue ret]
-  : Q=factor { ret=$Q.ret; }
+  : n=REAL { ret=push_literal(new_queue(), $n.text); }
+  | Q=boolean_terminal { ret=$Q.ret; }
+  | Q=identifier_expression { ret=$Q.ret; }
   | '(' Q=addition_expression ')' { ret=$Q.ret; }
   ;
 
@@ -46,6 +74,11 @@ factor returns [Queue ret]
 
 identifier_expression returns [Queue ret]
   : a=IDENTIFIER { ret=push_identifier(new_queue(), $a.text); } ('.' b=IDENTIFIER { ret=push_operator(push_identifier(ret, $b.text), Operator.MemberAccess); })*
+  ;
+
+boolean_terminal returns [Queue ret]
+  : 'true' { ret=push_boolean(new_queue(), true); }
+  | 'false' { ret=push_boolean(new_queue(), false); }
   ;
  
 /*
