@@ -8,18 +8,27 @@ namespace SharpExpressions.parser
 {
     partial class SharpExpressionsParser
     {
+        private System.Collections.Generic.Stack<Queue> mQueues = new System.Collections.Generic.Stack<Queue>();
+
         public override void ReportError(RecognitionException e)
         {
             base.ReportError(e);
         }
 
-        private void clear_stack(Queue queue)
+        private void allocate_queues(int capacity)
         {
-            queue.Clear();
+            for (int i = 0; i < capacity; ++i)
+            {
+                mQueues.Push(new Queue());
+            }
         }
 
         private Queue new_queue()
         {
+            if (mQueues.Count> 0)
+            {
+                return mQueues.Pop();
+            }
             return new Queue();
         }
 
@@ -54,6 +63,11 @@ namespace SharpExpressions.parser
             {
                 to.Enqueue(entry);
             }
+
+            // Invalidate the queue to copy from and add it to be re-used
+            from.Clear();
+            mQueues.Push(from);
+
             return to;
         }
     }

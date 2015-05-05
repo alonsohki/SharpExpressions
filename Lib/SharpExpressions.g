@@ -12,7 +12,7 @@ options {
  */
  
 public eval returns [Queue queue]
-  : Q=addition_expression { queue=$Q.ret; }
+  : { allocate_queues(5); } Q=addition_expression { queue=$Q.ret; }
   ;
 
 addition_expression returns [Queue ret]
