@@ -54,7 +54,7 @@ power_expression returns [Queue ret]
 
 negation returns [Queue ret]
   : '-' Q=atomic_expression { ret=push_operator($Q.ret, Operator.Negate); }
-  | '!' Q=atomic_expression { ret=push_operator($Q.ret, Operator.Negate); }
+  | '!' Q=atomic_expression { ret=push_operator($Q.ret, Operator.Not); }
   | Q=atomic_expression { ret=$Q.ret; }
   ;
 
@@ -62,7 +62,7 @@ atomic_expression returns [Queue ret]
   : n=REAL { ret=push_literal(new_queue(), $n.text); }
   | Q=boolean_terminal { ret=$Q.ret; }
   | Q=identifier_expression { ret=$Q.ret; }
-  | '(' Q=addition_expression ')' { ret=$Q.ret; }
+  | '(' Q=expression ')' { ret=$Q.ret; }
   ;
 
 identifier_expression returns [Queue ret]

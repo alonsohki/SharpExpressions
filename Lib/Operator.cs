@@ -21,6 +21,7 @@ namespace SharpExpressions
         Equals,
         NotEquals,
         And,
-        Or
+        Or,
+        Not,
     }
 }

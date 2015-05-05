@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-05-06 00:56:37
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-05-06 01:20:28
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -920,7 +920,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				PopFollow();
 
 				DebugLocation(57, 29);
-				 ret=push_operator(Q, Operator.Negate); 
+				 ret=push_operator(Q, Operator.Not); 
 
 				}
 				break;
@@ -962,7 +962,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_atomic_expression();
 	partial void LeaveRule_atomic_expression();
 	// $ANTLR start "atomic_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |Q= boolean_terminal |Q= identifier_expression | '(' Q= addition_expression ')' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |Q= boolean_terminal |Q= identifier_expression | '(' Q= expression ')' );
 	[GrammarRule("atomic_expression")]
 	private Queue atomic_expression()
 	{
@@ -979,7 +979,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(61, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:3: (n= REAL |Q= boolean_terminal |Q= identifier_expression | '(' Q= addition_expression ')' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:3: (n= REAL |Q= boolean_terminal |Q= identifier_expression | '(' Q= expression ')' )
 			int alt7=4;
 			try { DebugEnterDecision(7, false);
 			switch (input.LA(1))
@@ -1057,18 +1057,18 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:5: '(' Q= addition_expression ')'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:5: '(' Q= expression ')'
 				{
 				DebugLocation(65, 5);
 				Match(input,10,Follow._10_in_atomic_expression447); 
 				DebugLocation(65, 10);
-				PushFollow(Follow._addition_expression_in_atomic_expression451);
-				Q=addition_expression();
+				PushFollow(Follow._expression_in_atomic_expression451);
+				Q=expression();
 				PopFollow();
 
-				DebugLocation(65, 31);
+				DebugLocation(65, 22);
 				Match(input,11,Follow._11_in_atomic_expression453); 
-				DebugLocation(65, 35);
+				DebugLocation(65, 26);
 				 ret=Q; 
 
 				}
@@ -1315,7 +1315,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		public static readonly BitSet _boolean_terminal_in_atomic_expression429 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _identifier_expression_in_atomic_expression439 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _10_in_atomic_expression447 = new BitSet(new ulong[]{0x18044B0UL});
-		public static readonly BitSet _addition_expression_in_atomic_expression451 = new BitSet(new ulong[]{0x800UL});
+		public static readonly BitSet _expression_in_atomic_expression451 = new BitSet(new ulong[]{0x800UL});
 		public static readonly BitSet _11_in_atomic_expression453 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _IDENTIFIER_in_identifier_expression474 = new BitSet(new ulong[]{0x8002UL});
 		public static readonly BitSet _15_in_identifier_expression479 = new BitSet(new ulong[]{0x10UL});
