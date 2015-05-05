@@ -65,13 +65,6 @@ atomic_expression returns [Queue ret]
   | '(' Q=addition_expression ')' { ret=$Q.ret; }
   ;
 
-factor returns [Queue ret]
-  : '-' n=REAL { ret=push_literal(new_queue(), "-" + $n.text); }
-  | n=REAL { ret=push_literal(new_queue(), $n.text); }
-  | '-' Q=identifier_expression { ret=push_operator($Q.ret, Operator.Negate); }
-  | Q=identifier_expression { ret=$Q.ret; }
-  ;
-
 identifier_expression returns [Queue ret]
   : a=IDENTIFIER { ret=push_identifier(new_queue(), $a.text); } ('.' b=IDENTIFIER { ret=push_operator(push_identifier(ret, $b.text), Operator.MemberAccess); })*
   ;
