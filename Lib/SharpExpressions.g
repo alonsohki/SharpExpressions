@@ -12,39 +12,40 @@ options {
  */
  
 public eval returns [Queue queue]
-  : { clear_stack(); } addition_expression { queue=mQueue; }
+  : Q=addition_expression { queue=$Q.ret; }
   ;
 
-addition_expression
-  : multiply_expression
-    ( '+' multiply_expression { push_operator(Operator.Add); }
-	| '-' multiply_expression { push_operator(Operator.Sub); })*
+addition_expression returns [Queue ret]
+  : Q1=multiply_expression { ret=$Q1.ret; }
+    ( '+' Q2=multiply_expression { ret=push_operation(ret, Operator.Add, $Q2.ret); }
+	| '-' Q2=multiply_expression { ret=push_operation(ret, Operator.Sub, $Q2.ret); })*
   ;
 
-multiply_expression
-  : power_expression
-    ( '*' power_expression { push_operator(Operator.Mul); }
-	| '/' power_expression { push_operator(Operator.Div); })*
+multiply_expression returns [Queue ret]
+  : Q1=power_expression { ret=$Q1.ret; }
+    ( '*' Q2=power_expression { ret=push_operation(ret, Operator.Mul, $Q2.ret); }
+	| '/' Q2=power_expression { ret=push_operation(ret, Operator.Div, $Q2.ret); })*
   ;
 
-power_expression
-  : atomic_expression ( '^' atomic_expression { push_operator(Operator.Pow); } )*
+power_expression returns [Queue ret]
+  : Q1=atomic_expression { ret=$Q1.ret; }
+    ( '^' Q2=atomic_expression { ret=push_operation(ret, Operator.Pow, $Q2.ret); } )*
   ;
 
-atomic_expression
-  : factor
-  | '(' addition_expression ')'
+atomic_expression returns [Queue ret]
+  : Q=factor { ret=$Q.ret; }
+  | '(' Q=addition_expression ')' { ret=$Q.ret; }
   ;
 
-factor
-  : '-' n=REAL { push_literal("-" + $n.text); }
-  | n=REAL { push_literal($n.text); }
-  | '-' identifier_expression { push_operator(Operator.Negate); }
-  | identifier_expression
+factor returns [Queue ret]
+  : '-' n=REAL { ret=push_literal(new_queue(), "-" + $n.text); }
+  | n=REAL { ret=push_literal(new_queue(), $n.text); }
+  | '-' Q=identifier_expression { ret=push_operator($Q.ret, Operator.Negate); }
+  | Q=identifier_expression { ret=$Q.ret; }
   ;
 
-identifier_expression 
-  : a=IDENTIFIER { push_identifier($a.text); } ('.' b=IDENTIFIER { push_identifier($b.text); push_operator(Operator.MemberAccess); })*
+identifier_expression returns [Queue ret]
+  : a=IDENTIFIER { ret=push_identifier(new_queue(), $a.text); } ('.' b=IDENTIFIER { ret=push_operator(push_identifier(ret, $b.text), Operator.MemberAccess); })*
   ;
  
 /*
