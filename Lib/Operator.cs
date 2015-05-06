@@ -23,5 +23,6 @@ namespace SharpExpressions
         And,
         Or,
         Not,
+        Call,
     }
 }

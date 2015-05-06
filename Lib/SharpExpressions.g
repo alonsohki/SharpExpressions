@@ -59,19 +59,29 @@ negation returns [Queue ret]
   ;
 
 atomic_expression returns [Queue ret]
-  : n=REAL { ret=push_literal(new_queue(), $n.text); }
+  : n=REAL { ret=push_literal(empty_queue(), $n.text); }
   | Q=boolean_terminal { ret=$Q.ret; }
-  | Q=identifier_expression { ret=$Q.ret; }
+  | Q1=identifier_expression Q2=fn_call { ret=push_operation($Q2.ret, Operator.Call, $Q1.ret); }
   | '(' Q=expression ')' { ret=$Q.ret; }
   ;
 
+fn_call returns [Queue ret]
+  : '(' Q=list_of_expressions ')' { ret=$Q.ret; }
+  | { ret=empty_queue(); }
+  ;
+
+list_of_expressions returns [Queue ret]
+  : Q1=expression { ret=$Q1.ret; } (',' Q2=expression { ret=append_queue($Q2.ret, ret); })*
+  | { ret=empty_queue(); }
+  ;
+
 identifier_expression returns [Queue ret]
-  : a=IDENTIFIER { ret=push_identifier(new_queue(), $a.text); } ('.' b=IDENTIFIER { ret=push_operator(push_identifier(ret, $b.text), Operator.MemberAccess); })*
+  : a=IDENTIFIER { ret=push_identifier(empty_queue(), $a.text); } ('.' b=IDENTIFIER { ret=push_operator(push_identifier(ret, $b.text), Operator.MemberAccess); })*
   ;
 
 boolean_terminal returns [Queue ret]
-  : 'true' { ret=push_boolean(new_queue(), true); }
-  | 'false' { ret=push_boolean(new_queue(), false); }
+  : 'true' { ret=push_boolean(empty_queue(), true); }
+  | 'false' { ret=push_boolean(empty_queue(), false); }
   ;
  
 /*

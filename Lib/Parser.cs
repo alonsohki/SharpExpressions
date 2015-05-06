@@ -23,7 +23,7 @@ namespace SharpExpressions.parser
             }
         }
 
-        private Queue new_queue()
+        private Queue empty_queue()
         {
             if (mQueues.Count> 0)
             {
