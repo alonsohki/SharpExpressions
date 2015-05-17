@@ -21,6 +21,7 @@ namespace SharpExpressions
                 {
                     Expression expr = new Expression(line);
                     expr.addSymbol("vars", new { a = 10, b = 20 });
+                    expr.addType("Math", typeof(Math));
                     Console.WriteLine(expr.eval());
                 }
                 catch (Exception e)

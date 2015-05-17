@@ -12,6 +12,7 @@ namespace SharpExpressions
             double b;
             bool l;
             bool r;
+            MethodInfo m;
             Stack<object> args = new Stack<object>();
 
             foreach (var entry in queue)
@@ -122,6 +123,10 @@ namespace SharpExpressions
                                 l = solveBoolean(args.Pop(), registry);
                                 args.Push(!l);
                                 break;
+
+                            case Operator.Call:
+                                m = solveMethod(args.Pop(), registry);
+                                break;
                         }
                         break;
                     }
@@ -136,6 +141,11 @@ namespace SharpExpressions
             return args.Pop();
         }
 
+        private static MethodInfo solveMethod(object obj, Registry registry)
+        {
+            return null;
+        }
+
         private static object accessMember(object obj, object field, Registry registry)
         {
             // Solve the identifier
@@ -146,26 +156,36 @@ namespace SharpExpressions
             else
             {
                 object value = null;
-                if (!registry.identifiers.TryGetValue((string)obj, out value))
-                {
-                    throw new System.Exception();
-                }
+                System.Type type;
 
-                // Find the property with that name
-                string fieldName = (string)field;
-                PropertyInfo prop = value.GetType().GetProperty(fieldName);
-                if (prop == null)
+                if (registry.identifiers.TryGetValue((string)obj, out value))
                 {
-                    FieldInfo fieldInfo = value.GetType().GetField(fieldName);
-                    if (fieldInfo == null)
+                    // Find the property with that name
+                    string fieldName = (string)field;
+                    PropertyInfo prop = value.GetType().GetProperty(fieldName);
+                    if (prop == null)
                     {
-                        throw new System.Exception();
+                        FieldInfo fieldInfo = value.GetType().GetField(fieldName);
+                        if (fieldInfo == null)
+                        {
+                            throw new System.Exception();
+                        }
+                        return fieldInfo.GetValue(value);
                     }
-                    return fieldInfo.GetValue(value);
+                    else
+                    {
+                        return prop.GetGetMethod().Invoke(value, null);
+                    }
+                }
+                else if (registry.types.TryGetValue((string)obj, out type))
+                {
+                    // Find a method in the type with that name
+                    Console.WriteLine(type);
+                    return null;
                 }
                 else
                 {
-                    return prop.GetGetMethod().Invoke(value, null);
+                    throw new System.Exception();
                 }
             }
         }

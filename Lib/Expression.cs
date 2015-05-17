@@ -23,6 +23,11 @@ namespace SharpExpressions
             mRegistry.identifiers[key] = value;
         }
 
+        public void addType(string key, System.Type type)
+        {
+            mRegistry.types[key] = type;
+        }
+
         public void create(string expr)
         {
             ANTLRStringStream stream = new ANTLRStringStream(expr);
