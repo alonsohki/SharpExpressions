@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-05-07 00:43:30
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-06-10 21:47:57
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -963,7 +963,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_atomic_expression();
 	partial void LeaveRule_atomic_expression();
 	// $ANTLR start "atomic_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |Q= boolean_terminal |Q1= identifier_expression Q2= fn_call | '(' Q= expression ')' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' );
 	[GrammarRule("atomic_expression")]
 	private Queue atomic_expression()
 	{
@@ -982,42 +982,42 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(61, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:3: (n= REAL |Q= boolean_terminal |Q1= identifier_expression Q2= fn_call | '(' Q= expression ')' )
-			int alt7=4;
-			try { DebugEnterDecision(7, false);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:3: (n= REAL |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' )
+			int alt8=4;
+			try { DebugEnterDecision(8, false);
 			switch (input.LA(1))
 			{
 			case REAL:
 				{
-				alt7 = 1;
+				alt8 = 1;
 				}
 				break;
 			case 24:
 			case 25:
 				{
-				alt7 = 2;
+				alt8 = 2;
 				}
 				break;
 			case IDENTIFIER:
 				{
-				alt7 = 3;
+				alt8 = 3;
 				}
 				break;
 			case 10:
 				{
-				alt7 = 4;
+				alt8 = 4;
 				}
 				break;
 			default:
 				{
-					NoViableAltException nvae = new NoViableAltException("", 7, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 8, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(7); }
-			switch (alt7)
+			} finally { DebugExitDecision(8); }
+			switch (alt8)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -1046,20 +1046,47 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:64:5: Q1= identifier_expression Q2= fn_call
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:64:5: Q1= identifier_expression (Q2= fn_call )?
 				{
 				DebugLocation(64, 7);
 				PushFollow(Follow._identifier_expression_in_atomic_expression439);
 				Q1=identifier_expression();
 				PopFollow();
 
-				DebugLocation(64, 32);
-				PushFollow(Follow._fn_call_in_atomic_expression443);
-				Q2=fn_call();
-				PopFollow();
+				DebugLocation(64, 30);
+				 ret=Q1; 
+				DebugLocation(64, 47);
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:64:47: (Q2= fn_call )?
+				int alt7=2;
+				try { DebugEnterSubRule(7);
+				try { DebugEnterDecision(7, false);
+				int LA7_1 = input.LA(1);
 
-				DebugLocation(64, 41);
-				 ret=push_operation(Q2, Operator.Call, Q1); 
+				if ((LA7_1==10))
+				{
+					alt7 = 1;
+				}
+				} finally { DebugExitDecision(7); }
+				switch (alt7)
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:64:48: Q2= fn_call
+					{
+					DebugLocation(64, 50);
+					PushFollow(Follow._fn_call_in_atomic_expression446);
+					Q2=fn_call();
+					PopFollow();
+
+					DebugLocation(64, 59);
+					 ret=push_operation(Q2, Operator.Call, ret); 
+
+					}
+					break;
+
+				}
+				} finally { DebugExitSubRule(7); }
+
 
 				}
 				break;
@@ -1068,14 +1095,14 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:5: '(' Q= expression ')'
 				{
 				DebugLocation(65, 5);
-				Match(input,10,Follow._10_in_atomic_expression451); 
+				Match(input,10,Follow._10_in_atomic_expression456); 
 				DebugLocation(65, 10);
-				PushFollow(Follow._expression_in_atomic_expression455);
+				PushFollow(Follow._expression_in_atomic_expression460);
 				Q=expression();
 				PopFollow();
 
 				DebugLocation(65, 22);
-				Match(input,11,Follow._11_in_atomic_expression457); 
+				Match(input,11,Follow._11_in_atomic_expression462); 
 				DebugLocation(65, 26);
 				 ret=Q; 
 
@@ -1105,7 +1132,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_fn_call();
 	partial void LeaveRule_fn_call();
 	// $ANTLR start "fn_call"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:68:1: fn_call returns [Queue ret] : ( '(' Q= list_of_expressions ')' |);
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:68:1: fn_call returns [Queue ret] : '(' Q= list_of_expressions ')' ;
 	[GrammarRule("fn_call")]
 	private Queue fn_call()
 	{
@@ -1121,57 +1148,24 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(68, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:69:3: ( '(' Q= list_of_expressions ')' |)
-			int alt8=2;
-			try { DebugEnterDecision(8, false);
-			int LA8_1 = input.LA(1);
-
-			if ((LA8_1==10))
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:69:3: ( '(' Q= list_of_expressions ')' )
+			DebugEnterAlt(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:69:5: '(' Q= list_of_expressions ')'
 			{
-				alt8 = 1;
-			}
-			else if ((LA8_1==EOF||(LA8_1>=8 && LA8_1<=9)||(LA8_1>=11 && LA8_1<=15)||(LA8_1>=17 && LA8_1<=23)||LA8_1==26))
-			{
-				alt8 = 2;
-			}
-			else
-			{
-				NoViableAltException nvae = new NoViableAltException("", 8, 0, input, 1);
-				DebugRecognitionException(nvae);
-				throw nvae;
-			}
-			} finally { DebugExitDecision(8); }
-			switch (alt8)
-			{
-			case 1:
-				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:69:5: '(' Q= list_of_expressions ')'
-				{
-				DebugLocation(69, 5);
-				Match(input,10,Follow._10_in_fn_call476); 
-				DebugLocation(69, 10);
-				PushFollow(Follow._list_of_expressions_in_fn_call480);
-				Q=list_of_expressions();
-				PopFollow();
+			DebugLocation(69, 5);
+			Match(input,10,Follow._10_in_fn_call481); 
+			DebugLocation(69, 10);
+			PushFollow(Follow._list_of_expressions_in_fn_call485);
+			Q=list_of_expressions();
+			PopFollow();
 
-				DebugLocation(69, 31);
-				Match(input,11,Follow._11_in_fn_call482); 
-				DebugLocation(69, 35);
-				 ret=Q; 
-
-				}
-				break;
-			case 2:
-				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:70:5: 
-				{
-				DebugLocation(70, 5);
-				 ret=empty_queue(); 
-
-				}
-				break;
+			DebugLocation(69, 31);
+			Match(input,11,Follow._11_in_fn_call487); 
+			DebugLocation(69, 35);
+			 ret=Q; 
 
 			}
+
 		}
 		catch (RecognitionException re)
 		{
@@ -1184,7 +1178,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			LeaveRule("fn_call", 10);
 			LeaveRule_fn_call();
 		}
-		DebugLocation(71, 2);
+		DebugLocation(70, 2);
 		} finally { DebugExitRule(GrammarFileName, "fn_call"); }
 		return ret;
 
@@ -1194,7 +1188,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_list_of_expressions();
 	partial void LeaveRule_list_of_expressions();
 	// $ANTLR start "list_of_expressions"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:1: list_of_expressions returns [Queue ret] : (Q1= expression ( ',' Q2= expression )* |);
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:72:1: list_of_expressions returns [Queue ret] : (Q1= expression ( ',' Q2= expression )* |);
 	[GrammarRule("list_of_expressions")]
 	private Queue list_of_expressions()
 	{
@@ -1208,10 +1202,10 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		Queue Q2 = default(Queue);
 
 		try { DebugEnterRule(GrammarFileName, "list_of_expressions");
-		DebugLocation(73, 2);
+		DebugLocation(72, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:3: (Q1= expression ( ',' Q2= expression )* |)
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:3: (Q1= expression ( ',' Q2= expression )* |)
 			int alt10=2;
 			try { DebugEnterDecision(10, false);
 			int LA10_1 = input.LA(1);
@@ -1235,17 +1229,17 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:5: Q1= expression ( ',' Q2= expression )*
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:5: Q1= expression ( ',' Q2= expression )*
 				{
-				DebugLocation(74, 7);
-				PushFollow(Follow._expression_in_list_of_expressions509);
+				DebugLocation(73, 7);
+				PushFollow(Follow._expression_in_list_of_expressions508);
 				Q1=expression();
 				PopFollow();
 
-				DebugLocation(74, 19);
+				DebugLocation(73, 19);
 				 ret=Q1; 
-				DebugLocation(74, 36);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:36: ( ',' Q2= expression )*
+				DebugLocation(73, 36);
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:36: ( ',' Q2= expression )*
 				try { DebugEnterSubRule(9);
 				while (true)
 				{
@@ -1264,16 +1258,16 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:37: ',' Q2= expression
+						// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:37: ',' Q2= expression
 						{
-						DebugLocation(74, 37);
-						Match(input,14,Follow._14_in_list_of_expressions514); 
-						DebugLocation(74, 43);
-						PushFollow(Follow._expression_in_list_of_expressions518);
+						DebugLocation(73, 37);
+						Match(input,14,Follow._14_in_list_of_expressions513); 
+						DebugLocation(73, 43);
+						PushFollow(Follow._expression_in_list_of_expressions517);
 						Q2=expression();
 						PopFollow();
 
-						DebugLocation(74, 55);
+						DebugLocation(73, 55);
 						 ret=append_queue(Q2, ret); 
 
 						}
@@ -1294,9 +1288,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:75:5: 
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:5: 
 				{
-				DebugLocation(75, 5);
+				DebugLocation(74, 5);
 				 ret=empty_queue(); 
 
 				}
@@ -1315,7 +1309,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			LeaveRule("list_of_expressions", 11);
 			LeaveRule_list_of_expressions();
 		}
-		DebugLocation(76, 2);
+		DebugLocation(75, 2);
 		} finally { DebugExitRule(GrammarFileName, "list_of_expressions"); }
 		return ret;
 
@@ -1325,7 +1319,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_identifier_expression();
 	partial void LeaveRule_identifier_expression();
 	// $ANTLR start "identifier_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:1: identifier_expression returns [Queue ret] : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:77:1: identifier_expression returns [Queue ret] : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
 	[GrammarRule("identifier_expression")]
 	private Queue identifier_expression()
 	{
@@ -1339,19 +1333,19 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		IToken b = default(IToken);
 
 		try { DebugEnterRule(GrammarFileName, "identifier_expression");
-		DebugLocation(78, 2);
+		DebugLocation(77, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
 			{
-			DebugLocation(79, 6);
-			a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression547); 
-			DebugLocation(79, 18);
+			DebugLocation(78, 6);
+			a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression546); 
+			DebugLocation(78, 18);
 			 ret=push_identifier(empty_queue(), (a!=null?a.Text:default(string))); 
-			DebugLocation(79, 67);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:67: ( '.' b= IDENTIFIER )*
+			DebugLocation(78, 67);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:67: ( '.' b= IDENTIFIER )*
 			try { DebugEnterSubRule(11);
 			while (true)
 			{
@@ -1370,13 +1364,13 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:68: '.' b= IDENTIFIER
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:68: '.' b= IDENTIFIER
 					{
-					DebugLocation(79, 68);
-					Match(input,16,Follow._16_in_identifier_expression552); 
-					DebugLocation(79, 73);
-					b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression556); 
-					DebugLocation(79, 85);
+					DebugLocation(78, 68);
+					Match(input,16,Follow._16_in_identifier_expression551); 
+					DebugLocation(78, 73);
+					b=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression555); 
+					DebugLocation(78, 85);
 					 ret=push_operator(push_identifier(ret, (b!=null?b.Text:default(string))), Operator.MemberAccess); 
 
 					}
@@ -1407,7 +1401,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			LeaveRule("identifier_expression", 12);
 			LeaveRule_identifier_expression();
 		}
-		DebugLocation(80, 2);
+		DebugLocation(79, 2);
 		} finally { DebugExitRule(GrammarFileName, "identifier_expression"); }
 		return ret;
 
@@ -1417,7 +1411,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_boolean_terminal();
 	partial void LeaveRule_boolean_terminal();
 	// $ANTLR start "boolean_terminal"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:82:1: boolean_terminal returns [Queue ret] : ( 'true' | 'false' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:81:1: boolean_terminal returns [Queue ret] : ( 'true' | 'false' );
 	[GrammarRule("boolean_terminal")]
 	private Queue boolean_terminal()
 	{
@@ -1428,10 +1422,10 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 
 
 		try { DebugEnterRule(GrammarFileName, "boolean_terminal");
-		DebugLocation(82, 2);
+		DebugLocation(81, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:83:3: ( 'true' | 'false' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:82:3: ( 'true' | 'false' )
 			int alt12=2;
 			try { DebugEnterDecision(12, false);
 			int LA12_1 = input.LA(1);
@@ -1455,22 +1449,22 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:83:5: 'true'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:82:5: 'true'
 				{
-				DebugLocation(83, 5);
-				Match(input,25,Follow._25_in_boolean_terminal577); 
-				DebugLocation(83, 12);
+				DebugLocation(82, 5);
+				Match(input,25,Follow._25_in_boolean_terminal576); 
+				DebugLocation(82, 12);
 				 ret=push_boolean(empty_queue(), true); 
 
 				}
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:84:5: 'false'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:83:5: 'false'
 				{
-				DebugLocation(84, 5);
-				Match(input,24,Follow._24_in_boolean_terminal585); 
-				DebugLocation(84, 13);
+				DebugLocation(83, 5);
+				Match(input,24,Follow._24_in_boolean_terminal584); 
+				DebugLocation(83, 13);
 				 ret=push_boolean(empty_queue(), false); 
 
 				}
@@ -1489,7 +1483,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			LeaveRule("boolean_terminal", 13);
 			LeaveRule_boolean_terminal();
 		}
-		DebugLocation(85, 2);
+		DebugLocation(84, 2);
 		} finally { DebugExitRule(GrammarFileName, "boolean_terminal"); }
 		return ret;
 
@@ -1541,22 +1535,22 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		public static readonly BitSet _atomic_expression_in_negation398 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _REAL_in_atomic_expression419 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _boolean_terminal_in_atomic_expression429 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _identifier_expression_in_atomic_expression439 = new BitSet(new ulong[]{0x400UL});
-		public static readonly BitSet _fn_call_in_atomic_expression443 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _10_in_atomic_expression451 = new BitSet(new ulong[]{0x30084B0UL});
-		public static readonly BitSet _expression_in_atomic_expression455 = new BitSet(new ulong[]{0x800UL});
-		public static readonly BitSet _11_in_atomic_expression457 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _10_in_fn_call476 = new BitSet(new ulong[]{0x3008CB0UL});
-		public static readonly BitSet _list_of_expressions_in_fn_call480 = new BitSet(new ulong[]{0x800UL});
-		public static readonly BitSet _11_in_fn_call482 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _expression_in_list_of_expressions509 = new BitSet(new ulong[]{0x4002UL});
-		public static readonly BitSet _14_in_list_of_expressions514 = new BitSet(new ulong[]{0x30084B0UL});
-		public static readonly BitSet _expression_in_list_of_expressions518 = new BitSet(new ulong[]{0x4002UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression547 = new BitSet(new ulong[]{0x10002UL});
-		public static readonly BitSet _16_in_identifier_expression552 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _IDENTIFIER_in_identifier_expression556 = new BitSet(new ulong[]{0x10002UL});
-		public static readonly BitSet _25_in_boolean_terminal577 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _24_in_boolean_terminal585 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _identifier_expression_in_atomic_expression439 = new BitSet(new ulong[]{0x402UL});
+		public static readonly BitSet _fn_call_in_atomic_expression446 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _10_in_atomic_expression456 = new BitSet(new ulong[]{0x30084B0UL});
+		public static readonly BitSet _expression_in_atomic_expression460 = new BitSet(new ulong[]{0x800UL});
+		public static readonly BitSet _11_in_atomic_expression462 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _10_in_fn_call481 = new BitSet(new ulong[]{0x3008CB0UL});
+		public static readonly BitSet _list_of_expressions_in_fn_call485 = new BitSet(new ulong[]{0x800UL});
+		public static readonly BitSet _11_in_fn_call487 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _expression_in_list_of_expressions508 = new BitSet(new ulong[]{0x4002UL});
+		public static readonly BitSet _14_in_list_of_expressions513 = new BitSet(new ulong[]{0x30084B0UL});
+		public static readonly BitSet _expression_in_list_of_expressions517 = new BitSet(new ulong[]{0x4002UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression546 = new BitSet(new ulong[]{0x10002UL});
+		public static readonly BitSet _16_in_identifier_expression551 = new BitSet(new ulong[]{0x10UL});
+		public static readonly BitSet _IDENTIFIER_in_identifier_expression555 = new BitSet(new ulong[]{0x10002UL});
+		public static readonly BitSet _25_in_boolean_terminal576 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _24_in_boolean_terminal584 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

@@ -179,6 +179,16 @@ namespace SharpExpressions
                 }
                 else if (registry.types.TryGetValue((string)obj, out type))
                 {
+                    // Check if the given member is a static property or field
+                    var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentField in fields)
+                    {
+                        if (currentField.Name.Equals(field))
+                        {
+                            return currentField.GetValue(null);
+                        }
+                    }
+
                     // Find a method in the type with that name
                     Console.WriteLine(type);
                     return null;
