@@ -189,6 +189,15 @@ namespace SharpExpressions
                         }
                     }
 
+                    var properties = type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentProperty in properties)
+                    {
+                        if (currentProperty.Name.Equals(field))
+                        {
+                            return currentProperty.GetValue(null, null);
+                        }
+                    }
+
                     // Find a method in the type with that name
                     Console.WriteLine(type);
                     return null;
