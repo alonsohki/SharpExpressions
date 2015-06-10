@@ -13,6 +13,8 @@ namespace SharpExpressions
             bool l;
             bool r;
             MethodInfo m;
+            ParameterInfo[] parameters;
+            int i;
             Stack<object> args = new Stack<object>();
 
             foreach (var entry in queue)
@@ -126,6 +128,21 @@ namespace SharpExpressions
 
                             case Operator.Call:
                                 m = solveMethod(args.Pop(), registry);
+                                parameters = m.GetParameters();
+                                if (args.Count < parameters.Length)
+                                {
+                                    throw new System.Exception();
+                                }
+                                else
+                                {
+                                    object[] values = new object[parameters.Length];
+                                    for (i = 0; i < parameters.Length; ++i)
+                                    {
+                                        values[i] = args.Pop();
+                                    }
+                                    args.Push(m.Invoke(null, values));
+                                }
+
                                 break;
                         }
                         break;
@@ -143,7 +160,10 @@ namespace SharpExpressions
 
         private static MethodInfo solveMethod(object obj, Registry registry)
         {
-            return null;
+            MethodInfo info = obj as MethodInfo;
+            if (info == null)
+                throw new System.Exception();
+            return info;
         }
 
         private static object accessMember(object obj, object field, Registry registry)
@@ -199,8 +219,16 @@ namespace SharpExpressions
                     }
 
                     // Find a method in the type with that name
-                    Console.WriteLine(type);
-                    return null;
+                    var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentMethod in methods)
+                    {
+                        if (currentMethod.Name.Equals(field))
+                        {
+                            return currentMethod;
+                        }
+                    }
+
+                    throw new System.Exception();
                 }
                 else
                 {
