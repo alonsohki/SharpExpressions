@@ -39,6 +39,13 @@ namespace SharpExpressions.parser
             return queue;
         }
 
+        private Queue push_string(Queue queue, string value)
+        {
+            value = value.Substring(1, value.Length - 2);
+            queue.Enqueue(new Entry { type = Entry.Type.String, value = value });
+            return queue;
+        }
+
         private Queue push_boolean(Queue queue, string value)
         {
             bool b = bool.Parse(value);

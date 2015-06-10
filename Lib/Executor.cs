@@ -24,6 +24,7 @@ namespace SharpExpressions
                     case Entry.Type.Value:
                     case Entry.Type.Identifier:
                     case Entry.Type.Boolean:
+                    case Entry.Type.String:
                         args.Push(entry.value);
                         break;
 

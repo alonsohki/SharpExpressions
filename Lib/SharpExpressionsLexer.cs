@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-06-10 22:00:51
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-06-10 22:17:21
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -32,9 +32,9 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
 	public const int IDENTIFIER=4;
-	public const int REAL=5;
-	public const int WS=6;
-	public const int T__7=7;
+	public const int QUOTED_STRING=5;
+	public const int REAL=6;
+	public const int WS=7;
 	public const int T__8=8;
 	public const int T__9=9;
 	public const int T__10=10;
@@ -54,6 +54,7 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	public const int T__24=24;
 	public const int T__25=25;
 	public const int T__26=26;
+	public const int T__27=27;
 
 	// delegates
 	// delegators
@@ -81,19 +82,19 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	partial void EnterRule(string ruleName, int ruleIndex);
 	partial void LeaveRule(string ruleName, int ruleIndex);
 
-	partial void EnterRule_T__7();
-	partial void LeaveRule_T__7();
+	partial void EnterRule_T__8();
+	partial void LeaveRule_T__8();
 
-	// $ANTLR start "T__7"
-	[GrammarRule("T__7")]
-	private void mT__7()
+	// $ANTLR start "T__8"
+	[GrammarRule("T__8")]
+	private void mT__8()
 	{
-		EnterRule_T__7();
-		EnterRule("T__7", 1);
-		TraceIn("T__7", 1);
+		EnterRule_T__8();
+		EnterRule("T__8", 1);
+		TraceIn("T__8", 1);
 		try
 		{
-			int _type = T__7;
+			int _type = T__8;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:9:6: ( '!' )
 			DebugEnterAlt(1);
@@ -109,26 +110,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__7", 1);
-			LeaveRule("T__7", 1);
-			LeaveRule_T__7();
+			TraceOut("T__8", 1);
+			LeaveRule("T__8", 1);
+			LeaveRule_T__8();
 		}
 	}
-	// $ANTLR end "T__7"
+	// $ANTLR end "T__8"
 
-	partial void EnterRule_T__8();
-	partial void LeaveRule_T__8();
+	partial void EnterRule_T__9();
+	partial void LeaveRule_T__9();
 
-	// $ANTLR start "T__8"
-	[GrammarRule("T__8")]
-	private void mT__8()
+	// $ANTLR start "T__9"
+	[GrammarRule("T__9")]
+	private void mT__9()
 	{
-		EnterRule_T__8();
-		EnterRule("T__8", 2);
-		TraceIn("T__8", 2);
+		EnterRule_T__9();
+		EnterRule("T__9", 2);
+		TraceIn("T__9", 2);
 		try
 		{
-			int _type = T__8;
+			int _type = T__9;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:10:6: ( '!=' )
 			DebugEnterAlt(1);
@@ -145,44 +146,8 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__8", 2);
-			LeaveRule("T__8", 2);
-			LeaveRule_T__8();
-		}
-	}
-	// $ANTLR end "T__8"
-
-	partial void EnterRule_T__9();
-	partial void LeaveRule_T__9();
-
-	// $ANTLR start "T__9"
-	[GrammarRule("T__9")]
-	private void mT__9()
-	{
-		EnterRule_T__9();
-		EnterRule("T__9", 3);
-		TraceIn("T__9", 3);
-		try
-		{
-			int _type = T__9;
-			int _channel = DefaultTokenChannel;
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:11:6: ( '&&' )
-			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:11:8: '&&'
-			{
-			DebugLocation(11, 8);
-			Match("&&"); 
-
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__9", 3);
-			LeaveRule("T__9", 3);
+			TraceOut("T__9", 2);
+			LeaveRule("T__9", 2);
 			LeaveRule_T__9();
 		}
 	}
@@ -196,11 +161,47 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	private void mT__10()
 	{
 		EnterRule_T__10();
-		EnterRule("T__10", 4);
-		TraceIn("T__10", 4);
+		EnterRule("T__10", 3);
+		TraceIn("T__10", 3);
 		try
 		{
 			int _type = T__10;
+			int _channel = DefaultTokenChannel;
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:11:7: ( '&&' )
+			DebugEnterAlt(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:11:9: '&&'
+			{
+			DebugLocation(11, 9);
+			Match("&&"); 
+
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("T__10", 3);
+			LeaveRule("T__10", 3);
+			LeaveRule_T__10();
+		}
+	}
+	// $ANTLR end "T__10"
+
+	partial void EnterRule_T__11();
+	partial void LeaveRule_T__11();
+
+	// $ANTLR start "T__11"
+	[GrammarRule("T__11")]
+	private void mT__11()
+	{
+		EnterRule_T__11();
+		EnterRule("T__11", 4);
+		TraceIn("T__11", 4);
+		try
+		{
+			int _type = T__11;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:12:7: ( '(' )
 			DebugEnterAlt(1);
@@ -216,26 +217,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__10", 4);
-			LeaveRule("T__10", 4);
-			LeaveRule_T__10();
+			TraceOut("T__11", 4);
+			LeaveRule("T__11", 4);
+			LeaveRule_T__11();
 		}
 	}
-	// $ANTLR end "T__10"
+	// $ANTLR end "T__11"
 
-	partial void EnterRule_T__11();
-	partial void LeaveRule_T__11();
+	partial void EnterRule_T__12();
+	partial void LeaveRule_T__12();
 
-	// $ANTLR start "T__11"
-	[GrammarRule("T__11")]
-	private void mT__11()
+	// $ANTLR start "T__12"
+	[GrammarRule("T__12")]
+	private void mT__12()
 	{
-		EnterRule_T__11();
-		EnterRule("T__11", 5);
-		TraceIn("T__11", 5);
+		EnterRule_T__12();
+		EnterRule("T__12", 5);
+		TraceIn("T__12", 5);
 		try
 		{
-			int _type = T__11;
+			int _type = T__12;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:13:7: ( ')' )
 			DebugEnterAlt(1);
@@ -251,26 +252,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__11", 5);
-			LeaveRule("T__11", 5);
-			LeaveRule_T__11();
+			TraceOut("T__12", 5);
+			LeaveRule("T__12", 5);
+			LeaveRule_T__12();
 		}
 	}
-	// $ANTLR end "T__11"
+	// $ANTLR end "T__12"
 
-	partial void EnterRule_T__12();
-	partial void LeaveRule_T__12();
+	partial void EnterRule_T__13();
+	partial void LeaveRule_T__13();
 
-	// $ANTLR start "T__12"
-	[GrammarRule("T__12")]
-	private void mT__12()
+	// $ANTLR start "T__13"
+	[GrammarRule("T__13")]
+	private void mT__13()
 	{
-		EnterRule_T__12();
-		EnterRule("T__12", 6);
-		TraceIn("T__12", 6);
+		EnterRule_T__13();
+		EnterRule("T__13", 6);
+		TraceIn("T__13", 6);
 		try
 		{
-			int _type = T__12;
+			int _type = T__13;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:14:7: ( '*' )
 			DebugEnterAlt(1);
@@ -286,26 +287,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__12", 6);
-			LeaveRule("T__12", 6);
-			LeaveRule_T__12();
+			TraceOut("T__13", 6);
+			LeaveRule("T__13", 6);
+			LeaveRule_T__13();
 		}
 	}
-	// $ANTLR end "T__12"
+	// $ANTLR end "T__13"
 
-	partial void EnterRule_T__13();
-	partial void LeaveRule_T__13();
+	partial void EnterRule_T__14();
+	partial void LeaveRule_T__14();
 
-	// $ANTLR start "T__13"
-	[GrammarRule("T__13")]
-	private void mT__13()
+	// $ANTLR start "T__14"
+	[GrammarRule("T__14")]
+	private void mT__14()
 	{
-		EnterRule_T__13();
-		EnterRule("T__13", 7);
-		TraceIn("T__13", 7);
+		EnterRule_T__14();
+		EnterRule("T__14", 7);
+		TraceIn("T__14", 7);
 		try
 		{
-			int _type = T__13;
+			int _type = T__14;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:15:7: ( '+' )
 			DebugEnterAlt(1);
@@ -321,26 +322,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__13", 7);
-			LeaveRule("T__13", 7);
-			LeaveRule_T__13();
+			TraceOut("T__14", 7);
+			LeaveRule("T__14", 7);
+			LeaveRule_T__14();
 		}
 	}
-	// $ANTLR end "T__13"
+	// $ANTLR end "T__14"
 
-	partial void EnterRule_T__14();
-	partial void LeaveRule_T__14();
+	partial void EnterRule_T__15();
+	partial void LeaveRule_T__15();
 
-	// $ANTLR start "T__14"
-	[GrammarRule("T__14")]
-	private void mT__14()
+	// $ANTLR start "T__15"
+	[GrammarRule("T__15")]
+	private void mT__15()
 	{
-		EnterRule_T__14();
-		EnterRule("T__14", 8);
-		TraceIn("T__14", 8);
+		EnterRule_T__15();
+		EnterRule("T__15", 8);
+		TraceIn("T__15", 8);
 		try
 		{
-			int _type = T__14;
+			int _type = T__15;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:16:7: ( ',' )
 			DebugEnterAlt(1);
@@ -356,26 +357,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__14", 8);
-			LeaveRule("T__14", 8);
-			LeaveRule_T__14();
+			TraceOut("T__15", 8);
+			LeaveRule("T__15", 8);
+			LeaveRule_T__15();
 		}
 	}
-	// $ANTLR end "T__14"
+	// $ANTLR end "T__15"
 
-	partial void EnterRule_T__15();
-	partial void LeaveRule_T__15();
+	partial void EnterRule_T__16();
+	partial void LeaveRule_T__16();
 
-	// $ANTLR start "T__15"
-	[GrammarRule("T__15")]
-	private void mT__15()
+	// $ANTLR start "T__16"
+	[GrammarRule("T__16")]
+	private void mT__16()
 	{
-		EnterRule_T__15();
-		EnterRule("T__15", 9);
-		TraceIn("T__15", 9);
+		EnterRule_T__16();
+		EnterRule("T__16", 9);
+		TraceIn("T__16", 9);
 		try
 		{
-			int _type = T__15;
+			int _type = T__16;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:17:7: ( '-' )
 			DebugEnterAlt(1);
@@ -391,26 +392,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__15", 9);
-			LeaveRule("T__15", 9);
-			LeaveRule_T__15();
+			TraceOut("T__16", 9);
+			LeaveRule("T__16", 9);
+			LeaveRule_T__16();
 		}
 	}
-	// $ANTLR end "T__15"
+	// $ANTLR end "T__16"
 
-	partial void EnterRule_T__16();
-	partial void LeaveRule_T__16();
+	partial void EnterRule_T__17();
+	partial void LeaveRule_T__17();
 
-	// $ANTLR start "T__16"
-	[GrammarRule("T__16")]
-	private void mT__16()
+	// $ANTLR start "T__17"
+	[GrammarRule("T__17")]
+	private void mT__17()
 	{
-		EnterRule_T__16();
-		EnterRule("T__16", 10);
-		TraceIn("T__16", 10);
+		EnterRule_T__17();
+		EnterRule("T__17", 10);
+		TraceIn("T__17", 10);
 		try
 		{
-			int _type = T__16;
+			int _type = T__17;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:18:7: ( '.' )
 			DebugEnterAlt(1);
@@ -426,26 +427,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__16", 10);
-			LeaveRule("T__16", 10);
-			LeaveRule_T__16();
+			TraceOut("T__17", 10);
+			LeaveRule("T__17", 10);
+			LeaveRule_T__17();
 		}
 	}
-	// $ANTLR end "T__16"
+	// $ANTLR end "T__17"
 
-	partial void EnterRule_T__17();
-	partial void LeaveRule_T__17();
+	partial void EnterRule_T__18();
+	partial void LeaveRule_T__18();
 
-	// $ANTLR start "T__17"
-	[GrammarRule("T__17")]
-	private void mT__17()
+	// $ANTLR start "T__18"
+	[GrammarRule("T__18")]
+	private void mT__18()
 	{
-		EnterRule_T__17();
-		EnterRule("T__17", 11);
-		TraceIn("T__17", 11);
+		EnterRule_T__18();
+		EnterRule("T__18", 11);
+		TraceIn("T__18", 11);
 		try
 		{
-			int _type = T__17;
+			int _type = T__18;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:19:7: ( '/' )
 			DebugEnterAlt(1);
@@ -461,26 +462,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__17", 11);
-			LeaveRule("T__17", 11);
-			LeaveRule_T__17();
+			TraceOut("T__18", 11);
+			LeaveRule("T__18", 11);
+			LeaveRule_T__18();
 		}
 	}
-	// $ANTLR end "T__17"
+	// $ANTLR end "T__18"
 
-	partial void EnterRule_T__18();
-	partial void LeaveRule_T__18();
+	partial void EnterRule_T__19();
+	partial void LeaveRule_T__19();
 
-	// $ANTLR start "T__18"
-	[GrammarRule("T__18")]
-	private void mT__18()
+	// $ANTLR start "T__19"
+	[GrammarRule("T__19")]
+	private void mT__19()
 	{
-		EnterRule_T__18();
-		EnterRule("T__18", 12);
-		TraceIn("T__18", 12);
+		EnterRule_T__19();
+		EnterRule("T__19", 12);
+		TraceIn("T__19", 12);
 		try
 		{
-			int _type = T__18;
+			int _type = T__19;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:20:7: ( '<' )
 			DebugEnterAlt(1);
@@ -496,26 +497,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__18", 12);
-			LeaveRule("T__18", 12);
-			LeaveRule_T__18();
+			TraceOut("T__19", 12);
+			LeaveRule("T__19", 12);
+			LeaveRule_T__19();
 		}
 	}
-	// $ANTLR end "T__18"
+	// $ANTLR end "T__19"
 
-	partial void EnterRule_T__19();
-	partial void LeaveRule_T__19();
+	partial void EnterRule_T__20();
+	partial void LeaveRule_T__20();
 
-	// $ANTLR start "T__19"
-	[GrammarRule("T__19")]
-	private void mT__19()
+	// $ANTLR start "T__20"
+	[GrammarRule("T__20")]
+	private void mT__20()
 	{
-		EnterRule_T__19();
-		EnterRule("T__19", 13);
-		TraceIn("T__19", 13);
+		EnterRule_T__20();
+		EnterRule("T__20", 13);
+		TraceIn("T__20", 13);
 		try
 		{
-			int _type = T__19;
+			int _type = T__20;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:21:7: ( '<=' )
 			DebugEnterAlt(1);
@@ -532,26 +533,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__19", 13);
-			LeaveRule("T__19", 13);
-			LeaveRule_T__19();
+			TraceOut("T__20", 13);
+			LeaveRule("T__20", 13);
+			LeaveRule_T__20();
 		}
 	}
-	// $ANTLR end "T__19"
+	// $ANTLR end "T__20"
 
-	partial void EnterRule_T__20();
-	partial void LeaveRule_T__20();
+	partial void EnterRule_T__21();
+	partial void LeaveRule_T__21();
 
-	// $ANTLR start "T__20"
-	[GrammarRule("T__20")]
-	private void mT__20()
+	// $ANTLR start "T__21"
+	[GrammarRule("T__21")]
+	private void mT__21()
 	{
-		EnterRule_T__20();
-		EnterRule("T__20", 14);
-		TraceIn("T__20", 14);
+		EnterRule_T__21();
+		EnterRule("T__21", 14);
+		TraceIn("T__21", 14);
 		try
 		{
-			int _type = T__20;
+			int _type = T__21;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:22:7: ( '==' )
 			DebugEnterAlt(1);
@@ -568,26 +569,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__20", 14);
-			LeaveRule("T__20", 14);
-			LeaveRule_T__20();
+			TraceOut("T__21", 14);
+			LeaveRule("T__21", 14);
+			LeaveRule_T__21();
 		}
 	}
-	// $ANTLR end "T__20"
+	// $ANTLR end "T__21"
 
-	partial void EnterRule_T__21();
-	partial void LeaveRule_T__21();
+	partial void EnterRule_T__22();
+	partial void LeaveRule_T__22();
 
-	// $ANTLR start "T__21"
-	[GrammarRule("T__21")]
-	private void mT__21()
+	// $ANTLR start "T__22"
+	[GrammarRule("T__22")]
+	private void mT__22()
 	{
-		EnterRule_T__21();
-		EnterRule("T__21", 15);
-		TraceIn("T__21", 15);
+		EnterRule_T__22();
+		EnterRule("T__22", 15);
+		TraceIn("T__22", 15);
 		try
 		{
-			int _type = T__21;
+			int _type = T__22;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:23:7: ( '>' )
 			DebugEnterAlt(1);
@@ -603,26 +604,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__21", 15);
-			LeaveRule("T__21", 15);
-			LeaveRule_T__21();
+			TraceOut("T__22", 15);
+			LeaveRule("T__22", 15);
+			LeaveRule_T__22();
 		}
 	}
-	// $ANTLR end "T__21"
+	// $ANTLR end "T__22"
 
-	partial void EnterRule_T__22();
-	partial void LeaveRule_T__22();
+	partial void EnterRule_T__23();
+	partial void LeaveRule_T__23();
 
-	// $ANTLR start "T__22"
-	[GrammarRule("T__22")]
-	private void mT__22()
+	// $ANTLR start "T__23"
+	[GrammarRule("T__23")]
+	private void mT__23()
 	{
-		EnterRule_T__22();
-		EnterRule("T__22", 16);
-		TraceIn("T__22", 16);
+		EnterRule_T__23();
+		EnterRule("T__23", 16);
+		TraceIn("T__23", 16);
 		try
 		{
-			int _type = T__22;
+			int _type = T__23;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:24:7: ( '>=' )
 			DebugEnterAlt(1);
@@ -639,26 +640,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__22", 16);
-			LeaveRule("T__22", 16);
-			LeaveRule_T__22();
+			TraceOut("T__23", 16);
+			LeaveRule("T__23", 16);
+			LeaveRule_T__23();
 		}
 	}
-	// $ANTLR end "T__22"
+	// $ANTLR end "T__23"
 
-	partial void EnterRule_T__23();
-	partial void LeaveRule_T__23();
+	partial void EnterRule_T__24();
+	partial void LeaveRule_T__24();
 
-	// $ANTLR start "T__23"
-	[GrammarRule("T__23")]
-	private void mT__23()
+	// $ANTLR start "T__24"
+	[GrammarRule("T__24")]
+	private void mT__24()
 	{
-		EnterRule_T__23();
-		EnterRule("T__23", 17);
-		TraceIn("T__23", 17);
+		EnterRule_T__24();
+		EnterRule("T__24", 17);
+		TraceIn("T__24", 17);
 		try
 		{
-			int _type = T__23;
+			int _type = T__24;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:7: ( '^' )
 			DebugEnterAlt(1);
@@ -674,26 +675,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__23", 17);
-			LeaveRule("T__23", 17);
-			LeaveRule_T__23();
+			TraceOut("T__24", 17);
+			LeaveRule("T__24", 17);
+			LeaveRule_T__24();
 		}
 	}
-	// $ANTLR end "T__23"
+	// $ANTLR end "T__24"
 
-	partial void EnterRule_T__24();
-	partial void LeaveRule_T__24();
+	partial void EnterRule_T__25();
+	partial void LeaveRule_T__25();
 
-	// $ANTLR start "T__24"
-	[GrammarRule("T__24")]
-	private void mT__24()
+	// $ANTLR start "T__25"
+	[GrammarRule("T__25")]
+	private void mT__25()
 	{
-		EnterRule_T__24();
-		EnterRule("T__24", 18);
-		TraceIn("T__24", 18);
+		EnterRule_T__25();
+		EnterRule("T__25", 18);
+		TraceIn("T__25", 18);
 		try
 		{
-			int _type = T__24;
+			int _type = T__25;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:26:7: ( 'false' )
 			DebugEnterAlt(1);
@@ -710,26 +711,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__24", 18);
-			LeaveRule("T__24", 18);
-			LeaveRule_T__24();
+			TraceOut("T__25", 18);
+			LeaveRule("T__25", 18);
+			LeaveRule_T__25();
 		}
 	}
-	// $ANTLR end "T__24"
+	// $ANTLR end "T__25"
 
-	partial void EnterRule_T__25();
-	partial void LeaveRule_T__25();
+	partial void EnterRule_T__26();
+	partial void LeaveRule_T__26();
 
-	// $ANTLR start "T__25"
-	[GrammarRule("T__25")]
-	private void mT__25()
+	// $ANTLR start "T__26"
+	[GrammarRule("T__26")]
+	private void mT__26()
 	{
-		EnterRule_T__25();
-		EnterRule("T__25", 19);
-		TraceIn("T__25", 19);
+		EnterRule_T__26();
+		EnterRule("T__26", 19);
+		TraceIn("T__26", 19);
 		try
 		{
-			int _type = T__25;
+			int _type = T__26;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:27:7: ( 'true' )
 			DebugEnterAlt(1);
@@ -746,26 +747,26 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__25", 19);
-			LeaveRule("T__25", 19);
-			LeaveRule_T__25();
+			TraceOut("T__26", 19);
+			LeaveRule("T__26", 19);
+			LeaveRule_T__26();
 		}
 	}
-	// $ANTLR end "T__25"
+	// $ANTLR end "T__26"
 
-	partial void EnterRule_T__26();
-	partial void LeaveRule_T__26();
+	partial void EnterRule_T__27();
+	partial void LeaveRule_T__27();
 
-	// $ANTLR start "T__26"
-	[GrammarRule("T__26")]
-	private void mT__26()
+	// $ANTLR start "T__27"
+	[GrammarRule("T__27")]
+	private void mT__27()
 	{
-		EnterRule_T__26();
-		EnterRule("T__26", 20);
-		TraceIn("T__26", 20);
+		EnterRule_T__27();
+		EnterRule("T__27", 20);
+		TraceIn("T__27", 20);
 		try
 		{
-			int _type = T__26;
+			int _type = T__27;
 			int _channel = DefaultTokenChannel;
 			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:28:7: ( '||' )
 			DebugEnterAlt(1);
@@ -782,12 +783,12 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__26", 20);
-			LeaveRule("T__26", 20);
-			LeaveRule_T__26();
+			TraceOut("T__27", 20);
+			LeaveRule("T__27", 20);
+			LeaveRule_T__27();
 		}
 	}
-	// $ANTLR end "T__26"
+	// $ANTLR end "T__27"
 
 	partial void EnterRule_IDENTIFIER();
 	partial void LeaveRule_IDENTIFIER();
@@ -803,11 +804,11 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		{
 			int _type = IDENTIFIER;
 			int _channel = DefaultTokenChannel;
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:90:12: ( ( 'A' .. 'Z' | 'a' .. 'z' | '_' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:91:12: ( ( 'A' .. 'Z' | 'a' .. 'z' | '_' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:90:14: ( 'A' .. 'Z' | 'a' .. 'z' | '_' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:91:14: ( 'A' .. 'Z' | 'a' .. 'z' | '_' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )*
 			{
-			DebugLocation(90, 14);
+			DebugLocation(91, 14);
 			if ((input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z'))
 			{
 				input.Consume();
@@ -820,8 +821,8 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 				throw mse;
 			}
 
-			DebugLocation(90, 41);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:90:41: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )*
+			DebugLocation(91, 41);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:91:41: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' )*
 			try { DebugEnterSubRule(1);
 			while (true)
 			{
@@ -842,7 +843,7 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 					DebugEnterAlt(1);
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
 					{
-					DebugLocation(90, 41);
+					DebugLocation(91, 41);
 					input.Consume();
 
 
@@ -874,6 +875,82 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	}
 	// $ANTLR end "IDENTIFIER"
 
+	partial void EnterRule_QUOTED_STRING();
+	partial void LeaveRule_QUOTED_STRING();
+
+	// $ANTLR start "QUOTED_STRING"
+	[GrammarRule("QUOTED_STRING")]
+	private void mQUOTED_STRING()
+	{
+		EnterRule_QUOTED_STRING();
+		EnterRule("QUOTED_STRING", 22);
+		TraceIn("QUOTED_STRING", 22);
+		try
+		{
+			int _type = QUOTED_STRING;
+			int _channel = DefaultTokenChannel;
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:93:15: ( '\"' (~ ( '\\r' | '\\n' | '\"' ) )* '\"' )
+			DebugEnterAlt(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:93:17: '\"' (~ ( '\\r' | '\\n' | '\"' ) )* '\"'
+			{
+			DebugLocation(93, 17);
+			Match('\"'); 
+			DebugLocation(93, 21);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:93:21: (~ ( '\\r' | '\\n' | '\"' ) )*
+			try { DebugEnterSubRule(2);
+			while (true)
+			{
+				int alt2=2;
+				try { DebugEnterDecision(2, false);
+				int LA2_1 = input.LA(1);
+
+				if (((LA2_1>='\u0000' && LA2_1<='\t')||(LA2_1>='\u000B' && LA2_1<='\f')||(LA2_1>='\u000E' && LA2_1<='!')||(LA2_1>='#' && LA2_1<='\uFFFF')))
+				{
+					alt2 = 1;
+				}
+
+
+				} finally { DebugExitDecision(2); }
+				switch ( alt2 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
+					{
+					DebugLocation(93, 21);
+					input.Consume();
+
+
+					}
+					break;
+
+				default:
+					goto loop2;
+				}
+			}
+
+			loop2:
+				;
+
+			} finally { DebugExitSubRule(2); }
+
+			DebugLocation(93, 46);
+			Match('\"'); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("QUOTED_STRING", 22);
+			LeaveRule("QUOTED_STRING", 22);
+			LeaveRule_QUOTED_STRING();
+		}
+	}
+	// $ANTLR end "QUOTED_STRING"
+
 	partial void EnterRule_REAL();
 	partial void LeaveRule_REAL();
 
@@ -882,62 +959,62 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	private void mREAL()
 	{
 		EnterRule_REAL();
-		EnterRule("REAL", 22);
-		TraceIn("REAL", 22);
+		EnterRule("REAL", 23);
+		TraceIn("REAL", 23);
 		try
 		{
 			int _type = REAL;
 			int _channel = DefaultTokenChannel;
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:6: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ )
-			int alt6=2;
-			try { DebugEnterDecision(6, false);
-			int LA6_1 = input.LA(1);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:6: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ )
+			int alt7=2;
+			try { DebugEnterDecision(7, false);
+			int LA7_1 = input.LA(1);
 
-			if (((LA6_1>='0' && LA6_1<='9')))
+			if (((LA7_1>='0' && LA7_1<='9')))
 			{
-				alt6 = 1;
+				alt7 = 1;
 			}
-			else if ((LA6_1=='.'))
+			else if ((LA7_1=='.'))
 			{
-				alt6 = 2;
+				alt7 = 2;
 			}
 			else
 			{
-				NoViableAltException nvae = new NoViableAltException("", 6, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 7, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(6); }
-			switch (alt6)
+			} finally { DebugExitDecision(7); }
+			switch (alt7)
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:8: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:8: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
 				{
-				DebugLocation(92, 8);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:8: ( '0' .. '9' )+
-				int cnt2=0;
-				try { DebugEnterSubRule(2);
+				DebugLocation(95, 8);
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:8: ( '0' .. '9' )+
+				int cnt3=0;
+				try { DebugEnterSubRule(3);
 				while (true)
 				{
-					int alt2=2;
-					try { DebugEnterDecision(2, false);
-					int LA2_1 = input.LA(1);
+					int alt3=2;
+					try { DebugEnterDecision(3, false);
+					int LA3_1 = input.LA(1);
 
-					if (((LA2_1>='0' && LA2_1<='9')))
+					if (((LA3_1>='0' && LA3_1<='9')))
 					{
-						alt2 = 1;
+						alt3 = 1;
 					}
 
 
-					} finally { DebugExitDecision(2); }
-					switch (alt2)
+					} finally { DebugExitDecision(3); }
+					switch (alt3)
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
 						{
-						DebugLocation(92, 8);
+						DebugLocation(95, 8);
 						input.Consume();
 
 
@@ -945,64 +1022,64 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 						break;
 
 					default:
-						if (cnt2 >= 1)
-							goto loop2;
+						if (cnt3 >= 1)
+							goto loop3;
 
-						EarlyExitException eee2 = new EarlyExitException( 2, input );
-						DebugRecognitionException(eee2);
-						throw eee2;
+						EarlyExitException eee3 = new EarlyExitException( 3, input );
+						DebugRecognitionException(eee3);
+						throw eee3;
 					}
-					cnt2++;
+					cnt3++;
 				}
-				loop2:
+				loop3:
 					;
 
-				} finally { DebugExitSubRule(2); }
+				} finally { DebugExitSubRule(3); }
 
-				DebugLocation(92, 19);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:19: ( '.' ( '0' .. '9' )+ )?
-				int alt4=2;
-				try { DebugEnterSubRule(4);
-				try { DebugEnterDecision(4, false);
-				int LA4_1 = input.LA(1);
+				DebugLocation(95, 19);
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:19: ( '.' ( '0' .. '9' )+ )?
+				int alt5=2;
+				try { DebugEnterSubRule(5);
+				try { DebugEnterDecision(5, false);
+				int LA5_1 = input.LA(1);
 
-				if ((LA4_1=='.'))
+				if ((LA5_1=='.'))
 				{
-					alt4 = 1;
+					alt5 = 1;
 				}
-				} finally { DebugExitDecision(4); }
-				switch (alt4)
+				} finally { DebugExitDecision(5); }
+				switch (alt5)
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:20: '.' ( '0' .. '9' )+
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:20: '.' ( '0' .. '9' )+
 					{
-					DebugLocation(92, 20);
+					DebugLocation(95, 20);
 					Match('.'); 
-					DebugLocation(92, 24);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:92:24: ( '0' .. '9' )+
-					int cnt3=0;
-					try { DebugEnterSubRule(3);
+					DebugLocation(95, 24);
+					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:95:24: ( '0' .. '9' )+
+					int cnt4=0;
+					try { DebugEnterSubRule(4);
 					while (true)
 					{
-						int alt3=2;
-						try { DebugEnterDecision(3, false);
-						int LA3_1 = input.LA(1);
+						int alt4=2;
+						try { DebugEnterDecision(4, false);
+						int LA4_1 = input.LA(1);
 
-						if (((LA3_1>='0' && LA3_1<='9')))
+						if (((LA4_1>='0' && LA4_1<='9')))
 						{
-							alt3 = 1;
+							alt4 = 1;
 						}
 
 
-						} finally { DebugExitDecision(3); }
-						switch (alt3)
+						} finally { DebugExitDecision(4); }
+						switch (alt4)
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
 							{
-							DebugLocation(92, 24);
+							DebugLocation(95, 24);
 							input.Consume();
 
 
@@ -1010,60 +1087,60 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 							break;
 
 						default:
-							if (cnt3 >= 1)
-								goto loop3;
+							if (cnt4 >= 1)
+								goto loop4;
 
-							EarlyExitException eee3 = new EarlyExitException( 3, input );
-							DebugRecognitionException(eee3);
-							throw eee3;
+							EarlyExitException eee4 = new EarlyExitException( 4, input );
+							DebugRecognitionException(eee4);
+							throw eee4;
 						}
-						cnt3++;
+						cnt4++;
 					}
-					loop3:
+					loop4:
 						;
 
-					} finally { DebugExitSubRule(3); }
+					} finally { DebugExitSubRule(4); }
 
 
 					}
 					break;
 
 				}
-				} finally { DebugExitSubRule(4); }
+				} finally { DebugExitSubRule(5); }
 
 
 				}
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:93:8: '.' ( '0' .. '9' )+
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:96:8: '.' ( '0' .. '9' )+
 				{
-				DebugLocation(93, 8);
+				DebugLocation(96, 8);
 				Match('.'); 
-				DebugLocation(93, 11);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:93:11: ( '0' .. '9' )+
-				int cnt5=0;
-				try { DebugEnterSubRule(5);
+				DebugLocation(96, 11);
+				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:96:11: ( '0' .. '9' )+
+				int cnt6=0;
+				try { DebugEnterSubRule(6);
 				while (true)
 				{
-					int alt5=2;
-					try { DebugEnterDecision(5, false);
-					int LA5_1 = input.LA(1);
+					int alt6=2;
+					try { DebugEnterDecision(6, false);
+					int LA6_1 = input.LA(1);
 
-					if (((LA5_1>='0' && LA5_1<='9')))
+					if (((LA6_1>='0' && LA6_1<='9')))
 					{
-						alt5 = 1;
+						alt6 = 1;
 					}
 
 
-					} finally { DebugExitDecision(5); }
-					switch (alt5)
+					} finally { DebugExitDecision(6); }
+					switch (alt6)
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
 						{
-						DebugLocation(93, 11);
+						DebugLocation(96, 11);
 						input.Consume();
 
 
@@ -1071,19 +1148,19 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 						break;
 
 					default:
-						if (cnt5 >= 1)
-							goto loop5;
+						if (cnt6 >= 1)
+							goto loop6;
 
-						EarlyExitException eee5 = new EarlyExitException( 5, input );
-						DebugRecognitionException(eee5);
-						throw eee5;
+						EarlyExitException eee6 = new EarlyExitException( 6, input );
+						DebugRecognitionException(eee6);
+						throw eee6;
 					}
-					cnt5++;
+					cnt6++;
 				}
-				loop5:
+				loop6:
 					;
 
-				} finally { DebugExitSubRule(5); }
+				} finally { DebugExitSubRule(6); }
 
 
 				}
@@ -1095,8 +1172,8 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("REAL", 22);
-			LeaveRule("REAL", 22);
+			TraceOut("REAL", 23);
+			LeaveRule("REAL", 23);
 			LeaveRule_REAL();
 		}
 	}
@@ -1110,40 +1187,40 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 	private void mWS()
 	{
 		EnterRule_WS();
-		EnterRule("WS", 23);
-		TraceIn("WS", 23);
+		EnterRule("WS", 24);
+		TraceIn("WS", 24);
 		try
 		{
 			int _type = WS;
 			int _channel = DefaultTokenChannel;
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:94:4: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:97:4: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:94:7: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:97:7: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-			DebugLocation(94, 7);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:94:7: ( ' ' | '\\t' | '\\r' | '\\n' )+
-			int cnt7=0;
-			try { DebugEnterSubRule(7);
+			DebugLocation(97, 7);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:97:7: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			int cnt8=0;
+			try { DebugEnterSubRule(8);
 			while (true)
 			{
-				int alt7=2;
-				try { DebugEnterDecision(7, false);
-				int LA7_1 = input.LA(1);
+				int alt8=2;
+				try { DebugEnterDecision(8, false);
+				int LA8_1 = input.LA(1);
 
-				if (((LA7_1>='\t' && LA7_1<='\n')||LA7_1=='\r'||LA7_1==' '))
+				if (((LA8_1>='\t' && LA8_1<='\n')||LA8_1=='\r'||LA8_1==' '))
 				{
-					alt7 = 1;
+					alt8 = 1;
 				}
 
 
-				} finally { DebugExitDecision(7); }
-				switch (alt7)
+				} finally { DebugExitDecision(8); }
+				switch (alt8)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:
 					{
-					DebugLocation(94, 7);
+					DebugLocation(97, 7);
 					input.Consume();
 
 
@@ -1151,21 +1228,21 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 					break;
 
 				default:
-					if (cnt7 >= 1)
-						goto loop7;
+					if (cnt8 >= 1)
+						goto loop8;
 
-					EarlyExitException eee7 = new EarlyExitException( 7, input );
-					DebugRecognitionException(eee7);
-					throw eee7;
+					EarlyExitException eee8 = new EarlyExitException( 8, input );
+					DebugRecognitionException(eee8);
+					throw eee8;
 				}
-				cnt7++;
+				cnt8++;
 			}
-			loop7:
+			loop8:
 				;
 
-			} finally { DebugExitSubRule(7); }
+			} finally { DebugExitSubRule(8); }
 
-			DebugLocation(94, 29);
+			DebugLocation(97, 29);
 			Skip();
 
 			}
@@ -1175,8 +1252,8 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("WS", 23);
-			LeaveRule("WS", 23);
+			TraceOut("WS", 24);
+			LeaveRule("WS", 24);
 			LeaveRule_WS();
 		}
 	}
@@ -1184,211 +1261,211 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:8: ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | IDENTIFIER | REAL | WS )
-		int alt8=23;
-		try { DebugEnterDecision(8, false);
+		// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:8: ( T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | IDENTIFIER | QUOTED_STRING | REAL | WS )
+		int alt9=24;
+		try { DebugEnterDecision(9, false);
 		switch (input.LA(1))
 		{
 		case '!':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if ((LA8_2=='='))
+			if ((LA9_2=='='))
 			{
-				alt8 = 2;
+				alt9 = 2;
 			}
 			else
 			{
-				alt8 = 1;
+				alt9 = 1;
 			}
 			}
 			break;
 		case '&':
 			{
-			alt8 = 3;
+			alt9 = 3;
 			}
 			break;
 		case '(':
 			{
-			alt8 = 4;
+			alt9 = 4;
 			}
 			break;
 		case ')':
 			{
-			alt8 = 5;
+			alt9 = 5;
 			}
 			break;
 		case '*':
 			{
-			alt8 = 6;
+			alt9 = 6;
 			}
 			break;
 		case '+':
 			{
-			alt8 = 7;
+			alt9 = 7;
 			}
 			break;
 		case ',':
 			{
-			alt8 = 8;
+			alt9 = 8;
 			}
 			break;
 		case '-':
 			{
-			alt8 = 9;
+			alt9 = 9;
 			}
 			break;
 		case '.':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if (((LA8_2>='0' && LA8_2<='9')))
+			if (((LA9_2>='0' && LA9_2<='9')))
 			{
-				alt8 = 22;
+				alt9 = 23;
 			}
 			else
 			{
-				alt8 = 10;
+				alt9 = 10;
 			}
 			}
 			break;
 		case '/':
 			{
-			alt8 = 11;
+			alt9 = 11;
 			}
 			break;
 		case '<':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if ((LA8_2=='='))
+			if ((LA9_2=='='))
 			{
-				alt8 = 13;
+				alt9 = 13;
 			}
 			else
 			{
-				alt8 = 12;
+				alt9 = 12;
 			}
 			}
 			break;
 		case '=':
 			{
-			alt8 = 14;
+			alt9 = 14;
 			}
 			break;
 		case '>':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if ((LA8_2=='='))
+			if ((LA9_2=='='))
 			{
-				alt8 = 16;
+				alt9 = 16;
 			}
 			else
 			{
-				alt8 = 15;
+				alt9 = 15;
 			}
 			}
 			break;
 		case '^':
 			{
-			alt8 = 17;
+			alt9 = 17;
 			}
 			break;
 		case 'f':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if ((LA8_2=='a'))
+			if ((LA9_2=='a'))
 			{
-				int LA8_3 = input.LA(3);
+				int LA9_3 = input.LA(3);
 
-				if ((LA8_3=='l'))
+				if ((LA9_3=='l'))
 				{
-					int LA8_4 = input.LA(4);
+					int LA9_4 = input.LA(4);
 
-					if ((LA8_4=='s'))
+					if ((LA9_4=='s'))
 					{
-						int LA8_5 = input.LA(5);
+						int LA9_5 = input.LA(5);
 
-						if ((LA8_5=='e'))
+						if ((LA9_5=='e'))
 						{
-							int LA8_6 = input.LA(6);
+							int LA9_6 = input.LA(6);
 
-							if (((LA8_6>='0' && LA8_6<='9')||(LA8_6>='A' && LA8_6<='Z')||LA8_6=='_'||(LA8_6>='a' && LA8_6<='z')))
+							if (((LA9_6>='0' && LA9_6<='9')||(LA9_6>='A' && LA9_6<='Z')||LA9_6=='_'||(LA9_6>='a' && LA9_6<='z')))
 							{
-								alt8 = 21;
+								alt9 = 21;
 							}
 							else
 							{
-								alt8 = 18;
+								alt9 = 18;
 							}
 						}
 						else
 						{
-							alt8 = 21;
+							alt9 = 21;
 						}
 					}
 					else
 					{
-						alt8 = 21;
+						alt9 = 21;
 					}
 				}
 				else
 				{
-					alt8 = 21;
+					alt9 = 21;
 				}
 			}
 			else
 			{
-				alt8 = 21;
+				alt9 = 21;
 			}
 			}
 			break;
 		case 't':
 			{
-			int LA8_2 = input.LA(2);
+			int LA9_2 = input.LA(2);
 
-			if ((LA8_2=='r'))
+			if ((LA9_2=='r'))
 			{
-				int LA8_3 = input.LA(3);
+				int LA9_3 = input.LA(3);
 
-				if ((LA8_3=='u'))
+				if ((LA9_3=='u'))
 				{
-					int LA8_4 = input.LA(4);
+					int LA9_4 = input.LA(4);
 
-					if ((LA8_4=='e'))
+					if ((LA9_4=='e'))
 					{
-						int LA8_5 = input.LA(5);
+						int LA9_5 = input.LA(5);
 
-						if (((LA8_5>='0' && LA8_5<='9')||(LA8_5>='A' && LA8_5<='Z')||LA8_5=='_'||(LA8_5>='a' && LA8_5<='z')))
+						if (((LA9_5>='0' && LA9_5<='9')||(LA9_5>='A' && LA9_5<='Z')||LA9_5=='_'||(LA9_5>='a' && LA9_5<='z')))
 						{
-							alt8 = 21;
+							alt9 = 21;
 						}
 						else
 						{
-							alt8 = 19;
+							alt9 = 19;
 						}
 					}
 					else
 					{
-						alt8 = 21;
+						alt9 = 21;
 					}
 				}
 				else
 				{
-					alt8 = 21;
+					alt9 = 21;
 				}
 			}
 			else
 			{
-				alt8 = 21;
+				alt9 = 21;
 			}
 			}
 			break;
 		case '|':
 			{
-			alt8 = 20;
+			alt9 = 20;
 			}
 			break;
 		case 'A':
@@ -1443,7 +1520,12 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		case 'y':
 		case 'z':
 			{
-			alt8 = 21;
+			alt9 = 21;
+			}
+			break;
+		case '\"':
+			{
+			alt9 = 22;
 			}
 			break;
 		case '0':
@@ -1457,7 +1539,7 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		case '8':
 		case '9':
 			{
-			alt8 = 22;
+			alt9 = 23;
 			}
 			break;
 		case '\t':
@@ -1465,223 +1547,232 @@ public partial class SharpExpressionsLexer : Antlr.Runtime.Lexer
 		case '\r':
 		case ' ':
 			{
-			alt8 = 23;
+			alt9 = 24;
 			}
 			break;
 		default:
 			{
-				NoViableAltException nvae = new NoViableAltException("", 8, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 9, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
 		}
 
-		} finally { DebugExitDecision(8); }
-		switch (alt8)
+		} finally { DebugExitDecision(9); }
+		switch (alt9)
 		{
 		case 1:
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:10: T__7
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:10: T__8
 			{
 			DebugLocation(1, 10);
-			mT__7(); 
+			mT__8(); 
 
 			}
 			break;
 		case 2:
 			DebugEnterAlt(2);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:15: T__8
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:15: T__9
 			{
 			DebugLocation(1, 15);
-			mT__8(); 
+			mT__9(); 
 
 			}
 			break;
 		case 3:
 			DebugEnterAlt(3);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:20: T__9
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:20: T__10
 			{
 			DebugLocation(1, 20);
-			mT__9(); 
+			mT__10(); 
 
 			}
 			break;
 		case 4:
 			DebugEnterAlt(4);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:25: T__10
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:26: T__11
 			{
-			DebugLocation(1, 25);
-			mT__10(); 
+			DebugLocation(1, 26);
+			mT__11(); 
 
 			}
 			break;
 		case 5:
 			DebugEnterAlt(5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:31: T__11
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:32: T__12
 			{
-			DebugLocation(1, 31);
-			mT__11(); 
+			DebugLocation(1, 32);
+			mT__12(); 
 
 			}
 			break;
 		case 6:
 			DebugEnterAlt(6);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:37: T__12
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:38: T__13
 			{
-			DebugLocation(1, 37);
-			mT__12(); 
+			DebugLocation(1, 38);
+			mT__13(); 
 
 			}
 			break;
 		case 7:
 			DebugEnterAlt(7);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:43: T__13
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:44: T__14
 			{
-			DebugLocation(1, 43);
-			mT__13(); 
+			DebugLocation(1, 44);
+			mT__14(); 
 
 			}
 			break;
 		case 8:
 			DebugEnterAlt(8);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:49: T__14
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:50: T__15
 			{
-			DebugLocation(1, 49);
-			mT__14(); 
+			DebugLocation(1, 50);
+			mT__15(); 
 
 			}
 			break;
 		case 9:
 			DebugEnterAlt(9);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:55: T__15
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:56: T__16
 			{
-			DebugLocation(1, 55);
-			mT__15(); 
+			DebugLocation(1, 56);
+			mT__16(); 
 
 			}
 			break;
 		case 10:
 			DebugEnterAlt(10);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:61: T__16
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:62: T__17
 			{
-			DebugLocation(1, 61);
-			mT__16(); 
+			DebugLocation(1, 62);
+			mT__17(); 
 
 			}
 			break;
 		case 11:
 			DebugEnterAlt(11);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:67: T__17
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:68: T__18
 			{
-			DebugLocation(1, 67);
-			mT__17(); 
+			DebugLocation(1, 68);
+			mT__18(); 
 
 			}
 			break;
 		case 12:
 			DebugEnterAlt(12);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:73: T__18
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:74: T__19
 			{
-			DebugLocation(1, 73);
-			mT__18(); 
+			DebugLocation(1, 74);
+			mT__19(); 
 
 			}
 			break;
 		case 13:
 			DebugEnterAlt(13);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:79: T__19
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:80: T__20
 			{
-			DebugLocation(1, 79);
-			mT__19(); 
+			DebugLocation(1, 80);
+			mT__20(); 
 
 			}
 			break;
 		case 14:
 			DebugEnterAlt(14);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:85: T__20
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:86: T__21
 			{
-			DebugLocation(1, 85);
-			mT__20(); 
+			DebugLocation(1, 86);
+			mT__21(); 
 
 			}
 			break;
 		case 15:
 			DebugEnterAlt(15);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:91: T__21
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:92: T__22
 			{
-			DebugLocation(1, 91);
-			mT__21(); 
+			DebugLocation(1, 92);
+			mT__22(); 
 
 			}
 			break;
 		case 16:
 			DebugEnterAlt(16);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:97: T__22
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:98: T__23
 			{
-			DebugLocation(1, 97);
-			mT__22(); 
+			DebugLocation(1, 98);
+			mT__23(); 
 
 			}
 			break;
 		case 17:
 			DebugEnterAlt(17);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:103: T__23
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:104: T__24
 			{
-			DebugLocation(1, 103);
-			mT__23(); 
+			DebugLocation(1, 104);
+			mT__24(); 
 
 			}
 			break;
 		case 18:
 			DebugEnterAlt(18);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:109: T__24
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:110: T__25
 			{
-			DebugLocation(1, 109);
-			mT__24(); 
+			DebugLocation(1, 110);
+			mT__25(); 
 
 			}
 			break;
 		case 19:
 			DebugEnterAlt(19);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:115: T__25
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:116: T__26
 			{
-			DebugLocation(1, 115);
-			mT__25(); 
+			DebugLocation(1, 116);
+			mT__26(); 
 
 			}
 			break;
 		case 20:
 			DebugEnterAlt(20);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:121: T__26
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:122: T__27
 			{
-			DebugLocation(1, 121);
-			mT__26(); 
+			DebugLocation(1, 122);
+			mT__27(); 
 
 			}
 			break;
 		case 21:
 			DebugEnterAlt(21);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:127: IDENTIFIER
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:128: IDENTIFIER
 			{
-			DebugLocation(1, 127);
+			DebugLocation(1, 128);
 			mIDENTIFIER(); 
 
 			}
 			break;
 		case 22:
 			DebugEnterAlt(22);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:138: REAL
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:139: QUOTED_STRING
 			{
-			DebugLocation(1, 138);
-			mREAL(); 
+			DebugLocation(1, 139);
+			mQUOTED_STRING(); 
 
 			}
 			break;
 		case 23:
 			DebugEnterAlt(23);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:143: WS
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:153: REAL
 			{
-			DebugLocation(1, 143);
+			DebugLocation(1, 153);
+			mREAL(); 
+
+			}
+			break;
+		case 24:
+			DebugEnterAlt(24);
+			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:1:158: WS
+			{
+			DebugLocation(1, 158);
 			mWS(); 
 
 			}

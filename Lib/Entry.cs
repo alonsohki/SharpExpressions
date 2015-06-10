@@ -5,6 +5,7 @@
         public enum Type
         {
             Value,
+            String,
             Boolean,
             Identifier,
             Operator,

@@ -60,6 +60,7 @@ negation returns [Queue ret]
 
 atomic_expression returns [Queue ret]
   : n=REAL { ret=push_literal(empty_queue(), $n.text); }
+  | n=QUOTED_STRING { ret=push_string(empty_queue(), $n.text); }
   | Q=boolean_terminal { ret=$Q.ret; }
   | Q1=identifier_expression { ret=$Q1.ret; } (Q2=fn_call { ret=push_operation($Q2.ret, Operator.Call, ret); })?
   | '(' Q=expression ')' { ret=$Q.ret; }
@@ -89,6 +90,8 @@ boolean_terminal returns [Queue ret]
 
 IDENTIFIER : ('A'..'Z' | 'a'..'z' | '_')('A'..'Z' | 'a'..'z' | '0'..'9' | '_')* ;
  
+QUOTED_STRING : '"' ( ~('\r' | '\n' | '"'))* '"';
+
 REAL : ('0'..'9')+('.' ('0'..'9')+)?
      | '.'('0'..'9')+;
 WS :  (' '|'\t'|'\r'|'\n')+ {Skip();} ;
