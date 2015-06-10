@@ -12,6 +12,9 @@ namespace SharpExpressions
             double b;
             bool l;
             bool r;
+            MethodInfo m;
+            ParameterInfo[] parameters;
+            int i;
             Stack<object> args = new Stack<object>();
 
             foreach (var entry in queue)
@@ -122,6 +125,25 @@ namespace SharpExpressions
                                 l = solveBoolean(args.Pop(), registry);
                                 args.Push(!l);
                                 break;
+
+                            case Operator.Call:
+                                m = solveMethod(args.Pop(), registry);
+                                parameters = m.GetParameters();
+                                if (args.Count < parameters.Length)
+                                {
+                                    throw new System.Exception();
+                                }
+                                else
+                                {
+                                    object[] values = new object[parameters.Length];
+                                    for (i = 0; i < parameters.Length; ++i)
+                                    {
+                                        values[i] = args.Pop();
+                                    }
+                                    args.Push(m.Invoke(null, values));
+                                }
+
+                                break;
                         }
                         break;
                     }
@@ -136,6 +158,14 @@ namespace SharpExpressions
             return args.Pop();
         }
 
+        private static MethodInfo solveMethod(object obj, Registry registry)
+        {
+            MethodInfo info = obj as MethodInfo;
+            if (info == null)
+                throw new System.Exception();
+            return info;
+        }
+
         private static object accessMember(object obj, object field, Registry registry)
         {
             // Solve the identifier
@@ -146,26 +176,63 @@ namespace SharpExpressions
             else
             {
                 object value = null;
-                if (!registry.identifiers.TryGetValue((string)obj, out value))
-                {
-                    throw new System.Exception();
-                }
+                System.Type type;
 
-                // Find the property with that name
-                string fieldName = (string)field;
-                PropertyInfo prop = value.GetType().GetProperty(fieldName);
-                if (prop == null)
+                if (registry.identifiers.TryGetValue((string)obj, out value))
                 {
-                    FieldInfo fieldInfo = value.GetType().GetField(fieldName);
-                    if (fieldInfo == null)
+                    // Find the property with that name
+                    string fieldName = (string)field;
+                    PropertyInfo prop = value.GetType().GetProperty(fieldName);
+                    if (prop == null)
                     {
-                        throw new System.Exception();
+                        FieldInfo fieldInfo = value.GetType().GetField(fieldName);
+                        if (fieldInfo == null)
+                        {
+                            throw new System.Exception();
+                        }
+                        return fieldInfo.GetValue(value);
                     }
-                    return fieldInfo.GetValue(value);
+                    else
+                    {
+                        return prop.GetGetMethod().Invoke(value, null);
+                    }
+                }
+                else if (registry.types.TryGetValue((string)obj, out type))
+                {
+                    // Check if the given member is a static property or field
+                    var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentField in fields)
+                    {
+                        if (currentField.Name.Equals(field))
+                        {
+                            return currentField.GetValue(null);
+                        }
+                    }
+
+                    var properties = type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentProperty in properties)
+                    {
+                        if (currentProperty.Name.Equals(field))
+                        {
+                            return currentProperty.GetValue(null, null);
+                        }
+                    }
+
+                    // Find a method in the type with that name
+                    var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                    foreach (var currentMethod in methods)
+                    {
+                        if (currentMethod.Name.Equals(field))
+                        {
+                            return currentMethod;
+                        }
+                    }
+
+                    throw new System.Exception();
                 }
                 else
                 {
-                    return prop.GetGetMethod().Invoke(value, null);
+                    throw new System.Exception();
                 }
             }
         }

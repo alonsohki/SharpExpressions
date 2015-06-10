@@ -61,13 +61,12 @@ negation returns [Queue ret]
 atomic_expression returns [Queue ret]
   : n=REAL { ret=push_literal(empty_queue(), $n.text); }
   | Q=boolean_terminal { ret=$Q.ret; }
-  | Q1=identifier_expression Q2=fn_call { ret=push_operation($Q2.ret, Operator.Call, $Q1.ret); }
+  | Q1=identifier_expression { ret=$Q1.ret; } (Q2=fn_call { ret=push_operation($Q2.ret, Operator.Call, ret); })?
   | '(' Q=expression ')' { ret=$Q.ret; }
   ;
 
 fn_call returns [Queue ret]
   : '(' Q=list_of_expressions ')' { ret=$Q.ret; }
-  | { ret=empty_queue(); }
   ;
 
 list_of_expressions returns [Queue ret]
