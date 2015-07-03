@@ -1,5 +1,4 @@
-﻿
-namespace SharpExpressions.Compiler
+﻿namespace SharpExpressions.Compiler
 {
     class CompiledExpression
     {

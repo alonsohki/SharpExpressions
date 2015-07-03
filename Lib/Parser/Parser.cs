@@ -35,7 +35,7 @@ namespace SharpExpressions.Parser
         private Queue push_literal(Queue queue, string value)
         {
             double d = double.Parse(value, CultureInfo.InvariantCulture);
-            queue.Enqueue(new Entry { type = Entry.Type.Value, value = d });
+            queue.Enqueue(new Entry { type = Entry.Type.Double, value = d });
             return queue;
         }
 
@@ -60,7 +60,7 @@ namespace SharpExpressions.Parser
 
         private Queue push_operator(Queue queue, Operator op)
         {
-            if (op == Operator.Negate && queue.Peek().type == Entry.Type.Value)
+            if (op == Operator.Negate && queue.Peek().type == Entry.Type.Double)
             {
                 // Optimize negating literal values
                 var lastElement = queue.Dequeue();
