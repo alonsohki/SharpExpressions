@@ -42,13 +42,18 @@ namespace SharpExpressions.Compiler
 
                     case Parser.Entry.Type.Operator:
                     {
+                        string op = "";
+                        Value.Type targetType = Value.Type.None;
+
                         switch ((Parser.Operator)entry.value)
                         {
                             case Parser.Operator.Add:
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].add, types[param0.type].convert, param0, param1);
+                                op = "add";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].add, types[param0.type].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -56,7 +61,9 @@ namespace SharpExpressions.Compiler
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].sub, types[param0.type].convert, param0, param1);
+                                op = "substract";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].sub, types[param0.type].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -64,7 +71,9 @@ namespace SharpExpressions.Compiler
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].mul, types[param0.type].convert, param0, param1);
+                                op = "multiply";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].mul, types[param0.type].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -72,7 +81,9 @@ namespace SharpExpressions.Compiler
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].div, types[param0.type].convert, param0, param1);
+                                op = "divide";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].div, types[param0.type].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -80,17 +91,26 @@ namespace SharpExpressions.Compiler
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].pow, types[param0.type].convert, param0, param1);
+                                op = "power";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].pow, types[param0.type].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
                             case Parser.Operator.Negate:
                             {
                                 Value param0 = work.Pop();
-                                setInstruction(instruction, 2, param0.type, types[param0.type].negate, types[param0.type].convert, param0);
+                                op = "negate";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[param0.type].negate, types[param0.type].convert, param0);
                                 work.Push(param0);
                                 break;
                             }
+                        }
+
+                        if (instruction.execute == null)
+                        {
+                            throw new CompilerException("I don't know how to " + op + " type " + targetType);
                         }
                         break;
                     }

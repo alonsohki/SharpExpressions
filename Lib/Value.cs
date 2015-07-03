@@ -4,6 +4,7 @@
     {
         public enum Type
         {
+            None,
             Double,
             String,
             Boolean,
