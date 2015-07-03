@@ -11,16 +11,29 @@ namespace SharpExpressions.Compiler
         {
             convert = (Value v) =>
             {
+                switch (v.type)
+                {
+                    case Value.Type.Boolean:
+                        v.doubleValue = v.boolValue ? 1f : 0f;
+                        break;
+                    case Value.Type.String:
+                        v.doubleValue = Double.Parse(v.stringValue);
+                        break;
+                    case Value.Type.Double:
+                        break;
+                }
             },
 
-            add = (Value[] v, out Value res) =>
+
+            add = (Value[] v, ref Value res) =>
             {
-                res = null;
+                res.doubleValue = v[0].doubleValue + v[1].doubleValue;
             },
 
-            sub = (Value[] v, out Value res) =>
+
+            sub = (Value[] v, ref Value res) =>
             {
-                res = null;
+                res.doubleValue = v[0].doubleValue - v[1].doubleValue;
             }
         };
     }

@@ -2,7 +2,8 @@
 {
     class Instruction
     {
-        public convert[] converters;
+        public int numOperands;
         public execute execute;
+        public convert[] converters;
     }
 }
