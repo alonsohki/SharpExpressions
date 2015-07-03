@@ -1,4 +1,4 @@
-﻿namespace SharpExpressions
+﻿namespace SharpExpressions.Parser
 {
     public class Entry
     {

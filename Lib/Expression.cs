@@ -1,4 +1,6 @@
-﻿using SharpExpressions.parser;
+﻿using SharpExpressions.Parser;
+using SharpExpressions.Compiler;
+using SharpExpressions.Executor;
 
 namespace SharpExpressions
 {
@@ -36,7 +38,7 @@ namespace SharpExpressions
         {
             if (!string.IsNullOrEmpty(mExpression))
             {
-                mCompiled = Compiler.compile(mExpression, mRegistry);
+                mCompiled = Compiler.Compiler.compile(mExpression, mRegistry);
             }
         }
 
@@ -48,7 +50,7 @@ namespace SharpExpressions
             }
             if (mCompiled != null)
             {
-                return Executor.execute(mCompiled, mRegistry);
+                return Executor.Executor.execute(mCompiled, mRegistry);
             }
             return null;
         }

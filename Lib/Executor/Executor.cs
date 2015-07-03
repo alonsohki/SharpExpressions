@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SharpExpressions
+namespace SharpExpressions.Executor
 {
     class Executor
     {
-        public static object execute(CompiledExpression expr, Registry registry)
+        public static object execute(Compiler.CompiledExpression expr, Registry registry)
         {
             return null;
         }

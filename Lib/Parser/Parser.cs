@@ -4,7 +4,7 @@ using System.Globalization;
 
 using SharpExpressions;
 
-namespace SharpExpressions.parser
+namespace SharpExpressions.Parser
 {
     partial class SharpExpressionsParser
     {

@@ -44,27 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGenerator.cs" />
-    <Compile Include="CompiledExpression.cs" />
-    <Compile Include="Compiler.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="Executor.cs" />
+    <Compile Include="Compiler\CodeGenerator.cs" />
+    <Compile Include="Compiler\CompiledExpression.cs" />
+    <Compile Include="Compiler\Compiler.cs" />
+    <Compile Include="Parser\Entry.cs" />
+    <Compile Include="Executor\Executor.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="Lexer.cs" />
-    <Compile Include="Operator.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="Compiler\Instruction.cs" />
+    <Compile Include="Parser\Lexer.cs" />
+    <Compile Include="Parser\Operator.cs" />
+    <Compile Include="Parser\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
-    <Compile Include="SharpExpressionsLexer.cs" />
-    <Compile Include="SharpExpressionsParser.cs" />
-    <Compile Include="Queue.cs" />
+    <Compile Include="Parser\SharpExpressionsLexer.cs" />
+    <Compile Include="Parser\SharpExpressionsParser.cs" />
+    <Compile Include="Parser\Queue.cs" />
+    <Compile Include="Value.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SharpExpressions.g" />
+    <None Include="Parser\SharpExpressions.g" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir)\..\antlr\Antlr3.exe $(ProjectDir)\SharpExpressions.g</PreBuildEvent>
+    <PreBuildEvent>$(ProjectDir)\..\antlr\Antlr3.exe $(ProjectDir)\Parser\SharpExpressions.g</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

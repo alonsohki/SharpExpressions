@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g 2015-07-04 00:38:39
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g 2015-07-04 01:03:42
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using Antlr.Runtime;
 using Antlr.Runtime.Misc;
 
-namespace SharpExpressions.parser
+namespace SharpExpressions.Parser
 {
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "3.5.0.2")]
 [System.CLSCompliant(false)]
@@ -70,7 +70,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	}
 
 	public override string[] TokenNames { get { return SharpExpressionsParser.tokenNames; } }
-	public override string GrammarFileName { get { return "C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g"; } }
+	public override string GrammarFileName { get { return "C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g"; } }
 
 
 	partial void OnCreated();
@@ -81,7 +81,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_eval();
 	partial void LeaveRule_eval();
 	// $ANTLR start "eval"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:14:8: public eval returns [Queue queue] :Q= expression ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:14:8: public eval returns [Queue queue] :Q= expression ;
 	[GrammarRule("eval")]
 	public Queue eval()
 	{
@@ -97,9 +97,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(14, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:15:3: (Q= expression )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:15:3: (Q= expression )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:15:5: Q= expression
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:15:5: Q= expression
 			{
 			DebugLocation(15, 5);
 			 allocate_queues(5); 
@@ -135,7 +135,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_expression();
 	partial void LeaveRule_expression();
 	// $ANTLR start "expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:18:1: expression returns [Queue ret] : Q= boolean_expression ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:18:1: expression returns [Queue ret] : Q= boolean_expression ;
 	[GrammarRule("expression")]
 	private Queue expression()
 	{
@@ -151,9 +151,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(18, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:19:3: (Q= boolean_expression )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:19:3: (Q= boolean_expression )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:19:5: Q= boolean_expression
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:19:5: Q= boolean_expression
 			{
 			DebugLocation(19, 6);
 			PushFollow(Follow._boolean_expression_in_expression77);
@@ -187,7 +187,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_boolean_expression();
 	partial void LeaveRule_boolean_expression();
 	// $ANTLR start "boolean_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:22:1: boolean_expression returns [Queue ret] : Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:22:1: boolean_expression returns [Queue ret] : Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )* ;
 	[GrammarRule("boolean_expression")]
 	private Queue boolean_expression()
 	{
@@ -204,9 +204,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(22, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:23:3: (Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:23:3: (Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:23:5: Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:23:5: Q1= comparison ( '&&' Q2= comparison | '||' Q2= comparison )*
 			{
 			DebugLocation(23, 7);
 			PushFollow(Follow._comparison_in_boolean_expression98);
@@ -216,7 +216,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			DebugLocation(23, 19);
 			 ret=Q1; 
 			DebugLocation(24, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:24:5: ( '&&' Q2= comparison | '||' Q2= comparison )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:24:5: ( '&&' Q2= comparison | '||' Q2= comparison )*
 			try { DebugEnterSubRule(1);
 			while (true)
 			{
@@ -239,7 +239,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:24:7: '&&' Q2= comparison
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:24:7: '&&' Q2= comparison
 					{
 					DebugLocation(24, 7);
 					Match(input,10,Follow._10_in_boolean_expression108); 
@@ -255,7 +255,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:25:4: '||' Q2= comparison
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:25:4: '||' Q2= comparison
 					{
 					DebugLocation(25, 4);
 					Match(input,27,Follow._27_in_boolean_expression119); 
@@ -305,7 +305,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_comparison();
 	partial void LeaveRule_comparison();
 	// $ANTLR start "comparison"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:28:1: comparison returns [Queue ret] : Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:28:1: comparison returns [Queue ret] : Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )* ;
 	[GrammarRule("comparison")]
 	private Queue comparison()
 	{
@@ -322,9 +322,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(28, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:29:3: (Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:29:3: (Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:29:5: Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:29:5: Q1= addition_expression ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )*
 			{
 			DebugLocation(29, 7);
 			PushFollow(Follow._addition_expression_in_comparison146);
@@ -334,7 +334,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			DebugLocation(29, 28);
 			 ret=Q1; 
 			DebugLocation(30, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:30:5: ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:30:5: ( '>=' Q2= addition_expression | '>' Q2= addition_expression | '<=' Q2= addition_expression | '<' Q2= addition_expression | '==' Q2= addition_expression | '!=' Q2= addition_expression )*
 			try { DebugEnterSubRule(2);
 			while (true)
 			{
@@ -379,7 +379,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:30:7: '>=' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:30:7: '>=' Q2= addition_expression
 					{
 					DebugLocation(30, 7);
 					Match(input,23,Follow._23_in_comparison156); 
@@ -395,7 +395,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:31:4: '>' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:31:4: '>' Q2= addition_expression
 					{
 					DebugLocation(31, 4);
 					Match(input,22,Follow._22_in_comparison167); 
@@ -411,7 +411,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 3:
 					DebugEnterAlt(3);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:32:4: '<=' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:32:4: '<=' Q2= addition_expression
 					{
 					DebugLocation(32, 4);
 					Match(input,20,Follow._20_in_comparison179); 
@@ -427,7 +427,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 4:
 					DebugEnterAlt(4);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:33:4: '<' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:33:4: '<' Q2= addition_expression
 					{
 					DebugLocation(33, 4);
 					Match(input,19,Follow._19_in_comparison190); 
@@ -443,7 +443,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 5:
 					DebugEnterAlt(5);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:34:4: '==' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:34:4: '==' Q2= addition_expression
 					{
 					DebugLocation(34, 4);
 					Match(input,21,Follow._21_in_comparison202); 
@@ -459,7 +459,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 6:
 					DebugEnterAlt(6);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:35:4: '!=' Q2= addition_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:35:4: '!=' Q2= addition_expression
 					{
 					DebugLocation(35, 4);
 					Match(input,9,Follow._9_in_comparison213); 
@@ -509,7 +509,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_addition_expression();
 	partial void LeaveRule_addition_expression();
 	// $ANTLR start "addition_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:38:1: addition_expression returns [Queue ret] : Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:38:1: addition_expression returns [Queue ret] : Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )* ;
 	[GrammarRule("addition_expression")]
 	private Queue addition_expression()
 	{
@@ -526,9 +526,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(38, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:39:3: (Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:39:3: (Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:39:5: Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:39:5: Q1= multiply_expression ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )*
 			{
 			DebugLocation(39, 7);
 			PushFollow(Follow._multiply_expression_in_addition_expression240);
@@ -538,7 +538,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			DebugLocation(39, 28);
 			 ret=Q1; 
 			DebugLocation(40, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:40:5: ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:40:5: ( '+' Q2= multiply_expression | '-' Q2= multiply_expression )*
 			try { DebugEnterSubRule(3);
 			while (true)
 			{
@@ -561,7 +561,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:40:7: '+' Q2= multiply_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:40:7: '+' Q2= multiply_expression
 					{
 					DebugLocation(40, 7);
 					Match(input,14,Follow._14_in_addition_expression250); 
@@ -577,7 +577,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:41:4: '-' Q2= multiply_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:41:4: '-' Q2= multiply_expression
 					{
 					DebugLocation(41, 4);
 					Match(input,16,Follow._16_in_addition_expression261); 
@@ -627,7 +627,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_multiply_expression();
 	partial void LeaveRule_multiply_expression();
 	// $ANTLR start "multiply_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:44:1: multiply_expression returns [Queue ret] : Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:44:1: multiply_expression returns [Queue ret] : Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )* ;
 	[GrammarRule("multiply_expression")]
 	private Queue multiply_expression()
 	{
@@ -644,9 +644,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(44, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:45:3: (Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:45:3: (Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:45:5: Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:45:5: Q1= power_expression ( '*' Q2= power_expression | '/' Q2= power_expression )*
 			{
 			DebugLocation(45, 7);
 			PushFollow(Follow._power_expression_in_multiply_expression288);
@@ -656,7 +656,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			DebugLocation(45, 25);
 			 ret=Q1; 
 			DebugLocation(46, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:46:5: ( '*' Q2= power_expression | '/' Q2= power_expression )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:46:5: ( '*' Q2= power_expression | '/' Q2= power_expression )*
 			try { DebugEnterSubRule(4);
 			while (true)
 			{
@@ -679,7 +679,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:46:7: '*' Q2= power_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:46:7: '*' Q2= power_expression
 					{
 					DebugLocation(46, 7);
 					Match(input,13,Follow._13_in_multiply_expression298); 
@@ -695,7 +695,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:47:4: '/' Q2= power_expression
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:47:4: '/' Q2= power_expression
 					{
 					DebugLocation(47, 4);
 					Match(input,18,Follow._18_in_multiply_expression309); 
@@ -745,7 +745,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_power_expression();
 	partial void LeaveRule_power_expression();
 	// $ANTLR start "power_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:50:1: power_expression returns [Queue ret] : Q1= negation ( '^' Q2= negation )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:50:1: power_expression returns [Queue ret] : Q1= negation ( '^' Q2= negation )* ;
 	[GrammarRule("power_expression")]
 	private Queue power_expression()
 	{
@@ -762,9 +762,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(50, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:51:3: (Q1= negation ( '^' Q2= negation )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:51:3: (Q1= negation ( '^' Q2= negation )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:51:5: Q1= negation ( '^' Q2= negation )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:51:5: Q1= negation ( '^' Q2= negation )*
 			{
 			DebugLocation(51, 7);
 			PushFollow(Follow._negation_in_power_expression336);
@@ -774,7 +774,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			DebugLocation(51, 17);
 			 ret=Q1; 
 			DebugLocation(52, 5);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:52:5: ( '^' Q2= negation )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:52:5: ( '^' Q2= negation )*
 			try { DebugEnterSubRule(5);
 			while (true)
 			{
@@ -793,7 +793,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:52:7: '^' Q2= negation
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:52:7: '^' Q2= negation
 					{
 					DebugLocation(52, 7);
 					Match(input,24,Follow._24_in_power_expression346); 
@@ -843,7 +843,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_negation();
 	partial void LeaveRule_negation();
 	// $ANTLR start "negation"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:55:1: negation returns [Queue ret] : ( '-' Q= atomic_expression | '!' Q= atomic_expression |Q= atomic_expression );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:55:1: negation returns [Queue ret] : ( '-' Q= atomic_expression | '!' Q= atomic_expression |Q= atomic_expression );
 	[GrammarRule("negation")]
 	private Queue negation()
 	{
@@ -859,7 +859,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(55, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:56:3: ( '-' Q= atomic_expression | '!' Q= atomic_expression |Q= atomic_expression )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:56:3: ( '-' Q= atomic_expression | '!' Q= atomic_expression |Q= atomic_expression )
 			int alt6=3;
 			try { DebugEnterDecision(6, false);
 			switch (input.LA(1))
@@ -897,7 +897,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:56:5: '-' Q= atomic_expression
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:56:5: '-' Q= atomic_expression
 				{
 				DebugLocation(56, 5);
 				Match(input,16,Follow._16_in_negation372); 
@@ -913,7 +913,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:57:5: '!' Q= atomic_expression
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:57:5: '!' Q= atomic_expression
 				{
 				DebugLocation(57, 5);
 				Match(input,8,Follow._8_in_negation384); 
@@ -929,7 +929,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:58:5: Q= atomic_expression
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:58:5: Q= atomic_expression
 				{
 				DebugLocation(58, 6);
 				PushFollow(Follow._atomic_expression_in_negation398);
@@ -965,7 +965,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_atomic_expression();
 	partial void LeaveRule_atomic_expression();
 	// $ANTLR start "atomic_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |n= QUOTED_STRING |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:61:1: atomic_expression returns [Queue ret] : (n= REAL |n= QUOTED_STRING |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' );
 	[GrammarRule("atomic_expression")]
 	private Queue atomic_expression()
 	{
@@ -984,7 +984,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(61, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:3: (n= REAL |n= QUOTED_STRING |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:62:3: (n= REAL |n= QUOTED_STRING |Q= boolean_terminal |Q1= identifier_expression (Q2= fn_call )? | '(' Q= expression ')' )
 			int alt8=5;
 			try { DebugEnterDecision(8, false);
 			switch (input.LA(1))
@@ -1028,7 +1028,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:62:5: n= REAL
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:62:5: n= REAL
 				{
 				DebugLocation(62, 6);
 				n=(IToken)Match(input,REAL,Follow._REAL_in_atomic_expression419); 
@@ -1039,7 +1039,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:63:5: n= QUOTED_STRING
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:63:5: n= QUOTED_STRING
 				{
 				DebugLocation(63, 6);
 				n=(IToken)Match(input,QUOTED_STRING,Follow._QUOTED_STRING_in_atomic_expression429); 
@@ -1050,7 +1050,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:64:5: Q= boolean_terminal
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:64:5: Q= boolean_terminal
 				{
 				DebugLocation(64, 6);
 				PushFollow(Follow._boolean_terminal_in_atomic_expression439);
@@ -1064,7 +1064,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:5: Q1= identifier_expression (Q2= fn_call )?
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:65:5: Q1= identifier_expression (Q2= fn_call )?
 				{
 				DebugLocation(65, 7);
 				PushFollow(Follow._identifier_expression_in_atomic_expression449);
@@ -1074,7 +1074,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				DebugLocation(65, 30);
 				 ret=Q1; 
 				DebugLocation(65, 47);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:47: (Q2= fn_call )?
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:65:47: (Q2= fn_call )?
 				int alt7=2;
 				try { DebugEnterSubRule(7);
 				try { DebugEnterDecision(7, false);
@@ -1089,7 +1089,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:65:48: Q2= fn_call
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:65:48: Q2= fn_call
 					{
 					DebugLocation(65, 50);
 					PushFollow(Follow._fn_call_in_atomic_expression456);
@@ -1110,7 +1110,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 5:
 				DebugEnterAlt(5);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:66:5: '(' Q= expression ')'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:66:5: '(' Q= expression ')'
 				{
 				DebugLocation(66, 5);
 				Match(input,11,Follow._11_in_atomic_expression466); 
@@ -1150,7 +1150,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_fn_call();
 	partial void LeaveRule_fn_call();
 	// $ANTLR start "fn_call"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:69:1: fn_call returns [Queue ret] : '(' Q= list_of_expressions ')' ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:69:1: fn_call returns [Queue ret] : '(' Q= list_of_expressions ')' ;
 	[GrammarRule("fn_call")]
 	private Queue fn_call()
 	{
@@ -1166,9 +1166,9 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(69, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:70:3: ( '(' Q= list_of_expressions ')' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:70:3: ( '(' Q= list_of_expressions ')' )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:70:5: '(' Q= list_of_expressions ')'
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:70:5: '(' Q= list_of_expressions ')'
 			{
 			DebugLocation(70, 5);
 			Match(input,11,Follow._11_in_fn_call491); 
@@ -1206,7 +1206,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_list_of_expressions();
 	partial void LeaveRule_list_of_expressions();
 	// $ANTLR start "list_of_expressions"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:73:1: list_of_expressions returns [Queue ret] : (Q1= expression ( ',' Q2= expression )* |);
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:73:1: list_of_expressions returns [Queue ret] : (Q1= expression ( ',' Q2= expression )* |);
 	[GrammarRule("list_of_expressions")]
 	private Queue list_of_expressions()
 	{
@@ -1223,7 +1223,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(73, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:3: (Q1= expression ( ',' Q2= expression )* |)
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:74:3: (Q1= expression ( ',' Q2= expression )* |)
 			int alt10=2;
 			try { DebugEnterDecision(10, false);
 			int LA10_1 = input.LA(1);
@@ -1247,7 +1247,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:5: Q1= expression ( ',' Q2= expression )*
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:74:5: Q1= expression ( ',' Q2= expression )*
 				{
 				DebugLocation(74, 7);
 				PushFollow(Follow._expression_in_list_of_expressions518);
@@ -1257,7 +1257,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				DebugLocation(74, 19);
 				 ret=Q1; 
 				DebugLocation(74, 36);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:36: ( ',' Q2= expression )*
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:74:36: ( ',' Q2= expression )*
 				try { DebugEnterSubRule(9);
 				while (true)
 				{
@@ -1276,7 +1276,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:74:37: ',' Q2= expression
+						// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:74:37: ',' Q2= expression
 						{
 						DebugLocation(74, 37);
 						Match(input,15,Follow._15_in_list_of_expressions523); 
@@ -1306,7 +1306,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:75:5: 
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:75:5: 
 				{
 				DebugLocation(75, 5);
 				 ret=empty_queue(); 
@@ -1337,7 +1337,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_identifier_expression();
 	partial void LeaveRule_identifier_expression();
 	// $ANTLR start "identifier_expression"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:78:1: identifier_expression returns [Queue ret] : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:78:1: identifier_expression returns [Queue ret] : a= IDENTIFIER ( '.' b= IDENTIFIER )* ;
 	[GrammarRule("identifier_expression")]
 	private Queue identifier_expression()
 	{
@@ -1354,16 +1354,16 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(78, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:79:3: (a= IDENTIFIER ( '.' b= IDENTIFIER )* )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:79:5: a= IDENTIFIER ( '.' b= IDENTIFIER )*
 			{
 			DebugLocation(79, 6);
 			a=(IToken)Match(input,IDENTIFIER,Follow._IDENTIFIER_in_identifier_expression556); 
 			DebugLocation(79, 18);
 			 ret=push_identifier(empty_queue(), (a!=null?a.Text:default(string))); 
 			DebugLocation(79, 67);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:67: ( '.' b= IDENTIFIER )*
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:79:67: ( '.' b= IDENTIFIER )*
 			try { DebugEnterSubRule(11);
 			while (true)
 			{
@@ -1382,7 +1382,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:79:68: '.' b= IDENTIFIER
+					// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:79:68: '.' b= IDENTIFIER
 					{
 					DebugLocation(79, 68);
 					Match(input,17,Follow._17_in_identifier_expression561); 
@@ -1429,7 +1429,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_boolean_terminal();
 	partial void LeaveRule_boolean_terminal();
 	// $ANTLR start "boolean_terminal"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:82:1: boolean_terminal returns [Queue ret] : ( 'true' | 'false' );
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:82:1: boolean_terminal returns [Queue ret] : ( 'true' | 'false' );
 	[GrammarRule("boolean_terminal")]
 	private Queue boolean_terminal()
 	{
@@ -1443,7 +1443,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(82, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:83:3: ( 'true' | 'false' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:83:3: ( 'true' | 'false' )
 			int alt12=2;
 			try { DebugEnterDecision(12, false);
 			int LA12_1 = input.LA(1);
@@ -1467,7 +1467,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:83:5: 'true'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:83:5: 'true'
 				{
 				DebugLocation(83, 5);
 				Match(input,26,Follow._26_in_boolean_terminal586); 
@@ -1478,7 +1478,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\workspace\\SharpExpressions\\Lib\\\\SharpExpressions.g:84:5: 'false'
+				// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:84:5: 'false'
 				{
 				DebugLocation(84, 5);
 				Match(input,25,Follow._25_in_boolean_terminal594); 
@@ -1574,4 +1574,4 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	#endregion Follow sets
 }
 
-} // namespace SharpExpressions.parser
+} // namespace SharpExpressions.Parser

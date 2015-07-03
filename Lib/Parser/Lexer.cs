@@ -1,7 +1,7 @@
 ﻿using Antlr.Runtime;
 using System;
 
-namespace SharpExpressions.parser
+namespace SharpExpressions.Parser
 {
     partial class SharpExpressionsLexer
     {

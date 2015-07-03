@@ -4,8 +4,8 @@ options {
     language=CSharp3;
 }
 
-@lexer::namespace{SharpExpressions.parser}
-@parser::namespace{SharpExpressions.parser}
+@lexer::namespace{SharpExpressions.Parser}
+@parser::namespace{SharpExpressions.Parser}
 
 /*
  * Parser Rules

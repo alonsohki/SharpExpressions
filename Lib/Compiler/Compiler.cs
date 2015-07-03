@@ -1,8 +1,8 @@
 ﻿using System;
-using SharpExpressions.parser;
+using SharpExpressions.Parser;
 using Antlr.Runtime;
 
-namespace SharpExpressions
+namespace SharpExpressions.Compiler
 {
     class Compiler
     {
