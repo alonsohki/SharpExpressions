@@ -53,6 +53,11 @@ namespace SharpExpressions.Compiler
             {
                 res.doubleValue = Math.Pow(v[0].doubleValue, v[1].doubleValue);
             },
+
+            negate = (Value[] v, ref Value res) =>
+            {
+                res.doubleValue = -v[0].doubleValue;
+            },
         };
     }
 }

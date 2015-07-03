@@ -84,6 +84,13 @@ namespace SharpExpressions.Compiler
                                 work.Push(param0);
                                 break;
                             }
+                            case Parser.Operator.Negate:
+                            {
+                                Value param0 = work.Pop();
+                                setInstruction(instruction, 2, param0.type, types[param0.type].negate, types[param0.type].convert, param0);
+                                work.Push(param0);
+                                break;
+                            }
                         }
                         break;
                     }

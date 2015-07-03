@@ -15,6 +15,7 @@ namespace SharpExpressions.Compiler
             public execute mul;
             public execute div;
             public execute pow;
+            public execute negate;
         }
 
         private static Dictionary<Value.Type, TypeDefinition> msTypes;
