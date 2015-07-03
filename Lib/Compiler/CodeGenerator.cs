@@ -48,19 +48,8 @@ namespace SharpExpressions.Compiler
                             {
                                 Value param1 = work.Pop();
                                 Value param0 = work.Pop();
-                                var expectedType = param0.type;
-
-                                instruction.numOperands = 2;
-                                instruction.execute = types[param0.type].add;
-
-                                if (param1.type != expectedType)
-                                {
-                                    var converters = new convert[2];
-                                    converters[0] = null;
-                                    converters[1] = param1.type == expectedType ? null : types[param0.type].convert;
-                                    instruction.converters = converters;
-                                }
-                                
+                                setInstruction(instruction, 2, param0.type, types[param0.type].add, types[param0.type].convert, param0, param1);
+                                work.Push(param0);
                                 break;
                             }
                         }
@@ -75,6 +64,35 @@ namespace SharpExpressions.Compiler
             {
                 instructions = instructions.ToArray()
             };
+        }
+
+        private static void setInstruction(Instruction instruction, int operandCount, Value.Type expectedType, execute executor, convert converter, params Value[] operands)
+        {
+            if (executor != null)
+            {
+                instruction.numOperands = operandCount;
+                instruction.execute = executor;
+
+                bool any = false;
+                var converters = new convert[operandCount];
+                for (int i = 0; i < operandCount; ++i)
+                {
+                    if (operands[i].type != expectedType)
+                    {
+                        converters[i] = converter;
+                        any = true;
+                    }
+                    else
+                    {
+                        converters[i] = null;
+                    }
+                }
+
+                if (any)
+                {
+                    instruction.converters = converters;
+                }
+            }
         }
     }
 }
