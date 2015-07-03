@@ -34,7 +34,25 @@ namespace SharpExpressions.Compiler
             sub = (Value[] v, ref Value res) =>
             {
                 res.doubleValue = v[0].doubleValue - v[1].doubleValue;
-            }
+            },
+
+
+            mul = (Value[] v, ref Value res) =>
+            {
+                res.doubleValue = v[0].doubleValue * v[1].doubleValue;
+            },
+
+
+            div = (Value[] v, ref Value res) =>
+            {
+                res.doubleValue = v[0].doubleValue / v[1].doubleValue;
+            },
+
+
+            pow = (Value[] v, ref Value res) =>
+            {
+                res.doubleValue = Math.Pow(v[0].doubleValue, v[1].doubleValue);
+            },
         };
     }
 }

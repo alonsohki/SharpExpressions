@@ -12,6 +12,9 @@ namespace SharpExpressions.Compiler
             public convert convert;
             public execute add;
             public execute sub;
+            public execute mul;
+            public execute div;
+            public execute pow;
         }
 
         private static Dictionary<Value.Type, TypeDefinition> msTypes;

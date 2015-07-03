@@ -52,6 +52,38 @@ namespace SharpExpressions.Compiler
                                 work.Push(param0);
                                 break;
                             }
+                            case Parser.Operator.Sub:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                setInstruction(instruction, 2, param0.type, types[param0.type].sub, types[param0.type].convert, param0, param1);
+                                work.Push(param0);
+                                break;
+                            }
+                            case Parser.Operator.Mul:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                setInstruction(instruction, 2, param0.type, types[param0.type].mul, types[param0.type].convert, param0, param1);
+                                work.Push(param0);
+                                break;
+                            }
+                            case Parser.Operator.Div:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                setInstruction(instruction, 2, param0.type, types[param0.type].div, types[param0.type].convert, param0, param1);
+                                work.Push(param0);
+                                break;
+                            }
+                            case Parser.Operator.Pow:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                setInstruction(instruction, 2, param0.type, types[param0.type].pow, types[param0.type].convert, param0, param1);
+                                work.Push(param0);
+                                break;
+                            }
                         }
                         break;
                     }
