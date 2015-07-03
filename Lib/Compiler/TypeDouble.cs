@@ -9,7 +9,7 @@ namespace SharpExpressions.Compiler
     {
         public static Types.TypeDefinition definition = new Types.TypeDefinition()
         {
-            convert = (Value v) =>
+            convert = (ref Value v) =>
             {
                 switch (v.type)
                 {

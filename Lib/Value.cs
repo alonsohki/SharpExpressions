@@ -1,6 +1,6 @@
 ﻿namespace SharpExpressions
 {
-    public class Value
+    public struct Value
     {
         public enum Type
         {
@@ -56,5 +56,23 @@
         }
 
         public Type type { get; private set; }
+        public object value
+        {
+            get
+            {
+                switch (type)
+                {
+                    case Type.Double:
+                        return doubleValue;
+                    case Type.Boolean:
+                        return boolValue;
+                    case Type.String:
+                        return stringValue;
+                    case Type.Identifier:
+                        return identifierValue;
+                }
+                return null;
+            }
+        }
     }
 }

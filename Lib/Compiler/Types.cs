@@ -2,7 +2,7 @@
 
 namespace SharpExpressions.Compiler
 {
-    delegate void convert(Value value);
+    delegate void convert(ref Value value);
     delegate void execute(Value[] values, ref Value result);
 
     static class Types
