@@ -1,12 +1,11 @@
-﻿using Antlr.Runtime;
-using SharpExpressions.parser;
+﻿using SharpExpressions.parser;
 
 namespace SharpExpressions
 {
     public class Expression
     {
-        private SharpExpressionsParser mParser;
-        private Queue mCompiled;
+        private string mExpression;
+        private CompiledExpression mCompiled;
         private Registry mRegistry = new Registry();
 
         public Expression()
@@ -30,17 +29,14 @@ namespace SharpExpressions
 
         public void create(string expr)
         {
-            ANTLRStringStream stream = new ANTLRStringStream(expr);
-            SharpExpressionsLexer lexer = new SharpExpressionsLexer(stream);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            mParser = new SharpExpressionsParser(tokens);
+            mExpression = expr;
         }
 
         public void compile()
         {
-            if (mParser != null)
+            if (!string.IsNullOrEmpty(mExpression))
             {
-                mCompiled = mParser.eval();
+                mCompiled = Compiler.compile(mExpression, mRegistry);
             }
         }
 

@@ -6,7 +6,12 @@ namespace SharpExpressions
 {
     class Executor
     {
-        public static object execute(Queue queue, Registry registry)
+        public static object execute(CompiledExpression expr, Registry registry)
+        {
+            return null;
+        }
+
+        /*public static object execute(Queue queue, Registry registry)
         {
             double a;
             double b;
@@ -313,6 +318,6 @@ namespace SharpExpressions
                 default:
                     return false;
             }
-        }
+        }*/
     }
 }
