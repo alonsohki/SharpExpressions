@@ -16,6 +16,15 @@ namespace SharpExpressions.Compiler
             public execute div;
             public execute pow;
             public execute negate;
+            public execute lessThan;
+            public execute lessOrEqual;
+            public execute greaterThan;
+            public execute greaterOrEqual;
+            public execute equals;
+            public execute notEquals;
+            public execute and;
+            public execute or;
+            public execute not;
         }
 
         private static Dictionary<Value.Type, TypeDefinition> msTypes;

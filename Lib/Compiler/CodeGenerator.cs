@@ -53,7 +53,7 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "add";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].add, types[param0.type].convert, param0, param1);
+                                setInstruction(instruction, 2, targetType, types[targetType].add, types[targetType].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -63,7 +63,7 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "substract";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].sub, types[param0.type].convert, param0, param1);
+                                setInstruction(instruction, 2, targetType, types[targetType].sub, types[targetType].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -73,7 +73,7 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "multiply";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].mul, types[param0.type].convert, param0, param1);
+                                setInstruction(instruction, 2, targetType, types[targetType].mul, types[targetType].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -83,7 +83,7 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "divide";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].div, types[param0.type].convert, param0, param1);
+                                setInstruction(instruction, 2, targetType, types[targetType].div, types[targetType].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -93,7 +93,7 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "power";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].pow, types[param0.type].convert, param0, param1);
+                                setInstruction(instruction, 2, targetType, types[targetType].pow, types[targetType].convert, param0, param1);
                                 work.Push(param0);
                                 break;
                             }
@@ -102,15 +102,104 @@ namespace SharpExpressions.Compiler
                                 Value param0 = work.Pop();
                                 op = "negate";
                                 targetType = param0.type;
-                                setInstruction(instruction, 2, targetType, types[param0.type].negate, types[param0.type].convert, param0);
+                                setInstruction(instruction, 1, targetType, types[targetType].negate, types[targetType].convert, param0);
                                 work.Push(param0);
+                                break;
+                            }
+                            case Parser.Operator.LessThan:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "less than";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].lessThan, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.LessOrEqual:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "less or equal";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].lessOrEqual, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.GreaterThan:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "greater than";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].greaterThan, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.GreaterOrEqual:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "greater or equal";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].greaterOrEqual, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.Equals:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "equals";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].equals, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.NotEquals:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "not equals";
+                                targetType = param0.type;
+                                setInstruction(instruction, 2, targetType, types[targetType].notEquals, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.And:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "and";
+                                targetType = Value.Type.Boolean;
+                                setInstruction(instruction, 2, targetType, types[targetType].and, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.Or:
+                            {
+                                Value param1 = work.Pop();
+                                Value param0 = work.Pop();
+                                op = "or";
+                                targetType = Value.Type.Boolean;
+                                setInstruction(instruction, 2, targetType, types[targetType].or, types[targetType].convert, param0, param1);
+                                work.Push(new Value { boolValue = false });
+                                break;
+                            }
+                            case Parser.Operator.Not:
+                            {
+                                Value param0 = work.Pop();
+                                op = "not";
+                                targetType = Value.Type.Boolean;
+                                setInstruction(instruction, 1, targetType, types[targetType].not, types[targetType].convert, param0);
+                                work.Push(new Value { boolValue = false });
                                 break;
                             }
                         }
 
                         if (instruction.execute == null)
                         {
-                            throw new CompilerException("I don't know how to " + op + " type " + targetType);
+                            throw new CompilerException("I don't know how to operate '" + op + "' on type " + targetType);
                         }
                         break;
                     }

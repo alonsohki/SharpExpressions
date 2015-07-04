@@ -54,9 +54,46 @@ namespace SharpExpressions.Compiler
                 res.doubleValue = Math.Pow(v[0].doubleValue, v[1].doubleValue);
             },
 
+
             negate = (Value[] v, ref Value res) =>
             {
                 res.doubleValue = -v[0].doubleValue;
+            },
+
+
+            lessThan = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue < v[1].doubleValue;
+            },
+
+
+            lessOrEqual = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue <= v[1].doubleValue;
+            },
+
+
+            greaterThan = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue > v[1].doubleValue;
+            },
+
+
+            greaterOrEqual = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue >= v[1].doubleValue;
+            },
+
+
+            equals = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue == v[1].doubleValue;
+            },
+
+
+            notEquals = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].doubleValue != v[1].doubleValue;
             },
         };
     }

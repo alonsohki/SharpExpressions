@@ -28,6 +28,36 @@ namespace SharpExpressions.Compiler
             {
                 res.boolValue = v[0].boolValue ^ v[1].boolValue;
             },
+
+
+            equals = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue == v[1].boolValue;
+            },
+
+
+            notEquals = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue != v[1].boolValue;
+            },
+
+
+            and = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue && v[1].boolValue;
+            },
+
+
+            or = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue || v[1].boolValue;
+            },
+
+
+            not = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = !v[0].boolValue;
+            },
         };
     }
 }
