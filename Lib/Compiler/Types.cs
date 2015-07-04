@@ -37,6 +37,7 @@ namespace SharpExpressions.Compiler
                     msTypes = new Dictionary<Value.Type, TypeDefinition>();
                     msTypes[Value.Type.Double] = TypeDouble.definition;
                     msTypes[Value.Type.Boolean] = TypeBool.definition;
+                    msTypes[Value.Type.String] = TypeString.definition;
                 }
                 return msTypes;
             }

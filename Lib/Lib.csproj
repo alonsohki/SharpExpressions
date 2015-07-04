@@ -49,6 +49,7 @@
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CompilerException.cs" />
     <Compile Include="Compiler\TypeBool.cs" />
+    <Compile Include="Compiler\TypeString.cs" />
     <Compile Include="Compiler\TypeDouble.cs" />
     <Compile Include="Compiler\Types.cs" />
     <Compile Include="Parser\Entry.cs" />
