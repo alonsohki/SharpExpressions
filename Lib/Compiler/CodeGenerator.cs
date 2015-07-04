@@ -221,25 +221,20 @@ namespace SharpExpressions.Compiler
                 instruction.numOperands = operandCount;
                 instruction.execute = executor;
 
-                bool any = false;
-                var converters = new convert[operandCount];
+                convert[] converters = null;
                 for (int i = 0; i < operandCount; ++i)
                 {
                     if (operands[i].type != expectedType)
                     {
+                        if (converters == null)
+                        {
+                            converters = new convert[operandCount];
+                        }
                         converters[i] = converter;
-                        any = true;
-                    }
-                    else
-                    {
-                        converters[i] = null;
                     }
                 }
 
-                if (any)
-                {
-                    instruction.converters = converters;
-                }
+                instruction.converters = converters;
             }
         }
     }
