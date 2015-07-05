@@ -214,8 +214,47 @@ namespace SharpExpressions.Compiler
                                 Entry param1 = work.Pop();
                                 Entry param0 = work.Pop();
                                 Entry result;
-                                applied = Accessors.memberAccess(instructions, registry, param0, param1, out result);
+                                bool keepObject;
+                                op = "memberaccess";
+                                applied = Accessors.memberAccess(instructions, registry, param0, param1, out keepObject, out result);
+                                targetType = result.type;
+                                if (keepObject)
+                                {
+                                    work.Push(param0);
+                                }
                                 work.Push(result);
+                                break;
+                            }
+                            case Parser.Operator.Call:
+                            {
+                                Entry method = work.Pop();
+                                if (method.type != Entry.Type.Method)
+                                {
+                                    throw new CompilerException("Expected method to call, but got " + method.type + " instead");
+                                }
+
+                                MethodInfo methodInfo = method.value as MethodInfo;
+                                object target = null;
+                                if (!methodInfo.IsStatic)
+                                {
+                                    Entry targetEntry = work.Pop();
+                                    if (targetEntry.type != Entry.Type.Object)
+                                    {
+                                        throw new CompilerException("Expected object to the left of the method invoke " + methodInfo.Name);
+                                    }
+                                    target = targetEntry.value;
+                                }
+
+                                ParameterInfo[] paramInfo = methodInfo.GetParameters();
+                                Entry[] parameters = new Entry[paramInfo.Length];
+                                Entry result;
+                                for (int i = 0; i < parameters.Length; ++i)
+                                {
+                                    parameters[i] = work.Pop();
+                                }
+                                applied = MethodInvoke.invoke(instructions, methodInfo, target, parameters, out result);
+                                targetType = result.type;
+                                op = "call";
                                 break;
                             }
                         }

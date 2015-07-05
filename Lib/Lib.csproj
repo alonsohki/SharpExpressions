@@ -49,7 +49,9 @@
     <Compile Include="Compiler\CompiledExpression.cs" />
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CompilerException.cs" />
+    <Compile Include="Compiler\MethodInvoke.cs" />
     <Compile Include="Compiler\TypeBool.cs" />
+    <Compile Include="Compiler\TypeObject.cs" />
     <Compile Include="Compiler\TypeString.cs" />
     <Compile Include="Compiler\TypeDouble.cs" />
     <Compile Include="Compiler\Types.cs" />

@@ -6,7 +6,7 @@ namespace SharpExpressions.Compiler
 {
     static class Accessors
     {
-        public static bool memberAccess(Queue<Instruction> instructions, Registry registry, Entry param0, Entry param1, out Entry result)
+        public static bool memberAccess(Queue<Instruction> instructions, Registry registry, Entry param0, Entry param1, out bool keepObject, out Entry result)
         {
             if (param1.type != Entry.Type.Identifier)
             {
@@ -27,11 +27,12 @@ namespace SharpExpressions.Compiler
                     Instruction instruction = new Instruction();
                     instruction.execute = (Value[] v, ref Value res) => res.objectValue = accessed;
                     instructions.Enqueue(instruction);
-                    accessObject(instructions, accessed, fieldName, out result);
+                    keepObject = accessObject(instructions, accessed, fieldName, out result);
                 }
                 else if (registry.types.TryGetValue(accessedName, out type))
                 {
                     accessType(instructions, type, fieldName, out result);
+                    keepObject = false;
                 }
                 else
                 {
@@ -40,7 +41,7 @@ namespace SharpExpressions.Compiler
             }
             else if (param0.type == Entry.Type.Object)
             {
-                accessObject(instructions, param0.value, fieldName, out result);
+                keepObject = accessObject(instructions, param0.value, fieldName, out result);
             }
             else
             {
@@ -50,33 +51,45 @@ namespace SharpExpressions.Compiler
             return true;
         }
 
-        private static void accessObject(Queue<Instruction> instructions, object accessed, string fieldName, out Entry result)
+        private static bool accessObject(Queue<Instruction> instructions, object accessed, string fieldName, out Entry result)
         {
             Type type = accessed.GetType();
-            Type fieldType;
+            Type fieldType = null;
             FieldInfo fieldInfo = null;
             PropertyInfo propInfo = type.GetProperty(fieldName);
             if (propInfo == null)
             {
                 fieldInfo = type.GetField(fieldName);
-                if (fieldInfo == null)
+                if (fieldInfo != null)
                 {
-                    throw new CompilerException("Cannot field the field '" + fieldName + "' in the object");
+                    fieldType = fieldInfo.FieldType;
                 }
-                fieldType = fieldInfo.FieldType;
             }
             else
             {
                 fieldType = propInfo.PropertyType;
             }
 
-            addAccessorInstruction(instructions, fieldType, accessed, fieldInfo, propInfo, out result);
+            if (fieldType != null)
+            {
+                addAccessorInstruction(instructions, fieldType, accessed, fieldInfo, propInfo, out result);
+                return false;
+            }
+            else
+            {
+                // Try finding a method
+                MethodInfo methodInfo = type.GetMethod(fieldName);
+                if (methodInfo == null)
+                {
+                    throw new CompilerException("Cannot field the field '" + fieldName + "' in the object");
+                }
+                result = new Entry { type = Entry.Type.Method, value = methodInfo };
+                return true;
+            }
         }
 
         private static void accessType(Queue<Instruction> instructions, Type type, string fieldName, out Entry result)
         {
-            result = new Entry();
-
             Instruction instruction = new Instruction();
             instruction.numOperands = 1;
 
@@ -116,7 +129,7 @@ namespace SharpExpressions.Compiler
             }
             else
             {
-                MethodInfo method;
+                MethodInfo methodInfo = null;
 
                 // Find a method in the type with that name
                 var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
@@ -124,9 +137,17 @@ namespace SharpExpressions.Compiler
                 {
                     if (currentMethod.Name.Equals(fieldName))
                     {
+                        methodInfo = currentMethod;
                         break;
                     }
                 }
+
+                if (methodInfo == null)
+                {
+                    throw new CompilerException("Field '" + fieldName + "' not found in type '" + type.FullName + "'");
+                }
+
+                result = new Entry { type = Entry.Type.Method, value = methodInfo };
             }
         }
 

@@ -5,6 +5,14 @@ namespace SharpExpressions
 {
     public class Class1
     {
+        private class Test
+        {
+            public double fn()
+            {
+                return 1.0;
+            }
+        }
+
         public static void Main(string[] args)
         {
             do
@@ -20,7 +28,7 @@ namespace SharpExpressions
                 try
                 {
                     Expression expr = new Expression(line);
-                    expr.addSymbol("vars", new { a = 10, b = 20, c = "Hello, world!", d = new { x = 0f, y = "Good bye!", z = -10.0 } });
+                    expr.addSymbol("vars", new { a = 10, b = 20, c = "Hello, world!", d = new { x = 0f, y = "Good bye!", z = -10.0 }, test = new Test() });
                     expr.addType("Math", typeof(Math));
                     Console.WriteLine(expr.eval());
                 }
