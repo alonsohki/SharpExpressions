@@ -87,10 +87,45 @@ namespace SharpExpressions.Compiler
             }
             else
             {
-                instruction.execute = (Value[] v, ref Value res) =>
+                switch (returnType)
                 {
-                    object obj = v[0];
-                };
+                    case Entry.Type.Boolean:
+                        instruction.execute = (Value[] v, ref Value res) =>
+                        {
+                            object obj = v[numParams].objectValue;
+                            for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
+                                lambdaParams[j] = v[i].value;
+                            res.boolValue = (bool)methodInfo.Invoke(obj, lambdaParams);
+                        };
+                        break;
+                    case Entry.Type.Double:
+                        instruction.execute = (Value[] v, ref Value res) =>
+                        {
+                            object obj = v[numParams].objectValue;
+                            for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
+                                lambdaParams[j] = v[i].value;
+                            res.doubleValue = Convert.ToDouble(methodInfo.Invoke(obj, lambdaParams));
+                        };
+                        break;
+                    case Entry.Type.String:
+                        instruction.execute = (Value[] v, ref Value res) =>
+                        {
+                            object obj = v[numParams].objectValue;
+                            for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
+                                lambdaParams[j] = v[i].value;
+                            res.stringValue = methodInfo.Invoke(obj, lambdaParams) as string;
+                        };
+                        break;
+                    case Entry.Type.Object:
+                        instruction.execute = (Value[] v, ref Value res) =>
+                        {
+                            object obj = v[numParams].objectValue;
+                            for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
+                                lambdaParams[j] = v[i].value;
+                            res.objectValue = methodInfo.Invoke(obj, lambdaParams);
+                        };
+                        break;
+                }
             }
 
             instructions.Enqueue(instruction);

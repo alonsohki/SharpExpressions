@@ -7,9 +7,9 @@ namespace SharpExpressions
     {
         private class Test
         {
-            public double fn()
+            public double fn(double v)
             {
-                return 1.0;
+                return 1.0 + v;
             }
         }
 
