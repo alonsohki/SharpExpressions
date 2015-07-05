@@ -21,6 +21,9 @@ namespace SharpExpressions.Compiler
                     case Value.Type.Double:
                         v.stringValue = v.doubleValue.ToString();
                         break;
+                    case Value.Type.Object:
+                        v.stringValue = v.objectValue.ToString();
+                        break;
                 }
             },
 

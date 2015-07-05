@@ -8,13 +8,13 @@
             Double,
             String,
             Boolean,
-            Identifier,
+            Object,
         }
 
         private bool mBoolValue;
         private double mDoubleValue;
         private string mStringValue;
-        private object mIdentifierValue;
+        private object mObjectValue;
 
         public bool boolValue
         {
@@ -46,13 +46,13 @@
             }
         }
 
-        public object identifierValue
+        public object objectValue
         {
-            get { return mIdentifierValue; }
+            get { return mObjectValue; }
             set
             {
-                mIdentifierValue = value;
-                type = Type.Identifier;
+                mObjectValue = value;
+                type = Type.Object;
             }
         }
 
@@ -69,8 +69,8 @@
                         return boolValue;
                     case Type.String:
                         return stringValue;
-                    case Type.Identifier:
-                        return identifierValue;
+                    case Type.Object:
+                        return objectValue;
                 }
                 return null;
             }

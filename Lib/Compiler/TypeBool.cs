@@ -21,6 +21,9 @@ namespace SharpExpressions.Compiler
                     case Value.Type.Double:
                         v.boolValue = v.doubleValue == 0.0 ? false : true;
                         break;
+                    case Value.Type.Object:
+                        v.boolValue = (bool)v.objectValue;
+                        break;
                 }
             },
 

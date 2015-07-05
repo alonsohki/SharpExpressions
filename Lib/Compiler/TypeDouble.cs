@@ -21,6 +21,9 @@ namespace SharpExpressions.Compiler
                         break;
                     case Value.Type.Double:
                         break;
+                    case Value.Type.Object:
+                        v.doubleValue = (double)v.objectValue;
+                        break;
                 }
             },
 
