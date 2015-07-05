@@ -240,9 +240,9 @@ namespace SharpExpressions.Compiler
                                 if (!methodInfo.IsStatic)
                                 {
                                     Entry targetEntry = work.Pop();
-                                    if (targetEntry.type != Entry.Type.Object)
+                                    if (targetEntry.type != Entry.Type.Type)
                                     {
-                                        throw new CompilerException("Expected object to the left of the method invoke " + methodInfo.Name);
+                                        throw new CompilerException("Expected an object to the left of the method invoke " + methodInfo.Name);
                                     }
                                     target = targetEntry.value;
                                 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g 2015-07-06 01:07:37
+// $ANTLR 3.5.0.2 C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g 2015-07-06 01:36:11
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -1170,7 +1170,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 	partial void EnterRule_array_access();
 	partial void LeaveRule_array_access();
 	// $ANTLR start "array_access"
-	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:70:1: array_access returns [Queue ret] : '[' Q= expression ']' ;
+	// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:70:1: array_access returns [Queue ret] : '[' Q= list_of_expressions ']' ;
 	[GrammarRule("array_access")]
 	private Queue array_access()
 	{
@@ -1186,20 +1186,20 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		DebugLocation(70, 2);
 		try
 		{
-			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:71:3: ( '[' Q= expression ']' )
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:71:3: ( '[' Q= list_of_expressions ']' )
 			DebugEnterAlt(1);
-			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:71:5: '[' Q= expression ']'
+			// C:\\workspace\\SharpExpressions\\Lib\\\\Parser\\SharpExpressions.g:71:5: '[' Q= list_of_expressions ']'
 			{
 			DebugLocation(71, 5);
 			Match(input,24,Follow._24_in_array_access544); 
 			DebugLocation(71, 10);
-			PushFollow(Follow._expression_in_array_access548);
-			Q=expression();
+			PushFollow(Follow._list_of_expressions_in_array_access548);
+			Q=list_of_expressions();
 			PopFollow();
 
-			DebugLocation(71, 22);
+			DebugLocation(71, 31);
 			Match(input,25,Follow._25_in_array_access550); 
-			DebugLocation(71, 26);
+			DebugLocation(71, 35);
 			 ret=Q; 
 
 			}
@@ -1308,7 +1308,7 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 			{
 				alt10 = 1;
 			}
-			else if ((LA10_1==12))
+			else if ((LA10_1==12||LA10_1==25))
 			{
 				alt10 = 2;
 			}
@@ -1636,8 +1636,8 @@ public partial class SharpExpressionsParser : Antlr.Runtime.Parser
 		public static readonly BitSet _11_in_atomic_expression519 = new BitSet(new ulong[]{0x18010970UL});
 		public static readonly BitSet _expression_in_atomic_expression523 = new BitSet(new ulong[]{0x1000UL});
 		public static readonly BitSet _12_in_atomic_expression525 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _24_in_array_access544 = new BitSet(new ulong[]{0x18010970UL});
-		public static readonly BitSet _expression_in_array_access548 = new BitSet(new ulong[]{0x2000000UL});
+		public static readonly BitSet _24_in_array_access544 = new BitSet(new ulong[]{0x1A010970UL});
+		public static readonly BitSet _list_of_expressions_in_array_access548 = new BitSet(new ulong[]{0x2000000UL});
 		public static readonly BitSet _25_in_array_access550 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _11_in_fn_call569 = new BitSet(new ulong[]{0x18011970UL});
 		public static readonly BitSet _list_of_expressions_in_fn_call573 = new BitSet(new ulong[]{0x1000UL});

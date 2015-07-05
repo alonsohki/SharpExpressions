@@ -68,7 +68,7 @@ atomic_expression returns [Queue ret]
   ;
 
 array_access returns [Queue ret]
-  : '[' Q=expression ']' { ret=$Q.ret; }
+  : '[' Q=list_of_expressions ']' { ret=$Q.ret; }
   ;
 
 fn_call returns [Queue ret]

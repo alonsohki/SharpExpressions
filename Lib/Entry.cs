@@ -12,6 +12,7 @@
             Method,
             Identifier,
             Operator,
+            Type,
         }
 
         public Type type { get; set; }
