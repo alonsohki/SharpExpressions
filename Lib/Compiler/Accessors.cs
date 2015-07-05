@@ -9,11 +9,13 @@ namespace SharpExpressions.Compiler
         public static void identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
         {
             object value;
+            Type type;
+
             if (registry.identifiers.TryGetValue(identifier, out value))
             {
-                Entry.Type type = Entry.fromSystemType(value.GetType());
+                Entry.Type entryType = Entry.fromSystemType(value.GetType());
                 Instruction instruction = new Instruction();
-                switch (type)
+                switch (entryType)
                 {
                     case Entry.Type.Boolean:
                     {
@@ -41,15 +43,21 @@ namespace SharpExpressions.Compiler
                 }
                 
                 instructions.Enqueue(instruction);
-                if (type == Entry.Type.Object)
+                if (entryType == Entry.Type.Object)
                 {
-                    result = new Entry { type = Entry.Type.Type, value = value.GetType() };
+                    result = new Entry { type = Entry.Type.Type, value = value.GetType(), isStatic = false };
                 }
                 else
                 {
-                    result = new Entry { type = type, value = value, isConstant = true };
+                    result = new Entry { type = entryType, value = value, isConstant = true };
                 }
             }
+
+            else if (registry.types.TryGetValue(identifier, out type))
+            {
+                result = new Entry { type = Entry.Type.Type, value = type, isStatic = true };
+            }
+
             else
             {
                 result = new Entry { type = Entry.Type.Identifier, value = identifier };
@@ -62,25 +70,15 @@ namespace SharpExpressions.Compiler
             {
                 throw new CompilerException("Trying to access a field without an identifier");
             }
-
             string fieldName = (string)param1.value;
 
-            if (param0.type == Entry.Type.Identifier)
+            if (param0.type == Entry.Type.Type)
             {
-                Type type;
-                if (registry.types.TryGetValue((string)param0.value, out type))
-                {
-                    accessType(instructions, type, fieldName, true, out result);
-                    keepObject = false;
-                }
-                else
-                {
-                    throw new CompilerException("Cannot find identifier " + (string)param0.value + " in the registry");
-                }
+                keepObject = accessType(instructions, param0.value as Type, fieldName, param0.isStatic, out result);
             }
-            else if (param0.type == Entry.Type.Type)
+            else if (param0.type == Entry.Type.Identifier)
             {
-                keepObject = accessType(instructions, param0.value as Type, fieldName, false, out result);
+                throw new CompilerException("Cannot find identifier " + (string)param0.value + " in the registry");
             }
             else
             {

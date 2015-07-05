@@ -18,6 +18,7 @@
         public Type type { get; set; }
         public object value { get; set; }
         public bool isConstant { get; set; }
+        public bool isStatic { get; set; }
 
         public static Type fromSystemType(System.Type systemType)
         {

@@ -276,6 +276,19 @@ namespace SharpExpressions.Compiler
                 }
             }
 
+            if (work.Count != 1)
+            {
+                throw new CompilerException("Bad expression: Mismatched operands");
+            }
+            else if (work.Peek().type == Entry.Type.Type)
+            {
+                Type type = work.Peek().value as Type;
+                instructions.Enqueue(new Instruction
+                {
+                    execute = (Value[] v, ref Value res) => res.objectValue = type,
+                });
+            }
+
             return new CompiledExpression()
             {
                 instructions = instructions.ToArray()
