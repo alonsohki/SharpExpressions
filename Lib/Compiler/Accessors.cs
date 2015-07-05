@@ -11,10 +11,37 @@ namespace SharpExpressions.Compiler
             object value;
             if (registry.identifiers.TryGetValue(identifier, out value))
             {
+                Entry.Type type = Entry.fromSystemType(value.GetType());
                 Instruction instruction = new Instruction();
-                instruction.execute = (Value[] v, ref Value res) => res.objectValue = value;
+                switch (type)
+                {
+                    case Entry.Type.Boolean:
+                    {
+                        bool bValue = (bool)value;
+                        instruction.execute = (Value[] v, ref Value res) => res.boolValue = bValue;
+                        break;
+                    }
+                    case Entry.Type.Double:
+                    {
+                        double dValue = Convert.ToDouble(value);
+                        instruction.execute = (Value[] v, ref Value res) => res.doubleValue = dValue;
+                        break;
+                    }
+                    case Entry.Type.String:
+                    {
+                        string sValue = value as string;
+                        instruction.execute = (Value[] v, ref Value res) => res.stringValue = sValue;
+                        break;
+                    }
+                    case Entry.Type.Object:
+                    {
+                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = value;
+                        break;
+                    }
+                }
+                
                 instructions.Enqueue(instruction);
-                result = new Entry { type = Entry.Type.Object, value = value, isConstant = true };
+                result = new Entry { type = type, value = value, isConstant = true };
                 return true;
             }
             else

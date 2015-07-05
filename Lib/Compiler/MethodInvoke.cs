@@ -21,7 +21,7 @@ namespace SharpExpressions.Compiler
             for (int i = 0; i < numParams; ++i)
             {
                 var paramType = paramInfo[i].ParameterType;
-                var expectedType = getEntryType(paramType);
+                var expectedType = Entry.fromSystemType(paramType);
 
                 if (expectedType == Entry.Type.Unknown)
                 {
@@ -40,7 +40,7 @@ namespace SharpExpressions.Compiler
             instruction.converters = converters;
 
             object[] lambdaParams = new object[numParams];
-            Entry.Type returnType = getEntryType(methodInfo.ReturnType);
+            Entry.Type returnType = Entry.fromSystemType(methodInfo.ReturnType);
 
             if (returnType == Entry.Type.Unknown)
             {
@@ -133,26 +133,6 @@ namespace SharpExpressions.Compiler
             return true;
         }
 
-
-        private static Entry.Type getEntryType(Type systemType)
-        {
-            if (systemType == typeof(bool))
-            {
-                return Entry.Type.Boolean;
-            }
-            else if (systemType == typeof(string))
-            {
-                return Entry.Type.String;
-            }
-            else if (systemType == typeof(short) || systemType == typeof(int) || systemType == typeof(long) || systemType == typeof(float) || systemType == typeof(double))
-            {
-                return Entry.Type.Double;
-            }
-            else
-            {
-                return Entry.Type.Object;
-            }
-        }
 
         private static object convert(object obj, Type targetType)
         {
