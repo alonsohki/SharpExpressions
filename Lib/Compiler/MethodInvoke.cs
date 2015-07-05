@@ -34,7 +34,7 @@ namespace SharpExpressions.Compiler
                     {
                         converters = new convert[numParams + targetOffset];
                     }
-                    converters[i + targetOffset] = types[expectedType].convert;
+                    converters[numParams - i - 1] = types[expectedType].convert;
                 }
             }
             instruction.converters = converters;
