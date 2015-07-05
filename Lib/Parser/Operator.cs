@@ -19,5 +19,6 @@
         Or,
         Not,
         Call,
+        ArrayAccess,
     }
 }

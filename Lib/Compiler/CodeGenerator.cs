@@ -260,6 +260,11 @@ namespace SharpExpressions.Compiler
                                 work.Push(result);
                                 break;
                             }
+                            case Parser.Operator.ArrayAccess:
+                            {
+                                op = "array access";
+                                break;
+                            }
                         }
 
                         if (!applied)
