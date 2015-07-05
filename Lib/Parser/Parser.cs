@@ -60,10 +60,11 @@ namespace SharpExpressions.Parser
 
         private Queue push_operator(Queue queue, Operator op)
         {
-            if (op == Operator.Negate && queue.Peek().type == Entry.Type.Double)
+            var lastElement = queue.Last.Value;
+            if (op == Operator.Negate && lastElement.type == Entry.Type.Double)
             {
                 // Optimize negating literal values
-                var lastElement = queue.Dequeue();
+                queue.RemoveLast();
                 lastElement.value = -(double)lastElement.value;
                 queue.Enqueue(lastElement);
             }
