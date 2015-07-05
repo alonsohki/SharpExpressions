@@ -7,7 +7,7 @@ namespace SharpExpressions
     {
         private class Test
         {
-            public double fn(double v)
+            public double fn(float v)
             {
                 return 1.0 + v;
             }

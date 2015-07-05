@@ -55,7 +55,7 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.boolValue = (bool)methodInfo.Invoke(null, lambdaParams);
                         };
                         break;
@@ -63,7 +63,7 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.doubleValue = Convert.ToDouble(methodInfo.Invoke(null, lambdaParams));
                         };
                         break;
@@ -71,7 +71,7 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.stringValue = methodInfo.Invoke(null, lambdaParams) as string;
                         };
                         break;
@@ -79,7 +79,7 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.objectValue = methodInfo.Invoke(null, lambdaParams);
                         };
                         break;
@@ -94,7 +94,7 @@ namespace SharpExpressions.Compiler
                         {
                             object obj = v[numParams].objectValue;
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.boolValue = (bool)methodInfo.Invoke(obj, lambdaParams);
                         };
                         break;
@@ -103,7 +103,7 @@ namespace SharpExpressions.Compiler
                         {
                             object obj = v[numParams].objectValue;
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.doubleValue = Convert.ToDouble(methodInfo.Invoke(obj, lambdaParams));
                         };
                         break;
@@ -112,7 +112,7 @@ namespace SharpExpressions.Compiler
                         {
                             object obj = v[numParams].objectValue;
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.stringValue = methodInfo.Invoke(obj, lambdaParams) as string;
                         };
                         break;
@@ -121,7 +121,7 @@ namespace SharpExpressions.Compiler
                         {
                             object obj = v[numParams].objectValue;
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
-                                lambdaParams[j] = v[i].value;
+                                lambdaParams[j] = convert(v[i].value, paramInfo[j].ParameterType);
                             res.objectValue = methodInfo.Invoke(obj, lambdaParams);
                         };
                         break;
@@ -152,6 +152,25 @@ namespace SharpExpressions.Compiler
             {
                 return Entry.Type.Object;
             }
+        }
+
+        private static object convert(object obj, Type targetType)
+        {
+            if (targetType == typeof(bool))
+                return Convert.ToBoolean(obj);
+            if (targetType == typeof(short))
+                return Convert.ToInt16(obj);
+            if (targetType == typeof(int))
+                return Convert.ToInt32(obj);
+            if (targetType == typeof(long))
+                return Convert.ToInt64(obj);
+            if (targetType == typeof(float))
+                return Convert.ToSingle(obj);
+            if (targetType == typeof(double))
+                return Convert.ToDouble(obj);
+            if (targetType == typeof(string))
+                return Convert.ToString(obj);
+            return obj;
         }
     }
 }
