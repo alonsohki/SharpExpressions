@@ -255,6 +255,7 @@ namespace SharpExpressions.Compiler
                                 applied = MethodInvoke.invoke(instructions, methodInfo, target, parameters, out result);
                                 targetType = result.type;
                                 op = "call";
+                                work.Push(result);
                                 break;
                             }
                         }
