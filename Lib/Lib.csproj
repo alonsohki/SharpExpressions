@@ -48,12 +48,11 @@
     <Compile Include="Compiler\CompiledExpression.cs" />
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CompilerException.cs" />
-    <Compile Include="Compiler\Entry.cs" />
     <Compile Include="Compiler\TypeBool.cs" />
     <Compile Include="Compiler\TypeString.cs" />
     <Compile Include="Compiler\TypeDouble.cs" />
     <Compile Include="Compiler\Types.cs" />
-    <Compile Include="Parser\Entry.cs" />
+    <Compile Include="Entry.cs" />
     <Compile Include="Executor\Executor.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="Compiler\Instruction.cs" />

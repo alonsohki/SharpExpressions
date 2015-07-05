@@ -1,12 +1,14 @@
-﻿namespace SharpExpressions.Parser
+﻿namespace SharpExpressions
 {
-    public class Entry
+    public struct Entry
     {
         public enum Type
         {
+            Unknown,
             Double,
             String,
             Boolean,
+            Object,
             Identifier,
             Operator,
         }
