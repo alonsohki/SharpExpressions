@@ -9,6 +9,7 @@
             String,
             Boolean,
             Object,
+            Method,
             Identifier,
             Operator,
         }
