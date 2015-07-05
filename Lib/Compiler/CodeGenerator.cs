@@ -264,6 +264,11 @@ namespace SharpExpressions.Compiler
             return false;
         }
 
+
+        #region Member access
+
+        //--------------------------------------------------------------------------------------------------------------------------
+        // Member access
         private static bool memberAccess(Queue<Instruction> instructions, Registry registry, Entry param0, Entry param1, out Entry result)
         {
             if (param1.type != Entry.Type.Identifier)
@@ -311,51 +316,99 @@ namespace SharpExpressions.Compiler
 
         private static void accessObject(Queue<Instruction> instructions, object accessed, string fieldName, out Entry result)
         {
-            result = new Entry();
-
             Type type = accessed.GetType();
+            Type fieldType;
+            FieldInfo fieldInfo = null;
             PropertyInfo propInfo = type.GetProperty(fieldName);
             if (propInfo == null)
             {
-                FieldInfo fieldInfo = type.GetField(fieldName);
+                fieldInfo = type.GetField(fieldName);
                 if (fieldInfo == null)
                 {
                     throw new CompilerException("Cannot field the field '" + fieldName + "' in the object");
                 }
+                fieldType = fieldInfo.FieldType;
+            }
+            else
+            {
+                fieldType = propInfo.PropertyType;
+            }
 
-                if (fieldInfo.FieldType == typeof(string))
+            if (fieldType == typeof(string))
+            {
+                instructions.Enqueue(makeAccessorInstruction(typeof(string), accessed, fieldInfo, propInfo, out result));
+            }
+            else if (fieldType == typeof(bool))
+            {
+                instructions.Enqueue(makeAccessorInstruction(typeof(bool), accessed, fieldInfo, propInfo, out result));
+            }
+            else if (fieldType == typeof(short) || fieldType == typeof(int) || fieldType == typeof(float) || fieldType == typeof(double))
+            {
+                instructions.Enqueue(makeAccessorInstruction(typeof(double), accessed, fieldInfo, propInfo, out result));
+            }
+            else
+            {
+                instructions.Enqueue(makeAccessorInstruction(typeof(object), accessed, fieldInfo, propInfo, out result));
+            }
+        }
+
+        private static Instruction makeAccessorInstruction(Type type, object accessed, FieldInfo fieldInfo, PropertyInfo propInfo, out Entry result)
+        {
+            bool isProperty = propInfo != null;
+            Instruction instruction = new Instruction();
+            instruction.numOperands = 1;
+
+            if (type == typeof(string))
+            {
+                if (isProperty)
+                    instruction.execute = (Value[] v, ref Value res) => res.stringValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null) as string;
+                else
+                    instruction.execute = (Value[] v, ref Value res) => res.stringValue = fieldInfo.GetValue(v[0].objectValue) as string;
+                result = new Entry { type = Entry.Type.String };
+            }
+            else if (type == typeof(bool))
+            {
+                if (isProperty)
+                    instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)propInfo.GetGetMethod().Invoke(v[0].objectValue, null);
+                else
+                    instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)fieldInfo.GetValue(v[0].objectValue);
+                result = new Entry { type = Entry.Type.Boolean };
+            }
+            else if (type == typeof(double))
+            {
+                if (isProperty)
+                    instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(propInfo.GetGetMethod().Invoke(v[0].objectValue, null));
+                else
+                    instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(fieldInfo.GetValue(v[0].objectValue));
+                result = new Entry { type = Entry.Type.Double };
+            }
+            else if (type == typeof(object))
+            {
+                if (isProperty)
                 {
-                    Instruction instruction = new Instruction();
-                    instruction.execute = (Value[] v, ref Value res) =>
-                    {
-                        res.stringValue = fieldInfo.GetValue(v[0].objectValue) as string;
-                    };
-                    instruction.numOperands = 1;
-                    instructions.Enqueue(instruction);
-
-                    result = new Entry { type = Entry.Type.String };
+                    instruction.execute = (Value[] v, ref Value res) => res.objectValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null);
+                    result = new Entry { type = Entry.Type.Object, value = propInfo.GetGetMethod().Invoke(accessed, null) };
+                }
+                else
+                {
+                    instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(v[0].objectValue);
+                    result = new Entry { type = Entry.Type.Object, value = fieldInfo.GetValue(accessed) };
                 }
             }
             else
             {
-                if (propInfo.PropertyType == typeof(string))
-                {
-                    Instruction instruction = new Instruction();
-                    instruction.execute = (Value[] v, ref Value res) =>
-                    {
-                        res.stringValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null) as string;
-                    };
-                    instruction.numOperands = 1;
-                    instructions.Enqueue(instruction);
-
-                    result = new Entry { type = Entry.Type.String };
-                }
+                throw new CompilerException("Internal compiler error: Unknown type for the member accessor field: " + type.FullName);
             }
+
+            return instruction;
         }
 
         private static void accessType(Queue<Instruction> instructions, Type type, string fieldName, out Entry result)
         {
             result = new Entry();
         }
+
+        #endregion
+
     }
 }
