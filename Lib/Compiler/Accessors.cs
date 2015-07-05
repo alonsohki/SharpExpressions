@@ -6,7 +6,7 @@ namespace SharpExpressions.Compiler
 {
     static class Accessors
     {
-        public static bool identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
+        public static void identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
         {
             object value;
             if (registry.identifiers.TryGetValue(identifier, out value))
@@ -42,12 +42,10 @@ namespace SharpExpressions.Compiler
                 
                 instructions.Enqueue(instruction);
                 result = new Entry { type = type, value = value, isConstant = true };
-                return true;
             }
             else
             {
-                result = new Entry();
-                return false;
+                result = new Entry { type = Entry.Type.Identifier, value = identifier };
             }
         }
 
@@ -62,19 +60,8 @@ namespace SharpExpressions.Compiler
 
             if (param0.type == Entry.Type.Identifier)
             {
-                object accessed;
                 Type type;
-                string accessedName = (string)param0.value;
-
-                // Solve the first param from the registry
-                if (registry.identifiers.TryGetValue(accessedName, out accessed))
-                {
-                    Instruction instruction = new Instruction();
-                    instruction.execute = (Value[] v, ref Value res) => res.objectValue = accessed;
-                    instructions.Enqueue(instruction);
-                    keepObject = accessObject(instructions, accessed, fieldName, out result);
-                }
-                else if (registry.types.TryGetValue(accessedName, out type))
+                if (registry.types.TryGetValue((string)param0.value, out type))
                 {
                     accessType(instructions, type, fieldName, out result);
                     keepObject = false;

@@ -50,14 +50,8 @@ namespace SharpExpressions.Compiler
                     {
                         Entry result;
                         string identifier = (string)entry.value;
-                        if (Accessors.identifierAccess(instructions, registry, identifier, out result))
-                        {
-                            work.Push(result);
-                        }
-                        else
-                        {
-                            work.Push(new Entry { type = Entry.Type.Identifier, value = identifier });
-                        }
+                        Accessors.identifierAccess(instructions, registry, identifier, out result);
+                        work.Push(result);
                         break;
                     }
 
