@@ -1,5 +1,8 @@
-﻿namespace SharpExpressions
+﻿using System.Runtime.InteropServices;
+
+namespace SharpExpressions
 {
+    [StructLayout(LayoutKind.Explicit)]
     public struct Value
     {
         public enum Type
@@ -11,10 +14,16 @@
             Object,
         }
 
-        private bool mBoolValue;
-        private double mDoubleValue;
+        [FieldOffset(0)]
+        private Type mType;
+        [FieldOffset(4)]
         private string mStringValue;
+        [FieldOffset(4)]
         private object mObjectValue;
+        [FieldOffset(8)]
+        private bool mBoolValue;
+        [FieldOffset(8)]
+        private double mDoubleValue;
 
         public bool boolValue
         {
@@ -56,7 +65,18 @@
             }
         }
 
-        public Type type { get; private set; }
+        public Type type
+        {
+            get
+            {
+                return mType;
+            }
+            private set
+            {
+                mType = value;
+            }
+        }
+
         public object value
         {
             get
