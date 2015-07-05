@@ -273,7 +273,7 @@ namespace SharpExpressions.Compiler
 
             string fieldName = (string)param1.value;
 
-            if (param0.type == Entry.Type.String)
+            if (param0.type == Entry.Type.Identifier)
             {
                 object accessed;
                 Type type;
@@ -282,6 +282,10 @@ namespace SharpExpressions.Compiler
                 // Solve the first param from the registry
                 if (registry.identifiers.TryGetValue(accessedName, out accessed))
                 {
+                    Instruction instruction = new Instruction();
+                    instruction.execute = (Value[] v, ref Value res) => res.objectValue = accessed;
+                    instructions.Enqueue(instruction);
+
                     accessObject(instructions, accessed, fieldName, out result);
                 }
                 else if (registry.types.TryGetValue(accessedName, out type))
@@ -307,9 +311,11 @@ namespace SharpExpressions.Compiler
 
         private static void accessObject(Queue<Instruction> instructions, object accessed, string fieldName, out Entry result)
         {
+            result = new Entry();
+
             Type type = accessed.GetType();
-            PropertyInfo prop = type.GetProperty(fieldName);
-            if (prop == null)
+            PropertyInfo propInfo = type.GetProperty(fieldName);
+            if (propInfo == null)
             {
                 FieldInfo fieldInfo = type.GetField(fieldName);
                 if (fieldInfo == null)
@@ -322,17 +328,29 @@ namespace SharpExpressions.Compiler
                     Instruction instruction = new Instruction();
                     instruction.execute = (Value[] v, ref Value res) =>
                     {
-
-                        res.stringValue = "";
+                        res.stringValue = fieldInfo.GetValue(v[0].objectValue) as string;
                     };
+                    instruction.numOperands = 1;
+                    instructions.Enqueue(instruction);
+
                     result = new Entry { type = Entry.Type.String };
                 }
-
             }
             else
             {
+                if (propInfo.PropertyType == typeof(string))
+                {
+                    Instruction instruction = new Instruction();
+                    instruction.execute = (Value[] v, ref Value res) =>
+                    {
+                        res.stringValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null) as string;
+                    };
+                    instruction.numOperands = 1;
+                    instructions.Enqueue(instruction);
+
+                    result = new Entry { type = Entry.Type.String };
+                }
             }
-            result = new Entry();
         }
 
         private static void accessType(Queue<Instruction> instructions, Type type, string fieldName, out Entry result)
