@@ -16,5 +16,6 @@
 
         public Type type { get; set; }
         public object value { get; set; }
+        public bool isConstant { get; set; }
     }
 }

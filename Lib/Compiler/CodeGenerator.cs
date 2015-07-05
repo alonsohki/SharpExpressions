@@ -20,7 +20,7 @@ namespace SharpExpressions.Compiler
                     {
                         Instruction instruction = new Instruction();
                         double value = (double)entry.value;
-                        work.Push(new Entry { type = Entry.Type.Double });
+                        work.Push(new Entry { type = Entry.Type.Double, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.doubleValue = value;
                         instructions.Enqueue(instruction);
                         break;
@@ -30,7 +30,7 @@ namespace SharpExpressions.Compiler
                     {
                         Instruction instruction = new Instruction();
                         bool value = (bool)entry.value;
-                        work.Push(new Entry { type = Entry.Type.Boolean });
+                        work.Push(new Entry { type = Entry.Type.Boolean, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.boolValue = value;
                         instructions.Enqueue(instruction);
                         break;
@@ -40,7 +40,7 @@ namespace SharpExpressions.Compiler
                     {
                         Instruction instruction = new Instruction();
                         string value = (string)entry.value;
-                        work.Push(new Entry { type = Entry.Type.String });
+                        work.Push(new Entry { type = Entry.Type.String, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.stringValue = value;
                         instructions.Enqueue(instruction);
                         break;
@@ -48,8 +48,16 @@ namespace SharpExpressions.Compiler
 
                     case Entry.Type.Identifier:
                     {
+                        Entry result;
                         string identifier = (string)entry.value;
-                        work.Push(new Entry { type = Entry.Type.Identifier, value = identifier });
+                        if (Accessors.identifierAccess(instructions, registry, identifier, out result))
+                        {
+                            work.Push(result);
+                        }
+                        else
+                        {
+                            work.Push(new Entry { type = Entry.Type.Identifier, value = identifier });
+                        }
                         break;
                     }
 

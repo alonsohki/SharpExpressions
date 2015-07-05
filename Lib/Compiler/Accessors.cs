@@ -6,6 +6,24 @@ namespace SharpExpressions.Compiler
 {
     static class Accessors
     {
+        public static bool identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
+        {
+            object value;
+            if (registry.identifiers.TryGetValue(identifier, out value))
+            {
+                Instruction instruction = new Instruction();
+                instruction.execute = (Value[] v, ref Value res) => res.objectValue = value;
+                instructions.Enqueue(instruction);
+                result = new Entry { type = Entry.Type.Object, value = value, isConstant = true };
+                return true;
+            }
+            else
+            {
+                result = new Entry();
+                return false;
+            }
+        }
+
         public static bool memberAccess(Queue<Instruction> instructions, Registry registry, Entry param0, Entry param1, out bool keepObject, out Entry result)
         {
             if (param1.type != Entry.Type.Identifier)
