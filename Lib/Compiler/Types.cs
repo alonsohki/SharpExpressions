@@ -55,6 +55,7 @@ namespace SharpExpressions.Compiler
                     msTypes[Entry.Type.Boolean] = TypeBool.definition;
                     msTypes[Entry.Type.String]  = TypeString.definition;
                     msTypes[Entry.Type.Object]  = TypeObject.definition;
+                    msTypes[Entry.Type.Type] = TypeType.definition;
                 }
                 return msTypes;
             }

@@ -51,6 +51,7 @@
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CompilerException.cs" />
     <Compile Include="Compiler\MethodInvoke.cs" />
+    <Compile Include="Compiler\TypeType.cs" />
     <Compile Include="Compiler\TypeBool.cs" />
     <Compile Include="Compiler\TypeObject.cs" />
     <Compile Include="Compiler\TypeString.cs" />
