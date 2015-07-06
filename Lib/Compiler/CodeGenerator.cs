@@ -235,6 +235,24 @@ namespace SharpExpressions.Compiler
                                 work.Push(new Entry { type = Entry.Type.Boolean });
                                 break;
                             }
+                            case Parser.Operator.Ternary:
+                            {
+                                Entry condition = work.Pop();
+                                Entry ifTrue = work.Pop();
+                                Entry ifFalse = work.Pop();
+                                op = "ternary operator";
+                                targetType = ifTrue.type;
+                                Instruction instruction = new Instruction()
+                                {
+                                    numOperands = 3,
+                                    converters = new convert[] { types[targetType].convert, null, types[Entry.Type.Boolean].convert },
+                                    execute = types[targetType].ternary,
+                                };
+                                instructions.Enqueue(instruction);
+                                applied = true;
+                                work.Push(new Entry { type = targetType });
+                                break;
+                            }
                             case Parser.Operator.MemberAccess:
                             {
                                 Entry param1 = work.Pop();

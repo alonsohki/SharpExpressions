@@ -110,6 +110,12 @@ namespace SharpExpressions.Compiler
             {
                 res.boolValue = v[0].doubleValue != v[1].doubleValue;
             },
+
+
+            ternary = (Value[] v, ref Value res) =>
+            {
+                res.doubleValue = v[2].boolValue ? v[0].doubleValue : v[1].doubleValue;
+            },
         };
     }
 }

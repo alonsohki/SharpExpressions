@@ -40,6 +40,7 @@ namespace SharpExpressions.Compiler
             public execute and;
             public execute or;
             public execute not;
+            public execute ternary;
         }
 
         private static Dictionary<Entry.Type, TypeDefinition> msTypes;

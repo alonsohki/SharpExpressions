@@ -23,6 +23,12 @@ namespace SharpExpressions.Compiler
             {
                 v.objectValue = v.value;
             },
+
+
+            ternary = (Value[] v, ref Value res) =>
+            {
+                res.objectValue = v[2].boolValue ? v[0].objectValue : v[1].objectValue;
+            },
         };
     }
 }

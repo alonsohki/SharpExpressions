@@ -31,7 +31,7 @@ public eval returns [Queue queue]
   ;
 
 expression returns [Queue ret]
-  : Q=boolean_expression { ret = $Q.ret; }
+  : Q=boolean_expression { ret = $Q.ret; } (Q2=ternary_operator { ret=push_operation($Q2.ret, Operator.Ternary, ret); })?
   ;
 
 boolean_expression returns [Queue ret]
@@ -84,6 +84,10 @@ atomic_expression returns [Queue ret]
 
 array_access returns [Queue ret]
   : '[' Q=list_of_expressions ']' { ret=$Q.ret; }
+  ;
+
+ternary_operator returns [Queue ret]
+  : '?' Q1=expression ':' Q2=expression { ret = append_queue($Q1.ret, $Q2.ret); }
   ;
 
 fn_call returns [Queue ret]

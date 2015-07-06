@@ -35,5 +35,6 @@ namespace SharpExpressions.Parser
         Not,
         Call,
         ArrayAccess,
+        Ternary,
     }
 }
