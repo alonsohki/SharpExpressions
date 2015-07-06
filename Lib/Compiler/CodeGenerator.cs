@@ -309,11 +309,23 @@ namespace SharpExpressions.Compiler
             }
             else if (work.Peek().type == Entry.Type.Type)
             {
-                Type type = work.Peek().value as Type;
-                instructions.Enqueue(new Instruction
+                var entry = work.Pop();
+                Type type = entry.value as Type;
+                if (entry.isStatic)
                 {
-                    execute = (Value[] v, ref Value res) => res.objectValue = type,
-                });
+                    instructions.Enqueue(new Instruction
+                    {
+                        execute = (Value[] v, ref Value res) => res.objectValue = type,
+                    });
+                }
+                else
+                {
+                    instructions.Enqueue(new Instruction
+                    {
+                        numOperands = 1,
+                        execute = (Value[] v, ref Value res) => res.objectValue = v[0].objectValue,
+                    });
+                }
             }
 
             return new CompiledExpression()
