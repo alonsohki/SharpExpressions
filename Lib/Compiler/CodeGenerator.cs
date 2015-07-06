@@ -318,14 +318,6 @@ namespace SharpExpressions.Compiler
                         execute = (Value[] v, ref Value res) => res.objectValue = type,
                     });
                 }
-                else
-                {
-                    instructions.Enqueue(new Instruction
-                    {
-                        numOperands = 1,
-                        execute = (Value[] v, ref Value res) => res.objectValue = v[0].objectValue,
-                    });
-                }
             }
 
             return new CompiledExpression()
