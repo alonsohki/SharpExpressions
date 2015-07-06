@@ -43,7 +43,7 @@ namespace SharpExpressions
                 try
                 {
                     Expression expr = new Expression(line);
-                    expr.addSymbol("vars", new { a = 10, b = 20, c = "Hello, world!", d = new { x = 0f, y = "Good bye!", z = -10.0 }, test = new Test() });
+                    expr.addSymbol("vars", new { a = 10, b = 20, k = 7, c = "Hello, world!", d = new { x = 0f, y = "Good bye!", z = -10.0 }, test = new Test() });
                     expr.addSymbol("k", 10.0);
                     expr.addType("Math", typeof(Math));
                     Console.WriteLine(expr.eval());

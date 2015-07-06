@@ -27,8 +27,9 @@ namespace SharpExpressions.Compiler
             Stack<Entry> work = new Stack<Entry>();
             Queue<Instruction> instructions = new Queue<Instruction>();
 
-            foreach (var entry in queue)
+            for (var node = queue.First; node != null; node = node.Next)
             {
+                var entry = node.Value;
                 switch (entry.type)
                 {
                     case Entry.Type.Double:
@@ -65,7 +66,15 @@ namespace SharpExpressions.Compiler
                     {
                         Entry result;
                         string identifier = (string)entry.value;
-                        Accessors.identifierAccess(instructions, registry, identifier, out result);
+                        var next = node.Next;
+                        if (next != null && next.Value.type == Entry.Type.Operator && (Parser.Operator)next.Value.value == Parser.Operator.MemberAccess)
+                        {
+                            result = new Entry { type = Entry.Type.Identifier, value = identifier };
+                        }
+                        else
+                        {
+                            Accessors.identifierAccess(instructions, registry, identifier, out result);
+                        }
                         work.Push(result);
                         break;
                     }
