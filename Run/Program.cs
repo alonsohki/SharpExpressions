@@ -60,7 +60,7 @@ namespace SharpExpressions
                         c = "Hello, world!",
                         d = new { x = 0f, y = "Good bye!", z = -10.0 },
                         test = new Test(),
-                        arr = new int[] { 0, 1, 2, 3, 4 },
+                        arr = new int[,] { { 0, 1, 2 }, { 1, 2, 3 }, { 2, 3, 4 } },
                     });
                     expr.addSymbol("k", 10.0);
                     expr.addType("Math", typeof(Math));
