@@ -19,7 +19,7 @@ using System.Reflection;
 
 namespace SharpExpressions.Compiler
 {
-    static class Accessors
+    static class MemberAccess
     {
         public static void identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
         {

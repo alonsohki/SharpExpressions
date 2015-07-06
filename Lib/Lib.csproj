@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\Accessors.cs" />
+    <Compile Include="Compiler\ArrayAccess.cs" />
+    <Compile Include="Compiler\MemberAccess.cs" />
     <Compile Include="Compiler\CodeGenerator.cs" />
     <Compile Include="Compiler\CompiledExpression.cs" />
     <Compile Include="Compiler\Compiler.cs" />

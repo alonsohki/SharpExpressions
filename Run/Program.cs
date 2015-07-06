@@ -15,6 +15,7 @@
 
 using SharpExpressions;
 using System;
+using System.Reflection;
 
 namespace SharpExpressions
 {
@@ -25,6 +26,14 @@ namespace SharpExpressions
             public double fn(float v)
             {
                 return 1.0 + v;
+            }
+
+            public object this[string j, string k]
+            {
+                get
+                {
+                    return j + k;
+                }
             }
         }
 

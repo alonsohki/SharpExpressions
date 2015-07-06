@@ -73,7 +73,7 @@ namespace SharpExpressions.Compiler
                         }
                         else
                         {
-                            Accessors.identifierAccess(instructions, registry, identifier, out result);
+                            MemberAccess.identifierAccess(instructions, registry, identifier, out result);
                         }
                         work.Push(result);
                         break;
@@ -242,7 +242,7 @@ namespace SharpExpressions.Compiler
                                 Entry result;
                                 bool keepObject;
                                 op = "memberaccess";
-                                applied = Accessors.memberAccess(instructions, registry, param0, param1, out keepObject, out result);
+                                applied = MemberAccess.memberAccess(instructions, registry, param0, param1, out keepObject, out result);
                                 targetType = result.type;
                                 if (keepObject)
                                 {
@@ -271,13 +271,8 @@ namespace SharpExpressions.Compiler
                                     target = targetEntry.value;
                                 }
 
-                                ParameterInfo[] paramInfo = methodInfo.GetParameters();
-                                Entry[] parameters = new Entry[paramInfo.Length];
                                 Entry result;
-                                for (int i = 0; i < parameters.Length; ++i)
-                                {
-                                    parameters[i] = work.Pop();
-                                }
+                                var parameters = makeParameters(work, methodInfo.GetParameters().Length);
                                 applied = MethodInvoke.invoke(instructions, methodInfo, target, parameters, out result);
                                 targetType = result.type;
                                 op = "call";
@@ -286,7 +281,17 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.ArrayAccess:
                             {
+                                Entry target = work.Pop();
+                                if (target.type != Entry.Type.Type || target.isStatic)
+                                {
+                                    throw new CompilerException("Expected object for array access, but got " + target.type + " instead");
+                                }
+
                                 op = "array access";
+                                Entry result;
+                                applied = ArrayAccess.access(instructions, work, target.value, out result);
+                                targetType = result.type;
+                                work.Push(result);
                                 break;
                             }
                         }
@@ -346,6 +351,16 @@ namespace SharpExpressions.Compiler
                 return true;
             }
             return false;
+        }
+
+        private static Entry[] makeParameters(Stack<Entry> work, int count)
+        {
+            Entry[] parameters = new Entry[count];
+            for (int i = 0; i < count; ++i)
+            {
+                parameters[i] = work.Pop();
+            }
+            return parameters;
         }
     }
 }
