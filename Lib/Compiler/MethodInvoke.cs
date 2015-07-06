@@ -21,10 +21,9 @@ namespace SharpExpressions.Compiler
 {
     static class MethodInvoke
     {
-        public static bool invoke(Queue<Instruction> instructions, MethodInfo methodInfo, object target, Entry[] parameters, out Entry result)
+        public static bool invoke(Queue<Instruction> instructions, MethodInfo methodInfo, bool isStatic, Entry[] parameters, out Entry result)
         {
             var types = Types.types;
-            bool isStatic = target == null;
             int numParams = parameters.Length;
             int targetOffset = isStatic ? 0 : 1;
 

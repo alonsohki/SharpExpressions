@@ -260,7 +260,6 @@ namespace SharpExpressions.Compiler
                                 }
 
                                 MethodInfo methodInfo = method.value as MethodInfo;
-                                object target = null;
                                 if (!methodInfo.IsStatic)
                                 {
                                     Entry targetEntry = work.Pop();
@@ -268,12 +267,11 @@ namespace SharpExpressions.Compiler
                                     {
                                         throw new CompilerException("Expected an object to the left of the method invoke " + methodInfo.Name);
                                     }
-                                    target = targetEntry.value;
                                 }
 
                                 Entry result;
                                 var parameters = makeParameters(work, methodInfo.GetParameters().Length);
-                                applied = MethodInvoke.invoke(instructions, methodInfo, target, parameters, out result);
+                                applied = MethodInvoke.invoke(instructions, methodInfo, methodInfo.IsStatic, parameters, out result);
                                 targetType = result.type;
                                 op = "call";
                                 work.Push(result);
@@ -289,7 +287,7 @@ namespace SharpExpressions.Compiler
 
                                 op = "array access";
                                 Entry result;
-                                applied = ArrayAccess.access(instructions, work, target.value, out result);
+                                applied = ArrayAccess.access(instructions, work, (Type)target.value, out result);
                                 targetType = result.type;
                                 work.Push(result);
                                 break;
