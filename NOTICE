@@ -1,0 +1,7 @@
+   SharpExpressions <https://github.com/ryden/SharpExpressions>
+   Copyright 2015 - Alberto Alonso
+
+   This product has been entirely developed by Alberto Alonso <rydencillo at gmail.com>
+
+   This software makes use of Antlr 3 to generate the expression parser.
+   
