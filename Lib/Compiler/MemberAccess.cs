@@ -232,9 +232,10 @@ namespace SharpExpressions.Compiler
                 else
                 {
                     if (isStatic)
-                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(v[0].objectValue);
-                    else
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(null);
+                    else
+                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(v[0].objectValue);
+                        
                     result = new Entry { type = Entry.Type.Type, value = fieldInfo.FieldType };
                 }
             }
