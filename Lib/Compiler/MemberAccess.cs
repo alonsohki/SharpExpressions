@@ -135,7 +135,7 @@ namespace SharpExpressions.Compiler
                     throw new CompilerException("Cannot field the field '" + fieldName + "' in the object");
                 }
                 result = new Entry { type = Entry.Type.Method, value = methodInfo };
-                return true;
+                return !isStatic;
             }
         }
 
