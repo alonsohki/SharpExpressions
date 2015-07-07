@@ -169,10 +169,11 @@ namespace SharpExpressions.Compiler
             {
                 if (isProperty)
                 {
+                    var getMethod = propInfo.GetGetMethod();
                     if (isStatic)
-                        instruction.execute = (Value[] v, ref Value res) => res.stringValue = propInfo.GetGetMethod().Invoke(null, null) as string;
+                        instruction.execute = (Value[] v, ref Value res) => res.stringValue = getMethod.Invoke(null, null) as string;
                     else
-                        instruction.execute = (Value[] v, ref Value res) => res.stringValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null) as string;
+                        instruction.execute = (Value[] v, ref Value res) => res.stringValue = getMethod.Invoke(v[0].objectValue, null) as string;
                 }
                 else
                 {
@@ -187,10 +188,11 @@ namespace SharpExpressions.Compiler
             {
                 if (isProperty)
                 {
+                    var getMethod = propInfo.GetGetMethod();
                     if (isStatic)
-                        instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)propInfo.GetGetMethod().Invoke(null, null);
+                        instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)getMethod.Invoke(null, null);
                     else
-                        instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)propInfo.GetGetMethod().Invoke(v[0].objectValue, null);
+                        instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)getMethod.Invoke(v[0].objectValue, null);
                 }
                 else
                 {
@@ -205,10 +207,11 @@ namespace SharpExpressions.Compiler
             {
                 if (isProperty)
                 {
+                    var getMethod = propInfo.GetGetMethod();
                     if (isStatic)
-                        instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(propInfo.GetGetMethod().Invoke(null, null));
+                        instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(getMethod.Invoke(null, null));
                     else
-                        instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(propInfo.GetGetMethod().Invoke(v[0].objectValue, null));
+                        instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(getMethod.Invoke(v[0].objectValue, null));
                 }
                 else
                 {
@@ -223,10 +226,11 @@ namespace SharpExpressions.Compiler
             {
                 if (isProperty)
                 {
+                    var getMethod = propInfo.GetGetMethod();
                     if (isStatic)
-                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = propInfo.GetGetMethod().Invoke(null, null);
+                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = getMethod.Invoke(null, null);
                     else
-                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = propInfo.GetGetMethod().Invoke(v[0].objectValue, null);
+                        instruction.execute = (Value[] v, ref Value res) => res.objectValue = getMethod.Invoke(v[0].objectValue, null);
                     result = new Entry { type = Entry.Type.Type, value = propInfo.PropertyType };
                 }
                 else
