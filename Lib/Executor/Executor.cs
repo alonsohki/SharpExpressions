@@ -19,16 +19,14 @@ namespace SharpExpressions.Executor
 {
     class Executor
     {
-        public static object execute(Compiler.CompiledExpression expr, Registry registry)
+        public static object execute(IEnumerable<Instruction> instructions, Registry registry)
         {
             Stack<Value> stack = new Stack<Value>();
             Value[] operands = new Value[16];
             Value result = new Value();
 
-            for (int i = 0; i < expr.instructions.Length; ++i)
+            foreach (Instruction instruction in instructions)
             {
-                var instruction = expr.instructions[i];
-
                 // Get the instruction operands
                 if (instruction.numOperands > 0)
                 {

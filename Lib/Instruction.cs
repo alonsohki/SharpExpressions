@@ -13,8 +13,11 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions
 {
+    delegate void convert(ref Value value);
+    delegate void execute(Value[] values, ref Value result);
+
     class Instruction
     {
         public int numOperands;

@@ -60,7 +60,7 @@
     <Compile Include="Entry.cs" />
     <Compile Include="Executor\Executor.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="Compiler\Instruction.cs" />
+    <Compile Include="Instruction.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\Operator.cs" />
     <Compile Include="Parser\Parser.cs" />

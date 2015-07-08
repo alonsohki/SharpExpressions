@@ -65,7 +65,7 @@ namespace SharpExpressions
             }
             if (mCompiled != null)
             {
-                return Executor.Executor.execute(mCompiled, mRegistry);
+                return Executor.Executor.execute(mCompiled.instructions, mRegistry);
             }
             return null;
         }

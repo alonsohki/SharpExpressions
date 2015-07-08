@@ -17,9 +17,6 @@ using System.Collections.Generic;
 
 namespace SharpExpressions.Compiler
 {
-    delegate void convert(ref Value value);
-    delegate void execute(Value[] values, ref Value result);
-
     static class Types
     {
         public struct TypeDefinition
