@@ -13,21 +13,20 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-using System;
-using SharpExpressions.Parser;
-using Antlr.Runtime;
-
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
-    class Compiler
+    static class TypeType
     {
-        public static CompiledExpression compile(string expr, Registry registry)
+        public static Types.TypeDefinition definition = new Types.TypeDefinition()
         {
-            ANTLRStringStream stream = new ANTLRStringStream(expr);
-            SharpExpressionsLexer lexer = new SharpExpressionsLexer(stream);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            SharpExpressionsParser parser = new SharpExpressionsParser(tokens);
-            return CodeGenerator.generate(parser.eval(), registry);
-        }
+            convert = (ref Value v) =>
+            {
+            },
+
+            ternary = (Value[] v, ref Value res) =>
+            {
+                res.objectValue = v[2].boolValue ? v[0].objectValue : v[1].objectValue;
+            },
+        };
     }
 }

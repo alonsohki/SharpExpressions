@@ -15,7 +15,7 @@
 
 using System;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     static class TypeDouble
     {

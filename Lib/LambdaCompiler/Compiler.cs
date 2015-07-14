@@ -13,15 +13,22 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-namespace SharpExpressions
-{
-    delegate void convert(ref Value value);
-    delegate void execute(Value[] values, ref Value result);
+using System;
+using SharpExpressions.Parser;
+using Antlr.Runtime;
 
-    class Instruction
+namespace SharpExpressions.LambdaCompiler
+{
+    class Compiler : ICompiler
     {
-        public int numOperands;
-        public execute execute;
-        public convert[] converters;
+        public CompiledExpression compile(string expression, Registry registry)
+        {
+            ANTLRStringStream stream = new ANTLRStringStream(expression);
+            SharpExpressionsLexer lexer = new SharpExpressionsLexer(stream);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            SharpExpressionsParser parser = new SharpExpressionsParser(tokens);
+            Instruction[] instructions = CodeGenerator.generate(parser.eval(), registry);
+            return (reg) => Executor.execute(instructions, reg);
+        }
     }
 }

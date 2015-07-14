@@ -13,11 +13,9 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-using System.Runtime.InteropServices;
-
-namespace SharpExpressions
+namespace SharpExpressions.LambdaCompiler
 {
-    public struct Value
+    struct Value
     {
         public enum Type
         {

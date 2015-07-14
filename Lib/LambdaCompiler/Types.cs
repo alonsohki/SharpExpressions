@@ -15,7 +15,7 @@
 
 using System.Collections.Generic;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     static class Types
     {
@@ -40,19 +40,19 @@ namespace SharpExpressions.Compiler
             public execute ternary;
         }
 
-        private static Dictionary<Entry.Type, TypeDefinition> msTypes;
-        public static Dictionary<Entry.Type, TypeDefinition> types
+        private static Dictionary<Parser.Entry.Type, TypeDefinition> msTypes;
+        public static Dictionary<Parser.Entry.Type, TypeDefinition> types
         {
             get
             {
                 if (msTypes == null)
                 {
-                    msTypes = new Dictionary<Entry.Type, TypeDefinition>();
-                    msTypes[Entry.Type.Double]  = TypeDouble.definition;
-                    msTypes[Entry.Type.Boolean] = TypeBool.definition;
-                    msTypes[Entry.Type.String]  = TypeString.definition;
-                    msTypes[Entry.Type.Object]  = TypeObject.definition;
-                    msTypes[Entry.Type.Type] = TypeType.definition;
+                    msTypes = new Dictionary<Parser.Entry.Type, TypeDefinition>();
+                    msTypes[Parser.Entry.Type.Double] = TypeDouble.definition;
+                    msTypes[Parser.Entry.Type.Boolean] = TypeBool.definition;
+                    msTypes[Parser.Entry.Type.String] = TypeString.definition;
+                    msTypes[Parser.Entry.Type.Object] = TypeObject.definition;
+                    msTypes[Parser.Entry.Type.Type] = TypeType.definition;
                 }
                 return msTypes;
             }

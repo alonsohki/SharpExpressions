@@ -17,11 +17,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     static class MethodInvoke
     {
-        public static bool invoke(Queue<Instruction> instructions, MethodInfo methodInfo, bool isStatic, Entry[] parameters, out Entry result)
+        public static bool invoke(Queue<Instruction> instructions, MethodInfo methodInfo, bool isStatic, Parser.Entry[] parameters, out Parser.Entry result)
         {
             var types = Types.types;
             int numParams = parameters.Length;
@@ -35,9 +35,9 @@ namespace SharpExpressions.Compiler
             for (int i = 0; i < numParams; ++i)
             {
                 var paramType = paramInfo[i].ParameterType;
-                var expectedType = Entry.fromSystemType(paramType);
+                var expectedType = Parser.Entry.fromSystemType(paramType);
 
-                if (expectedType == Entry.Type.Unknown)
+                if (expectedType == Parser.Entry.Type.Unknown)
                 {
                     throw new CompilerException("I don't know how to convert to type " + paramType.FullName + " for parameter " + i + " of method " + methodInfo.Name);
                 }
@@ -54,9 +54,9 @@ namespace SharpExpressions.Compiler
             instruction.converters = converters;
 
             object[] lambdaParams = new object[numParams];
-            Entry.Type returnType = Entry.fromSystemType(methodInfo.ReturnType);
+            Parser.Entry.Type returnType = Parser.Entry.fromSystemType(methodInfo.ReturnType);
 
-            if (returnType == Entry.Type.Unknown)
+            if (returnType == Parser.Entry.Type.Unknown)
             {
                 throw new CompilerException("Unknown return type " + methodInfo.ReturnType.FullName + " for method " + methodInfo.Name);
             }
@@ -65,7 +65,7 @@ namespace SharpExpressions.Compiler
             {
                 switch (returnType)
                 {
-                    case Entry.Type.Boolean:
+                    case Parser.Entry.Type.Boolean:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
@@ -73,7 +73,7 @@ namespace SharpExpressions.Compiler
                             res.boolValue = (bool)methodInfo.Invoke(null, lambdaParams);
                         };
                         break;
-                    case Entry.Type.Double:
+                    case Parser.Entry.Type.Double:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
@@ -81,7 +81,7 @@ namespace SharpExpressions.Compiler
                             res.doubleValue = Convert.ToDouble(methodInfo.Invoke(null, lambdaParams));
                         };
                         break;
-                    case Entry.Type.String:
+                    case Parser.Entry.Type.String:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
@@ -89,7 +89,7 @@ namespace SharpExpressions.Compiler
                             res.stringValue = methodInfo.Invoke(null, lambdaParams) as string;
                         };
                         break;
-                    case Entry.Type.Object:
+                    case Parser.Entry.Type.Object:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             for (int i = 0, j = numParams - 1; i < numParams; ++i, --j)
@@ -103,7 +103,7 @@ namespace SharpExpressions.Compiler
             {
                 switch (returnType)
                 {
-                    case Entry.Type.Boolean:
+                    case Parser.Entry.Type.Boolean:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             object obj = v[numParams].objectValue;
@@ -112,7 +112,7 @@ namespace SharpExpressions.Compiler
                             res.boolValue = (bool)methodInfo.Invoke(obj, lambdaParams);
                         };
                         break;
-                    case Entry.Type.Double:
+                    case Parser.Entry.Type.Double:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             object obj = v[numParams].objectValue;
@@ -121,7 +121,7 @@ namespace SharpExpressions.Compiler
                             res.doubleValue = Convert.ToDouble(methodInfo.Invoke(obj, lambdaParams));
                         };
                         break;
-                    case Entry.Type.String:
+                    case Parser.Entry.Type.String:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             object obj = v[numParams].objectValue;
@@ -130,7 +130,7 @@ namespace SharpExpressions.Compiler
                             res.stringValue = methodInfo.Invoke(obj, lambdaParams) as string;
                         };
                         break;
-                    case Entry.Type.Object:
+                    case Parser.Entry.Type.Object:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             object obj = v[numParams].objectValue;
@@ -143,7 +143,7 @@ namespace SharpExpressions.Compiler
             }
 
             instructions.Enqueue(instruction);
-            result = new Entry { type = returnType };
+            result = new Parser.Entry { type = returnType };
             return true;
         }
 

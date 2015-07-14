@@ -14,13 +14,10 @@
 //   limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
-    static class TypeString
+    static class TypeBool
     {
         public static Types.TypeDefinition definition = new Types.TypeDefinition()
         {
@@ -29,41 +26,58 @@ namespace SharpExpressions.Compiler
                 switch (v.type)
                 {
                     case Value.Type.Boolean:
-                        v.stringValue = v.boolValue ? "True" : "False";
                         break;
                     case Value.Type.String:
+                        v.boolValue = Boolean.Parse(v.stringValue);
                         break;
                     case Value.Type.Double:
-                        v.stringValue = v.doubleValue.ToString();
+                        v.boolValue = v.doubleValue == 0.0 ? false : true;
                         break;
                     case Value.Type.Object:
-                        v.stringValue = v.objectValue.ToString();
+                        v.boolValue = (bool)v.objectValue;
                         break;
                 }
             },
 
-
-            add = (Value[] v, ref Value res) =>
+            pow = (Value[] v, ref Value res) =>
             {
-                res.stringValue = v[0].stringValue + v[1].stringValue;
+                res.boolValue = v[0].boolValue ^ v[1].boolValue;
             },
 
 
             equals = (Value[] v, ref Value res) =>
             {
-                res.boolValue = v[0].stringValue == v[1].stringValue;
+                res.boolValue = v[0].boolValue == v[1].boolValue;
             },
 
 
             notEquals = (Value[] v, ref Value res) =>
             {
-                res.boolValue = v[0].stringValue != v[1].stringValue;
+                res.boolValue = v[0].boolValue != v[1].boolValue;
+            },
+
+
+            and = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue && v[1].boolValue;
+            },
+
+
+            or = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = v[0].boolValue || v[1].boolValue;
+            },
+
+
+            not = (Value[] v, ref Value res) =>
+            {
+                res.boolValue = !v[0].boolValue;
             },
 
 
             ternary = (Value[] v, ref Value res) =>
             {
-                res.stringValue = v[2].boolValue ? v[0].stringValue : v[1].stringValue;
+                res.boolValue = v[2].boolValue ? v[0].boolValue : v[1].boolValue;
             },
         };
     }

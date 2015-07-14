@@ -44,23 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\ArrayAccess.cs" />
-    <Compile Include="Compiler\MemberAccess.cs" />
-    <Compile Include="Compiler\CodeGenerator.cs" />
-    <Compile Include="Compiler\CompiledExpression.cs" />
-    <Compile Include="Compiler\Compiler.cs" />
-    <Compile Include="Compiler\CompilerException.cs" />
-    <Compile Include="Compiler\MethodInvoke.cs" />
-    <Compile Include="Compiler\TypeType.cs" />
-    <Compile Include="Compiler\TypeBool.cs" />
-    <Compile Include="Compiler\TypeObject.cs" />
-    <Compile Include="Compiler\TypeString.cs" />
-    <Compile Include="Compiler\TypeDouble.cs" />
-    <Compile Include="Compiler\Types.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="Executor\Executor.cs" />
+    <Compile Include="LambdaCompiler\ArrayAccess.cs" />
+    <Compile Include="LambdaCompiler\MemberAccess.cs" />
+    <Compile Include="LambdaCompiler\CodeGenerator.cs" />
+    <Compile Include="LambdaCompiler\Compiler.cs" />
+    <Compile Include="LambdaCompiler\CompilerException.cs" />
+    <Compile Include="LambdaCompiler\MethodInvoke.cs" />
+    <Compile Include="LambdaCompiler\TypeType.cs" />
+    <Compile Include="LambdaCompiler\TypeBool.cs" />
+    <Compile Include="LambdaCompiler\TypeObject.cs" />
+    <Compile Include="LambdaCompiler\TypeString.cs" />
+    <Compile Include="LambdaCompiler\TypeDouble.cs" />
+    <Compile Include="LambdaCompiler\Types.cs" />
+    <Compile Include="ICompiler.cs" />
+    <Compile Include="Parser\Entry.cs" />
+    <Compile Include="LambdaCompiler\Executor.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="Instruction.cs" />
+    <Compile Include="LambdaCompiler\Instruction.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\Operator.cs" />
     <Compile Include="Parser\Parser.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Parser\SharpExpressionsLexer.cs" />
     <Compile Include="Parser\SharpExpressionsParser.cs" />
     <Compile Include="Parser\Queue.cs" />
-    <Compile Include="Value.cs" />
+    <Compile Include="LambdaCompiler\Value.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Parser\SharpExpressions.g" />

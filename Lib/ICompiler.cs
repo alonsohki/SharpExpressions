@@ -13,15 +13,12 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-using System;
-
-namespace SharpExpressions.Compiler
+namespace SharpExpressions
 {
-    public class CompilerException : Exception
+    delegate object CompiledExpression(Registry registry);
+
+    interface ICompiler
     {
-        public CompilerException(string reason)
-            : base(reason)
-        {
-        }
+        CompiledExpression compile(string expression, Registry registry);
     }
 }

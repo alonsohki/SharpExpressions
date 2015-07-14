@@ -14,24 +14,31 @@
 //   limitations under the License.
 
 using SharpExpressions.Parser;
-using SharpExpressions.Compiler;
-using SharpExpressions.Executor;
+using SharpExpressions.LambdaCompiler;
 
 namespace SharpExpressions
 {
     public class Expression
     {
-        private string mExpression;
+        public string expression { get; private set; }
+        private ICompiler mCompiler;
         private CompiledExpression mCompiled;
         private Registry mRegistry = new Registry();
 
         public Expression()
         {
+            init();
         }
 
         public Expression(string expr)
         {
+            init();
             create(expr);
+        }
+
+        private void init()
+        {
+            mCompiler = new LambdaCompiler.Compiler();
         }
 
         public void addSymbol(string key, object value)
@@ -46,14 +53,14 @@ namespace SharpExpressions
 
         public void create(string expr)
         {
-            mExpression = expr;
+            expression = expr;
         }
 
         public void compile()
         {
-            if (!string.IsNullOrEmpty(mExpression))
+            if (!string.IsNullOrEmpty(expression))
             {
-                mCompiled = Compiler.Compiler.compile(mExpression, mRegistry);
+                mCompiled = mCompiler.compile(expression, mRegistry);
             }
         }
 
@@ -65,7 +72,7 @@ namespace SharpExpressions
             }
             if (mCompiled != null)
             {
-                return Executor.Executor.execute(mCompiled.instructions, mRegistry);
+                return mCompiled(mRegistry);
             }
             return null;
         }

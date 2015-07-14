@@ -13,22 +13,15 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
-    static class TypeObject
+    delegate void convert(ref Value value);
+    delegate void execute(Value[] values, ref Value result);
+
+    class Instruction
     {
-        public static Types.TypeDefinition definition = new Types.TypeDefinition()
-        {
-            convert = (ref Value v) =>
-            {
-                v.objectValue = v.value;
-            },
-
-
-            ternary = (Value[] v, ref Value res) =>
-            {
-                res.objectValue = v[2].boolValue ? v[0].objectValue : v[1].objectValue;
-            },
-        };
+        public int numOperands;
+        public execute execute;
+        public convert[] converters;
     }
 }

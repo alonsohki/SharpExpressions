@@ -13,10 +13,15 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-namespace SharpExpressions.Compiler
+using System;
+
+namespace SharpExpressions.LambdaCompiler
 {
-    class CompiledExpression
+    public class CompilerException : Exception
     {
-        public Instruction[] instructions;
+        public CompilerException(string reason)
+            : base(reason)
+        {
+        }
     }
 }

@@ -17,11 +17,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     static class ArrayAccess
     {
-        public static bool access(Queue<Instruction> instructions, Stack<Entry> work, Type targetType, out Entry result)
+        public static bool access(Queue<Instruction> instructions, Stack<Parser.Entry> work, Type targetType, out Parser.Entry result)
         {
             PropertyInfo itemProperty = null;
             MethodInfo itemGetMethod = null;
@@ -41,7 +41,7 @@ namespace SharpExpressions.Compiler
                 throw new CompilerException("Trying to access " + targetType.FullName + " which is not an array or doesn't have the [] operator overloaded");
             }
 
-            Entry[] parameters = makeParameters(work, numParams);
+            Parser.Entry[] parameters = makeParameters(work, numParams);
             if (itemGetMethod != null)
             {
                 // Treat it as a function call
@@ -62,16 +62,16 @@ namespace SharpExpressions.Compiler
 
                 int[] lambdaIndices = new int[numParams];
                 Type arrayElementType = targetType.GetElementType();
-                Entry.Type resultType = Entry.fromSystemType(arrayElementType);
+                Parser.Entry.Type resultType = Parser.Entry.fromSystemType(arrayElementType);
 
-                if (resultType == Entry.Type.Unknown)
+                if (resultType == Parser.Entry.Type.Unknown)
                 {
                     throw new CompilerException("Unknown element type for array " + targetType.FullName);
                 }
 
                 switch (resultType)
                 {
-                    case Entry.Type.Boolean:
+                    case Parser.Entry.Type.Boolean:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             Array target = (Array)v[numParams].objectValue;
@@ -81,7 +81,7 @@ namespace SharpExpressions.Compiler
                         };
                         break;
 
-                    case Entry.Type.Double:
+                    case Parser.Entry.Type.Double:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             Array target = (Array)v[numParams].objectValue;
@@ -91,7 +91,7 @@ namespace SharpExpressions.Compiler
                         };
                         break;
 
-                    case Entry.Type.String:
+                    case Parser.Entry.Type.String:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             Array target = (Array)v[numParams].objectValue;
@@ -101,7 +101,7 @@ namespace SharpExpressions.Compiler
                         };
                         break;
 
-                    case Entry.Type.Object:
+                    case Parser.Entry.Type.Object:
                         instruction.execute = (Value[] v, ref Value res) =>
                         {
                             Array target = (Array)v[numParams].objectValue;
@@ -115,13 +115,13 @@ namespace SharpExpressions.Compiler
                 instructions.Enqueue(instruction);
             }
 
-            result = new Entry();
+            result = new Parser.Entry();
             return true;
         }
 
-        private static Entry[] makeParameters(Stack<Entry> work, int count)
+        private static Parser.Entry[] makeParameters(Stack<Parser.Entry> work, int count)
         {
-            Entry[] parameters = new Entry[count];
+            Parser.Entry[] parameters = new Parser.Entry[count];
             for (int i = 0; i < count; ++i)
             {
                 parameters[i] = work.Pop();

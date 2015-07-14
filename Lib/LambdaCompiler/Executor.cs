@@ -15,7 +15,7 @@
 
 using System.Collections.Generic;
 
-namespace SharpExpressions.Executor
+namespace SharpExpressions.LambdaCompiler
 {
     class Executor
     {

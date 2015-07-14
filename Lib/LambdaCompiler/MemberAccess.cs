@@ -17,40 +17,40 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     static class MemberAccess
     {
-        public static void identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Entry result)
+        public static void identifierAccess(Queue<Instruction> instructions, Registry registry, string identifier, out Parser.Entry result)
         {
             object value;
             Type type;
 
             if (registry.identifiers.TryGetValue(identifier, out value))
             {
-                Entry.Type entryType = Entry.fromSystemType(value.GetType());
+                Parser.Entry.Type entryType = Parser.Entry.fromSystemType(value.GetType());
                 Instruction instruction = new Instruction();
                 switch (entryType)
                 {
-                    case Entry.Type.Boolean:
+                    case Parser.Entry.Type.Boolean:
                     {
                         bool bValue = (bool)value;
                         instruction.execute = (Value[] v, ref Value res) => res.boolValue = bValue;
                         break;
                     }
-                    case Entry.Type.Double:
+                    case Parser.Entry.Type.Double:
                     {
                         double dValue = Convert.ToDouble(value);
                         instruction.execute = (Value[] v, ref Value res) => res.doubleValue = dValue;
                         break;
                     }
-                    case Entry.Type.String:
+                    case Parser.Entry.Type.String:
                     {
                         string sValue = value as string;
                         instruction.execute = (Value[] v, ref Value res) => res.stringValue = sValue;
                         break;
                     }
-                    case Entry.Type.Object:
+                    case Parser.Entry.Type.Object:
                     {
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = value;
                         break;
@@ -58,40 +58,40 @@ namespace SharpExpressions.Compiler
                 }
                 
                 instructions.Enqueue(instruction);
-                if (entryType == Entry.Type.Object)
+                if (entryType == Parser.Entry.Type.Object)
                 {
-                    result = new Entry { type = Entry.Type.Type, value = value.GetType(), isStatic = false };
+                    result = new Parser.Entry { type = Parser.Entry.Type.Type, value = value.GetType(), isStatic = false };
                 }
                 else
                 {
-                    result = new Entry { type = entryType, value = value, isConstant = true };
+                    result = new Parser.Entry { type = entryType, value = value, isConstant = true };
                 }
             }
 
             else if (registry.types.TryGetValue(identifier, out type))
             {
-                result = new Entry { type = Entry.Type.Type, value = type, isStatic = true };
+                result = new Parser.Entry { type = Parser.Entry.Type.Type, value = type, isStatic = true };
             }
 
             else
             {
-                result = new Entry { type = Entry.Type.Identifier, value = identifier };
+                result = new Parser.Entry { type = Parser.Entry.Type.Identifier, value = identifier };
             }
         }
 
-        public static bool memberAccess(Queue<Instruction> instructions, Registry registry, Entry param0, Entry param1, out bool keepObject, out Entry result)
+        public static bool memberAccess(Queue<Instruction> instructions, Registry registry, Parser.Entry param0, Parser.Entry param1, out bool keepObject, out Parser.Entry result)
         {
-            if (param1.type != Entry.Type.Identifier)
+            if (param1.type != Parser.Entry.Type.Identifier)
             {
                 throw new CompilerException("Trying to access a field without an identifier");
             }
             string fieldName = (string)param1.value;
 
-            if (param0.type == Entry.Type.Type)
+            if (param0.type == Parser.Entry.Type.Type)
             {
                 keepObject = accessType(instructions, param0.value as Type, fieldName, param0.isStatic, out result);
             }
-            else if (param0.type == Entry.Type.Identifier)
+            else if (param0.type == Parser.Entry.Type.Identifier)
             {
                 throw new CompilerException("Cannot find identifier " + (string)param0.value + " in the registry");
             }
@@ -103,7 +103,7 @@ namespace SharpExpressions.Compiler
             return true;
         }
 
-        private static bool accessType(Queue<Instruction> instructions, Type type, string fieldName, bool isStatic, out Entry result)
+        private static bool accessType(Queue<Instruction> instructions, Type type, string fieldName, bool isStatic, out Parser.Entry result)
         {
             Type fieldType = null;
             FieldInfo fieldInfo = null;
@@ -134,12 +134,12 @@ namespace SharpExpressions.Compiler
                 {
                     throw new CompilerException("Cannot field the field '" + fieldName + "' in the object");
                 }
-                result = new Entry { type = Entry.Type.Method, value = methodInfo };
+                result = new Parser.Entry { type = Parser.Entry.Type.Method, value = methodInfo };
                 return !isStatic;
             }
         }
 
-        private static void addAccessorInstruction(Queue<Instruction> instructions, Type type, bool isStatic, FieldInfo fieldInfo, PropertyInfo propInfo, out Entry result)
+        private static void addAccessorInstruction(Queue<Instruction> instructions, Type type, bool isStatic, FieldInfo fieldInfo, PropertyInfo propInfo, out Parser.Entry result)
         {
             if (type == typeof(string))
             {
@@ -159,7 +159,7 @@ namespace SharpExpressions.Compiler
             }
         }
 
-        private static Instruction makeAccessorInstruction(Type type, bool isStatic, FieldInfo fieldInfo, PropertyInfo propInfo, out Entry result)
+        private static Instruction makeAccessorInstruction(Type type, bool isStatic, FieldInfo fieldInfo, PropertyInfo propInfo, out Parser.Entry result)
         {
             bool isProperty = propInfo != null;
             Instruction instruction = new Instruction();
@@ -182,7 +182,7 @@ namespace SharpExpressions.Compiler
                     else
                         instruction.execute = (Value[] v, ref Value res) => res.stringValue = fieldInfo.GetValue(v[0].objectValue) as string;
                 }
-                result = new Entry { type = Entry.Type.String };
+                result = new Parser.Entry { type = Parser.Entry.Type.String };
             }
             else if (type == typeof(bool))
             {
@@ -201,7 +201,7 @@ namespace SharpExpressions.Compiler
                     else
                         instruction.execute = (Value[] v, ref Value res) => res.boolValue = (bool)fieldInfo.GetValue(v[0].objectValue);
                 }
-                result = new Entry { type = Entry.Type.Boolean };
+                result = new Parser.Entry { type = Parser.Entry.Type.Boolean };
             }
             else if (type == typeof(double))
             {
@@ -220,7 +220,7 @@ namespace SharpExpressions.Compiler
                     else
                         instruction.execute = (Value[] v, ref Value res) => res.doubleValue = Convert.ToDouble(fieldInfo.GetValue(v[0].objectValue));
                 }
-                result = new Entry { type = Entry.Type.Double };
+                result = new Parser.Entry { type = Parser.Entry.Type.Double };
             }
             else if (type == typeof(object))
             {
@@ -231,7 +231,7 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = getMethod.Invoke(null, null);
                     else
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = getMethod.Invoke(v[0].objectValue, null);
-                    result = new Entry { type = Entry.Type.Type, value = propInfo.PropertyType };
+                    result = new Parser.Entry { type = Parser.Entry.Type.Type, value = propInfo.PropertyType };
                 }
                 else
                 {
@@ -239,8 +239,8 @@ namespace SharpExpressions.Compiler
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(null);
                     else
                         instruction.execute = (Value[] v, ref Value res) => res.objectValue = fieldInfo.GetValue(v[0].objectValue);
-                        
-                    result = new Entry { type = Entry.Type.Type, value = fieldInfo.FieldType };
+
+                    result = new Parser.Entry { type = Parser.Entry.Type.Type, value = fieldInfo.FieldType };
                 }
             }
             else

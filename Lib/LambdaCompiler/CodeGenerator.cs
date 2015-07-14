@@ -17,14 +17,14 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SharpExpressions.Compiler
+namespace SharpExpressions.LambdaCompiler
 {
     class CodeGenerator
     {
-        public static CompiledExpression generate(Parser.Queue queue, Registry registry)
+        public static Instruction[] generate(Parser.Queue queue, Registry registry)
         {
             var types = Types.types;
-            Stack<Entry> work = new Stack<Entry>();
+            Stack<Parser.Entry> work = new Stack<Parser.Entry>();
             Queue<Instruction> instructions = new Queue<Instruction>();
 
             for (var node = queue.First; node != null; node = node.Next)
@@ -32,44 +32,44 @@ namespace SharpExpressions.Compiler
                 var entry = node.Value;
                 switch (entry.type)
                 {
-                    case Entry.Type.Double:
+                    case Parser.Entry.Type.Double:
                     {
                         Instruction instruction = new Instruction();
                         double value = (double)entry.value;
-                        work.Push(new Entry { type = Entry.Type.Double, value = value, isConstant = true });
+                        work.Push(new Parser.Entry { type = Parser.Entry.Type.Double, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.doubleValue = value;
                         instructions.Enqueue(instruction);
                         break;
                     }
 
-                    case Entry.Type.Boolean:
+                    case Parser.Entry.Type.Boolean:
                     {
                         Instruction instruction = new Instruction();
                         bool value = (bool)entry.value;
-                        work.Push(new Entry { type = Entry.Type.Boolean, value = value, isConstant = true });
+                        work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.boolValue = value;
                         instructions.Enqueue(instruction);
                         break;
                     }
 
-                    case Entry.Type.String:
+                    case Parser.Entry.Type.String:
                     {
                         Instruction instruction = new Instruction();
                         string value = (string)entry.value;
-                        work.Push(new Entry { type = Entry.Type.String, value = value, isConstant = true });
+                        work.Push(new Parser.Entry { type = Parser.Entry.Type.String, value = value, isConstant = true });
                         instruction.execute = (Value[] _, ref Value result) => result.stringValue = value;
                         instructions.Enqueue(instruction);
                         break;
                     }
 
-                    case Entry.Type.Identifier:
+                    case Parser.Entry.Type.Identifier:
                     {
-                        Entry result;
+                        Parser.Entry result;
                         string identifier = (string)entry.value;
                         var next = node.Next;
-                        if (next != null && next.Value.type == Entry.Type.Operator && (Parser.Operator)next.Value.value == Parser.Operator.MemberAccess)
+                        if (next != null && next.Value.type == Parser.Entry.Type.Operator && (Parser.Operator)next.Value.value == Parser.Operator.MemberAccess)
                         {
-                            result = new Entry { type = Entry.Type.Identifier, value = identifier };
+                            result = new Parser.Entry { type = Parser.Entry.Type.Identifier, value = identifier };
                         }
                         else
                         {
@@ -79,18 +79,18 @@ namespace SharpExpressions.Compiler
                         break;
                     }
 
-                    case Entry.Type.Operator:
+                    case Parser.Entry.Type.Operator:
                     {
                         bool applied = false;
                         string op = "";
-                        Entry.Type targetType = Entry.Type.Unknown;
+                        Parser.Entry.Type targetType = Parser.Entry.Type.Unknown;
 
                         switch ((Parser.Operator)entry.value)
                         {
                             case Parser.Operator.Add:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "add";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].add, types[targetType].convert, param0, param1);
@@ -99,8 +99,8 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Sub:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "substract";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].sub, types[targetType].convert, param0, param1);
@@ -109,8 +109,8 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Mul:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "multiply";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].mul, types[targetType].convert, param0, param1);
@@ -119,8 +119,8 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Div:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "divide";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].div, types[targetType].convert, param0, param1);
@@ -129,8 +129,8 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Pow:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "power";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].pow, types[targetType].convert, param0, param1);
@@ -139,7 +139,7 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Negate:
                             {
-                                Entry param0 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "negate";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 1, targetType, types[targetType].negate, types[targetType].convert, param0);
@@ -148,98 +148,98 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.LessThan:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "less than";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].lessThan, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.LessOrEqual:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "less or equal";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].lessOrEqual, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.GreaterThan:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "greater than";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].greaterThan, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.GreaterOrEqual:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "greater or equal";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].greaterOrEqual, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.Equals:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "equals";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].equals, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.NotEquals:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "not equals";
                                 targetType = param0.type;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].notEquals, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.And:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "and";
-                                targetType = Entry.Type.Boolean;
+                                targetType = Parser.Entry.Type.Boolean;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].and, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.Or:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "or";
-                                targetType = Entry.Type.Boolean;
+                                targetType = Parser.Entry.Type.Boolean;
                                 applied = setInstruction(instructions, 2, targetType, types[targetType].or, types[targetType].convert, param0, param1);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.Not:
                             {
-                                Entry param0 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
                                 op = "not";
-                                targetType = Entry.Type.Boolean;
+                                targetType = Parser.Entry.Type.Boolean;
                                 applied = setInstruction(instructions, 1, targetType, types[targetType].not, types[targetType].convert, param0);
-                                work.Push(new Entry { type = Entry.Type.Boolean });
+                                work.Push(new Parser.Entry { type = Parser.Entry.Type.Boolean });
                                 break;
                             }
                             case Parser.Operator.Ternary:
                             {
-                                Entry condition = work.Pop();
-                                Entry ifFalse = work.Pop();
-                                Entry ifTrue = work.Pop();
+                                Parser.Entry condition = work.Pop();
+                                Parser.Entry ifFalse = work.Pop();
+                                Parser.Entry ifTrue = work.Pop();
                                 op = "ternary operator";
                                 targetType = ifTrue.type;
                                 convert[] converters = null;
@@ -248,13 +248,13 @@ namespace SharpExpressions.Compiler
                                     converters = new convert[3];
                                     converters[1] = types[targetType].convert;
                                 }
-                                if (condition.type != Entry.Type.Boolean)
+                                if (condition.type != Parser.Entry.Type.Boolean)
                                 {
                                     if (converters == null)
                                     {
                                         converters = new convert[3];
                                     }
-                                    converters[2] = types[Entry.Type.Boolean].convert;
+                                    converters[2] = types[Parser.Entry.Type.Boolean].convert;
                                 }
                                 Instruction instruction = new Instruction()
                                 {
@@ -264,14 +264,14 @@ namespace SharpExpressions.Compiler
                                 };
                                 instructions.Enqueue(instruction);
                                 applied = true;
-                                work.Push(new Entry { type = targetType });
+                                work.Push(new Parser.Entry { type = targetType });
                                 break;
                             }
                             case Parser.Operator.MemberAccess:
                             {
-                                Entry param1 = work.Pop();
-                                Entry param0 = work.Pop();
-                                Entry result;
+                                Parser.Entry param1 = work.Pop();
+                                Parser.Entry param0 = work.Pop();
+                                Parser.Entry result;
                                 bool keepObject;
                                 op = "memberaccess";
                                 applied = MemberAccess.memberAccess(instructions, registry, param0, param1, out keepObject, out result);
@@ -285,8 +285,8 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.Call:
                             {
-                                Entry method = work.Pop();
-                                if (method.type != Entry.Type.Method)
+                                Parser.Entry method = work.Pop();
+                                if (method.type != Parser.Entry.Type.Method)
                                 {
                                     throw new CompilerException("Expected method to call, but got " + method.type + " instead");
                                 }
@@ -294,14 +294,14 @@ namespace SharpExpressions.Compiler
                                 MethodInfo methodInfo = method.value as MethodInfo;
                                 if (!methodInfo.IsStatic)
                                 {
-                                    Entry targetEntry = work.Pop();
-                                    if (targetEntry.type != Entry.Type.Type)
+                                    Parser.Entry targetEntry = work.Pop();
+                                    if (targetEntry.type != Parser.Entry.Type.Type)
                                     {
                                         throw new CompilerException("Expected an object to the left of the method invoke " + methodInfo.Name);
                                     }
                                 }
 
-                                Entry result;
+                                Parser.Entry result;
                                 var parameters = makeParameters(work, methodInfo.GetParameters().Length);
                                 applied = MethodInvoke.invoke(instructions, methodInfo, methodInfo.IsStatic, parameters, out result);
                                 targetType = result.type;
@@ -311,14 +311,14 @@ namespace SharpExpressions.Compiler
                             }
                             case Parser.Operator.ArrayAccess:
                             {
-                                Entry target = work.Pop();
-                                if (target.type != Entry.Type.Type || target.isStatic)
+                                Parser.Entry target = work.Pop();
+                                if (target.type != Parser.Entry.Type.Type || target.isStatic)
                                 {
                                     throw new CompilerException("Expected object for array access, but got " + target.type + " instead");
                                 }
 
                                 op = "array access";
-                                Entry result;
+                                Parser.Entry result;
                                 applied = ArrayAccess.access(instructions, work, (Type)target.value, out result);
                                 targetType = result.type;
                                 work.Push(result);
@@ -339,7 +339,7 @@ namespace SharpExpressions.Compiler
             {
                 throw new CompilerException("Bad expression: Mismatched operands");
             }
-            else if (work.Peek().type == Entry.Type.Type)
+            else if (work.Peek().type == Parser.Entry.Type.Type)
             {
                 var entry = work.Pop();
                 Type type = entry.value as Type;
@@ -352,13 +352,10 @@ namespace SharpExpressions.Compiler
                 }
             }
 
-            return new CompiledExpression()
-            {
-                instructions = instructions.ToArray()
-            };
+            return instructions.ToArray();
         }
 
-        private static bool setInstruction(Queue<Instruction> instructions, int operandCount, Entry.Type expectedType, execute executor, convert converter, params Entry[] operands)
+        private static bool setInstruction(Queue<Instruction> instructions, int operandCount, Parser.Entry.Type expectedType, execute executor, convert converter, params Parser.Entry[] operands)
         {
             if (executor != null)
             {
@@ -387,9 +384,9 @@ namespace SharpExpressions.Compiler
             return false;
         }
 
-        private static Entry[] makeParameters(Stack<Entry> work, int count)
+        private static Parser.Entry[] makeParameters(Stack<Parser.Entry> work, int count)
         {
-            Entry[] parameters = new Entry[count];
+            Parser.Entry[] parameters = new Parser.Entry[count];
             for (int i = 0; i < count; ++i)
             {
                 parameters[i] = work.Pop();
