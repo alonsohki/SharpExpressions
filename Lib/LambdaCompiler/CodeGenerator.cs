@@ -62,6 +62,16 @@ namespace SharpExpressions.LambdaCompiler
                         break;
                     }
 
+                    case Parser.Entry.Type.Object:
+                    {
+                        Instruction instruction = new Instruction();
+                        object value = entry.value;
+                        work.Push(new Parser.Entry { type = Parser.Entry.Type.Object, value = value, isConstant = true });
+                        instruction.execute = (Value[] _, ref Value result) => result.objectValue = value;
+                        instructions.Enqueue(instruction);
+                        break;
+                    }
+
                     case Parser.Entry.Type.Identifier:
                     {
                         Parser.Entry result;

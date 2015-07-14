@@ -33,13 +33,15 @@ namespace SharpExpressions.LambdaCompiler
 
             equals = (Value[] v, ref Value res) =>
             {
-                res.boolValue = v[0].objectValue.Equals(v[1].objectValue);
+                res.boolValue = (v[0].objectValue == v[1].objectValue ||
+                    (v[0].objectValue != null && v[0].objectValue.Equals(v[1].objectValue)));
             },
 
 
             notEquals = (Value[] v, ref Value res) =>
             {
-                res.boolValue = !v[0].objectValue.Equals(v[1].objectValue);
+                res.boolValue = !(v[0].objectValue == v[1].objectValue ||
+                    (v[0].objectValue != null && v[0].objectValue.Equals(v[1].objectValue)));
             },
         };
     }

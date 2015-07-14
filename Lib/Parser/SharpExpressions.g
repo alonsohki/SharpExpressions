@@ -77,6 +77,7 @@ atomic_expression returns [Queue ret]
   : n=REAL { ret=push_literal(empty_queue(), $n.text); }
   | n=QUOTED_STRING { ret=push_string(empty_queue(), $n.text); }
   | Q=boolean_terminal { ret=$Q.ret; }
+  | 'null' { ret=push_null(empty_queue()); }
   | Q1=identifier_expression { ret=$Q1.ret; } (Q2=fn_call { ret=push_operation($Q2.ret, Operator.Call, ret); }
                                               |Q2=array_access { ret=push_operation($Q2.ret, Operator.ArrayAccess, ret); })?
   | '(' Q=expression ')' { ret=$Q.ret; }

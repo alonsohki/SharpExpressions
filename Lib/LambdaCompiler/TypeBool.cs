@@ -34,7 +34,7 @@ namespace SharpExpressions.LambdaCompiler
                         v.boolValue = v.doubleValue == 0.0 ? false : true;
                         break;
                     case Value.Type.Object:
-                        v.boolValue = (bool)v.objectValue;
+                        v.boolValue = Convert.ToBoolean(v.objectValue);
                         break;
                 }
             },

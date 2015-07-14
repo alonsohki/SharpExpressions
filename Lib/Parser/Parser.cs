@@ -73,6 +73,12 @@ namespace SharpExpressions.Parser
             return queue;
         }
 
+        private Queue push_null(Queue queue)
+        {
+            queue.Enqueue(new Entry { type = Entry.Type.Object, value = null });
+            return queue;
+        }
+
         private Queue push_operator(Queue queue, Operator op)
         {
             var lastElement = queue.Last.Value;

@@ -37,7 +37,7 @@ namespace SharpExpressions.LambdaCompiler
                         v.stringValue = v.doubleValue.ToString();
                         break;
                     case Value.Type.Object:
-                        v.stringValue = v.objectValue.ToString();
+                        v.stringValue = Convert.ToString(v.objectValue);
                         break;
                 }
             },
